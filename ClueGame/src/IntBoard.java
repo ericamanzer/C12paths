@@ -108,6 +108,13 @@ public class IntBoard {
 
 	public void findAllTargets(BoardCell startCell, int pathLength)
 	{
+		
+		if (visited.isEmpty()) 
+		{
+			targets.clear(); 
+		}
+		
+		
 		int x = startCell.col; 
 		int y = startCell.row; 
 		 
@@ -129,6 +136,7 @@ public class IntBoard {
 
 			}
 		}
+		visited.clear();
 	}
 
 	public static void main (String [] args)
