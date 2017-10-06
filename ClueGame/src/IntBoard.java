@@ -92,46 +92,41 @@ public class IntBoard {
 		}
 	}
 
-	
-	public void calcTargets(int startCell, int pathLength) 
+	public void calcTargets(BoardCell startCell, int pathLength) 
 	{ 
 		// set visited list to empty
 		visited.clear();
 		// initially set targets to an empty list
 		targets.clear();
 		// add start location to the visited list
-		int x = startCell % 4;
-		int y = startCell / 4;
+		int x = startCell.col;
+		int y = startCell.row;
 		visited.add(grid[x][y]);
 		// call recursive function (findAllTargets) 
 		findAllTargets(startCell, pathLength);
 	}
 
-	public void findAllTargets(int startCell, int pathLength)
+	public void findAllTargets(BoardCell startCell, int pathLength)
 	{
-		int x = startCell % 4;
-		int y = startCell / 4;
+		int x = startCell.col; 
+		int y = startCell.row; 
+		 
+		
 		for (Map.Entry<BoardCell, Set<BoardCell>> temp : adjMtx.entrySet())
 		{
-			if ( visited.contains(temp.getKey()))
-			{
-
-			}
-			else 
+			if ( !visited.contains(temp.getKey()))
 			{
 				visited.add(temp.getKey());
 				if (pathLength == 1)
 				{
 					targets.add(temp.getKey());
-					return;
 				}
 				else
 				{
-					BoardCell tempCell = temp.getKey();
-					// TODO
-					int nextCell = 0;// new place
-					//findAllTargets( /*int*/, pathLength - 1); 
+					calcTargets(temp.getKey(), pathLength); 
 				}
+				visited.remove(temp.getKey()); 
+
 			}
 		}
 	}
