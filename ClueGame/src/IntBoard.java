@@ -130,6 +130,16 @@ public class IntBoard {
 			}
 		}
 	}
+	// getters
+	public Set<BoardCell> getTargets()
+	{
+		return targets;
+	}
+	
+	public Map<BoardCell, Set<BoardCell>> getAdjList()
+	{
+		return adjMtx;
+	}
 
 	public static void main (String [] args)
 	{
