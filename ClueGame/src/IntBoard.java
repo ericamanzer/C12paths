@@ -13,7 +13,7 @@ public class IntBoard {
 		this.pathLength = pathLength;
 	}
 
-	public void calcAdjiancies() {
+	public void calcAdjancies() {
 
 	}
 
