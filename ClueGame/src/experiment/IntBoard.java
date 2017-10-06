@@ -1,5 +1,5 @@
+package experiment;
 import java.util.*;
-import experiment.BoardCell;
 
 // For this exercise, you will write and test the adjacency and 
 // target calculation algorithms for a simple 4x4 grid.
@@ -109,6 +109,8 @@ public class IntBoard {
 	public void findAllTargets(BoardCell startCell, int pathLength)
 	{
 		
+		boolean validCell = true; 
+		
 		if (visited.isEmpty()) 
 		{
 			targets.clear(); 
@@ -116,10 +118,17 @@ public class IntBoard {
 		
 		visited.add(startCell); 
 		 
+		int x = startCell.col;
+		int y = startCell.row; 
+		
+		if (x - 1 >= 0 && x + 1 < 4 && y - 1 >= 0 && y + 1 < 4)
+		{
+			validCell = false; 
+		}
 		
 		for (Map.Entry<BoardCell, Set<BoardCell>> temp : adjMtx.entrySet())
 		{
-			if ( !visited.contains(temp.getKey()))
+			if ( !visited.contains(temp.getKey()) && validCell == true)
 			{
 				visited.add(temp.getKey());
 				if (pathLength == 1)
