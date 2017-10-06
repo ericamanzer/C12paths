@@ -32,8 +32,17 @@ public class IntBoard {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		grid = new BoardCell [4][4];
+		
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				boardCell.col = j;
+				boardCell.row = i;
+				grid[i][j] = boardCell;
+			}
+		}
 	}
-
 	public void calcAdjancies() {
 		// calculating the adjacency
 		// for loop going through all the cell in grid {
@@ -42,39 +51,31 @@ public class IntBoard {
 			for (int j = 0; j < 4; j++)  // j = y
 			{
 				boardCell = grid[i][j];
+				Set<BoardCell> setAdjMtx = new HashSet<BoardCell>();
 				//  look at each neighbor {
 				if ( i - 1 >= 0)
 				{
 					//add it to the adjacency list
-					Set<BoardCell> setAdjMtx = new HashSet<BoardCell>();
 					setAdjMtx.add(boardCell);
-					adjMtx.put(boardCell, setAdjMtx);
 				}
 				if (i + 1 < 4)
 				{
 					//add it to the adjacency list
-					Set<BoardCell> setAdjMtx = new HashSet<BoardCell>();
 					setAdjMtx.add(boardCell);
-					adjMtx.put(boardCell, setAdjMtx);
-
 				}
 				if (j - 1 >= 0)
 				{
 					//add it to the adjacency list
-					Set<BoardCell> setAdjMtx = new HashSet<BoardCell>();
 					setAdjMtx.add(boardCell);
-					adjMtx.put(boardCell, setAdjMtx);
 				}
 				if (j + 1 < 4)
 				{
 					//add it to the adjacency list
-					Set<BoardCell> setAdjMtx = new HashSet<BoardCell>();
 					setAdjMtx.add(boardCell);
-					adjMtx.put(boardCell, setAdjMtx);
 				}
+				adjMtx.put(boardCell, setAdjMtx);
 			}
 		}
-
 		//testing print out
 		int count =  0;
 		for (int x = 0; x < 4; x++)
@@ -89,10 +90,9 @@ public class IntBoard {
 				}
 			}
 		}
-		
-		
 	}
 
+	
 	public void calcTargets(int startCell, int pathLength) 
 	{ 
 		// set visited list to empty
