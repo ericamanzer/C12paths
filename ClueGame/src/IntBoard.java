@@ -114,9 +114,7 @@ public class IntBoard {
 			targets.clear(); 
 		}
 		
-		
-		int x = startCell.col; 
-		int y = startCell.row; 
+		visited.add(startCell); 
 		 
 		
 		for (Map.Entry<BoardCell, Set<BoardCell>> temp : adjMtx.entrySet())
@@ -137,6 +135,16 @@ public class IntBoard {
 			}
 		}
 		visited.clear();
+	}
+	// getters
+	public Set<BoardCell> getTargets()
+	{
+		return targets;
+	}
+	
+	public Map<BoardCell, Set<BoardCell>> getAdjList()
+	{
+		return adjMtx;
 	}
 
 	public static void main (String [] args)
