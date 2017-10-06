@@ -10,5 +10,9 @@ public class BoardCell {
 		col = 0;
 	} 
 	
+	public BoardCell(int col, int row) { 
+		this.row = row; 
+		this.col = col; 
+	}
 	
 }

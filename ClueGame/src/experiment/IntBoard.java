@@ -155,6 +155,13 @@ public class IntBoard {
 	{
 		return adjMtx;
 	}
+	
+	public BoardCell getCell(int x, int y) {
+		
+		BoardCell cell = new BoardCell(x, y); 
+		
+		return cell; 
+	}
 
 	public static void main (String [] args)
 	{
