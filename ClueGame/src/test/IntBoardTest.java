@@ -53,5 +53,43 @@ public class IntBoardTest {
 		assertEquals(2, testList.size());
 		
 	}
+	
+	@Test
+	public void testAdjacency_3()
+	{
+		BoardCell cell = intBoard.getCell(0,0);
+		Map<BoardCell, Set<BoardCell>> map = intBoard.getAdjList();
+		Set<BoardCell> testList = map.get(cell);
+		assertTrue(testList.contains(intBoard.getCell(3, 1)));
+		assertTrue(testList.contains(intBoard.getCell(2, 2)));
+		assertEquals(2, testList.size());
+		
+	}
+	
+	@Test
+	public void testAdjacency_4()
+	{
+		BoardCell cell = intBoard.getCell(0,0);
+		Map<BoardCell, Set<BoardCell>> map = intBoard.getAdjList();
+		Set<BoardCell> testList = map.get(cell);
+		assertTrue(testList.contains(intBoard.getCell(3, 1)));
+		assertTrue(testList.contains(intBoard.getCell(2, 0)));
+		assertEquals(2, testList.size());
+		
+	}
+	
+	@Test
+	public void testAdjacency_5()
+	{
+		BoardCell cell = intBoard.getCell(0,0);
+		Map<BoardCell, Set<BoardCell>> map = intBoard.getAdjList();
+		Set<BoardCell> testList = map.get(cell);
+		assertTrue(testList.contains(intBoard.getCell(3, 2)));
+		assertTrue(testList.contains(intBoard.getCell(2, 0)));
+		assertEquals(2, testList.size());
+		
+	}
+
+
 
 }
