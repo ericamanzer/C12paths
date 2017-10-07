@@ -148,19 +148,22 @@ public class IntBoard {
 	// getters
 	public Set<BoardCell> getTargets()
 	{
-		return targets;
+		return null; 
+		//return targets;
 	}
 	
 	public Map<BoardCell, Set<BoardCell>> getAdjList()
 	{
-		return adjMtx;
+		return null; 
+		// return adjMtx;
 	}
 	
 	public BoardCell getCell(int x, int y) {
 		
 		BoardCell cell = new BoardCell(x, y); 
 		
-		return cell; 
+		return null; 
+		//return cell; 
 	}
 
 	public static void main (String [] args)
