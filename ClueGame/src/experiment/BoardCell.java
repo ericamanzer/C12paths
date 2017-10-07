@@ -1,3 +1,8 @@
+/*
+ * Author: Demonna Wade and Erica Manzer 
+ */
+
+
 package experiment;
 
 public class BoardCell {

@@ -1,3 +1,7 @@
+/*
+ * Author: Demonna Wade and Erica Manzer 
+ */
+
 package experiment;
 import java.util.*;
 
@@ -76,21 +80,10 @@ public class IntBoard {
 				adjMtx.put(boardCell, setAdjMtx);
 			}
 		}
-		//testing print out
-		int count =  0;
-		for (int x = 0; x < 4; x++)
-		{
-			for (int y = 0; y < 4; y++)
-			{
-				System.out.print(adjMtx.get(grid[x][y]));
-				count ++;
-				if (count % 4 == 0)
-				{
-					System.out.println();
-				}
-			}
-		}
+
 	}
+
+	
 
 	public void calcTargets(BoardCell startCell, int pathLength) 
 	{ 
@@ -137,39 +130,36 @@ public class IntBoard {
 				}
 				else
 				{
-					calcTargets(temp.getKey(), pathLength); 
+					findAllTargets(temp.getKey(), pathLength - 1); 
 				}
 				visited.remove(temp.getKey()); 
 
 			}
+			 
 		}
 		visited.clear();
 	}
 	// getters
 	public Set<BoardCell> getTargets()
 	{
-		return null; 
-		//return targets;
+		//return null; 
+		return targets;
 	}
 	
 	public Map<BoardCell, Set<BoardCell>> getAdjList()
 	{
-		return null; 
-		// return adjMtx;
+		//return null; 
+		return adjMtx;
 	}
 	
 	public BoardCell getCell(int x, int y) {
 		
 		BoardCell cell = new BoardCell(x, y); 
 		
-		return null; 
-		//return cell; 
+		//return null; 
+		return cell; 
 	}
 
-	public static void main (String [] args)
-	{
-		IntBoard test = new IntBoard();
-		test.calcAdjancies();
-	}
+
 
 }
