@@ -1,3 +1,8 @@
+/*
+ * Author: Demonna Wade and Erica Manzer 
+ */
+
+
 package test;
 
 import static org.junit.Assert.*;
