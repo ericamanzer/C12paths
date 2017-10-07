@@ -16,7 +16,7 @@ public class IntBoard {
 	// grid - 2D array 
 	private BoardCell[][] grid;
 	// BoardCell object
-	static private BoardCell boardCell;
+	private BoardCell boardCell;
 
 	// default constructor
 	public IntBoard() 
@@ -39,7 +39,7 @@ public class IntBoard {
 			{
 				boardCell.col = j;
 				boardCell.row = i;
-				grid[i][j] = boardCell;
+				grid[j][i] = boardCell;
 			}
 		}
 	}
@@ -76,7 +76,7 @@ public class IntBoard {
 				adjMtx.put(boardCell, setAdjMtx);
 			}
 		}
-		//testing print out
+		/*testing print out
 		int count =  0;
 		for (int x = 0; x < 4; x++)
 		{
@@ -89,7 +89,7 @@ public class IntBoard {
 					System.out.println();
 				}
 			}
-		}
+		} */
 	}
 
 	public void calcTargets(BoardCell startCell, int pathLength) 
@@ -148,28 +148,23 @@ public class IntBoard {
 	// getters
 	public Set<BoardCell> getTargets()
 	{
-		return null; 
-		//return targets;
+		//return null; 
+		return targets;
 	}
 	
 	public Map<BoardCell, Set<BoardCell>> getAdjList()
 	{
-		return null; 
-		// return adjMtx;
+		//return null; 
+		 return adjMtx;
 	}
 	
 	public BoardCell getCell(int x, int y) {
 		
 		BoardCell cell = new BoardCell(x, y); 
 		
-		return null; 
-		//return cell; 
+		//return null; 
+		return cell; 
 	}
 
-	public static void main (String [] args)
-	{
-		IntBoard test = new IntBoard();
-		test.calcAdjancies();
-	}
 
 }
