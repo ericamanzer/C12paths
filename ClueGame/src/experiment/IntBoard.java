@@ -44,13 +44,15 @@ public class IntBoard {
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				boardCell.col = j;
-				boardCell.row = i;
-				grid[j][i] = boardCell;
+				boardCell = new BoardCell();
+				boardCell.col = i;
+				boardCell.row = j;
+				grid[i][j] = boardCell;
 			}
 		}
 	}
 	public void calcAdjancies() {
+		adjMtx = new HashMap<BoardCell, Set<BoardCell>>();
 		// calculating the adjacency
 		// for loop going through all the cell in grid {
 		for (int i = 0; i < 4; i++)  // i = x
@@ -58,40 +60,47 @@ public class IntBoard {
 			
 			for (int j = 0; j < 4; j++)  // j = y
 			{
-				//setAdjMtx.clear();
-				boardCell = grid[i][j];
-				System.out.println(i + " " + j);
+				Set<BoardCell> adj = new HashSet<BoardCell>();
+				//boardCell = grid[i][j];
+				//System.out.println(i + " " + j);
 				//  look at each neighbor {
 				if ( i - 1 >= 0)
 				{
 					//add it to the adjacency list
-					if (!setAdjMtx.contains(grid[i - 1][j])) setAdjMtx.add(grid[i - 1][j]);
+					if (!adj.contains(grid[i - 1][j])) adj.add(grid[i - 1][j]);
 				}
 				if (i + 1 < 4)
 				{
 					//add it to the adjacency list
 					//if (!setAdjMtx.contains(grid[i+1][j])) setAdjMtx.add(grid[i+1][j]); System.out.println("right");
-					setAdjMtx.add(grid[i+1][j]);
+					//if(adj.add(grid[i+1][j])) System.out.println("What");
+					adj.add(grid[i+1][j]);
 					
 				}
 				if (j - 1 >= 0)
 				{
 					//add it to the adjacency list
-					if (!setAdjMtx.contains(grid[i][j - 1])) setAdjMtx.add(grid[i][j - 1]);
+					if (!adj.contains(grid[i][j - 1])) adj.add(grid[i][j - 1]);
 				}
 				if (j + 1 < 4)
 				{
 					//add it to the adjacency list
 					//if (!setAdjMtx.contains(grid[i][j + 1])) setAdjMtx.add(grid[i][j + 1]); System.out.println("down");
-					setAdjMtx.add(grid[i][j + 1]);
+					//if(adj.add(grid[i][j + 1])) System.out.println("Yo");
+					adj.add(grid[i][j + 1]);
+					//System.out.println("Yo");
 					
 				}
-				System.out.println(setAdjMtx.size());
-				adjMtx.put(boardCell, new HashSet<BoardCell>(setAdjMtx));
+				//System.out.println(adj.);
+				//for (BoardCell x : adj) {
+				//	System.out.println(i + " "+j + " The set " + x.col + " " +x.row);
+				//}
+				adjMtx.put(grid[i][j], new HashSet<BoardCell>(adj));
+				adj.clear();
 			}
 			
 		}
-		System.out.println(adjMtx.size());
+		//System.out.println(adjMtx.size());
 }
 
 	
@@ -112,15 +121,16 @@ public class IntBoard {
 
 	public void findAllTargets(BoardCell startCell, int pathLength)
 	{
-		
+		int count = 0;
 		boolean validCell = true; 
 		
 		if (visited.isEmpty()) 
 		{
-			targets.clear(); 
+			targets.clear();
+			visited.add(startCell); 
 		}
 		
-		visited.add(startCell); 
+		
 		 
 		int x = startCell.col;
 		int y = startCell.row; 
@@ -138,6 +148,7 @@ public class IntBoard {
 				if (pathLength == 1)
 				{
 					targets.add(temp.getKey());
+					count++;
 				}
 				else
 				{
@@ -149,6 +160,7 @@ public class IntBoard {
 			 
 		}
 		visited.clear();
+		System.out.println(" Added to targets " + count + " times");
 	}
 	// getters
 	public Set<BoardCell> getTargets()
@@ -157,18 +169,19 @@ public class IntBoard {
 		return targets;
 	}
 	
-	public Map<BoardCell, Set<BoardCell>> getAdjList()
+	public Set<BoardCell> getAdjList(BoardCell cell)
 	{
 		//return null; 
-
-		 return adjMtx;
+		 Set<BoardCell> ans = new HashSet<BoardCell>();
+		 ans = adjMtx.get(cell);
+		 return ans;
 
 	}
 	
-	public BoardCell getCell(int x, int y) { 
+	public BoardCell getCell(int y, int x) { 
 		
 		//return null; 
-		return boardCell; 
+		return grid[y][x];
 	}
 
 
