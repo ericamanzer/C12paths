@@ -21,6 +21,8 @@ public class IntBoard {
 	private BoardCell[][] grid;
 	// BoardCell object
 	private BoardCell boardCell;
+	// Set used to add to adjMtx
+	public Set<BoardCell> setAdjMtx;
 
 	// default constructor
 	public IntBoard() 
@@ -35,6 +37,7 @@ public class IntBoard {
 		adjMtx = new HashMap<BoardCell, Set<BoardCell>>();
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
+		setAdjMtx = new HashSet<BoardCell>();
 		grid = new BoardCell [4][4];
 		
 		for (int i = 0; i < 4; i++)
@@ -52,34 +55,43 @@ public class IntBoard {
 		// for loop going through all the cell in grid {
 		for (int i = 0; i < 4; i++)  // i = x
 		{
+			
 			for (int j = 0; j < 4; j++)  // j = y
 			{
+				//setAdjMtx.clear();
 				boardCell = grid[i][j];
-				Set<BoardCell> setAdjMtx = new HashSet<BoardCell>();
+				System.out.println(i + " " + j);
 				//  look at each neighbor {
 				if ( i - 1 >= 0)
 				{
 					//add it to the adjacency list
-					setAdjMtx.add(boardCell);
+					if (!setAdjMtx.contains(grid[i - 1][j])) setAdjMtx.add(grid[i - 1][j]);
 				}
 				if (i + 1 < 4)
 				{
 					//add it to the adjacency list
-					setAdjMtx.add(boardCell);
+					//if (!setAdjMtx.contains(grid[i+1][j])) setAdjMtx.add(grid[i+1][j]); System.out.println("right");
+					setAdjMtx.add(grid[i+1][j]);
+					
 				}
 				if (j - 1 >= 0)
 				{
 					//add it to the adjacency list
-					setAdjMtx.add(boardCell);
+					if (!setAdjMtx.contains(grid[i][j - 1])) setAdjMtx.add(grid[i][j - 1]);
 				}
 				if (j + 1 < 4)
 				{
 					//add it to the adjacency list
-					setAdjMtx.add(boardCell);
+					//if (!setAdjMtx.contains(grid[i][j + 1])) setAdjMtx.add(grid[i][j + 1]); System.out.println("down");
+					setAdjMtx.add(grid[i][j + 1]);
+					
 				}
+				System.out.println(setAdjMtx.size());
 				adjMtx.put(boardCell, setAdjMtx);
 			}
+			
 		}
+		System.out.println(adjMtx.size());
 }
 
 	
@@ -155,10 +167,10 @@ public class IntBoard {
 	
 	public BoardCell getCell(int x, int y) {
 		
-		BoardCell cell = new BoardCell(x, y); 
+		 
 		
 		//return null; 
-		return cell; 
+		return boardCell; 
 	}
 
 
