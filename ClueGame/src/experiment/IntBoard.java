@@ -129,7 +129,8 @@ public class IntBoard {
 			targets.clear();
 			visited.add(startCell); 
 		}
-		
+		Set<BoardCell> adjCell = new HashSet<BoardCell>();
+		adjCell = adjMtx.get(startCell);
 		
 		 
 		int x = startCell.col;
@@ -140,21 +141,22 @@ public class IntBoard {
 			validCell = false; 
 		}
 		
-		for (Map.Entry<BoardCell, Set<BoardCell>> temp : adjMtx.entrySet())
+		//Map.Entry<BoardCell, Set<BoardCell>> temp : adjMtx.entrySet()
+		for (BoardCell temp: adjCell)
 		{
-			if ( !visited.contains(temp.getKey()) && validCell == true)
+			if ( !visited.contains(temp) && validCell == true)
 			{
-				visited.add(temp.getKey());
+				visited.add(temp);
 				if (pathLength == 1)
 				{
-					targets.add(temp.getKey());
+					targets.add(temp);
 					count++;
 				}
 				else
 				{
-					findAllTargets(temp.getKey(), pathLength - 1); 
+					findAllTargets(temp, pathLength - 1); 
 				}
-				visited.remove(temp.getKey()); 
+				visited.remove(temp); 
 
 			}
 			 
