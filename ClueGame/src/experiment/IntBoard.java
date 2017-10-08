@@ -152,12 +152,10 @@ public class IntBoard {
 		return adjMtx;
 	}
 	
-	public BoardCell getCell(int x, int y) {
-		
-		BoardCell cell = new BoardCell(x, y); 
+	public BoardCell getCell(int x, int y) { 
 		
 		//return null; 
-		return cell; 
+		return boardCell; 
 	}
 
 
