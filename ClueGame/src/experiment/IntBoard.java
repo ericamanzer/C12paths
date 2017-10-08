@@ -87,7 +87,7 @@ public class IntBoard {
 					
 				}
 				System.out.println(setAdjMtx.size());
-				adjMtx.put(boardCell, setAdjMtx);
+				adjMtx.put(boardCell, new HashSet<BoardCell>(setAdjMtx));
 			}
 			
 		}
@@ -165,9 +165,7 @@ public class IntBoard {
 
 	}
 	
-	public BoardCell getCell(int x, int y) {
-		
-		 
+	public BoardCell getCell(int x, int y) { 
 		
 		//return null; 
 		return boardCell; 

@@ -32,7 +32,7 @@ public class IntBoardTest {
 		Set<BoardCell> testList = map.get(cell);
 		assertTrue(testList.contains(intBoard.getCell(0, 0)));
 		assertTrue(testList.contains(intBoard.getCell(3, 3)));
-		assertEquals(2, testList.size());
+		assertEquals(1, testList.size());
 		
 	}
 	
