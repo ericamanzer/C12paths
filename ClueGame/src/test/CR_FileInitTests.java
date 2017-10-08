@@ -1,4 +1,4 @@
-package tests;
+package test;
 
 /*
  * This program tests that config files are loaded properly.
