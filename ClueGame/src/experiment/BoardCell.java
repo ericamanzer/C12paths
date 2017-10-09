@@ -2,13 +2,18 @@
  * Author: Demonna Wade and Erica Manzer 
  */
 
+/*
+ * I made row, col, & initial private and then created getters and setters 
+ * This created some problems in IntBoard since we had been accessing them directly. I went through and corrected by calling the getters and setters in IntBoard 
+ */
+
 
 package experiment;
 
 public class BoardCell {
 	// two member variables to represent the row and column
-	public int row, col;
-	char initial; 
+	private int row, col;
+	private char initial; 
 	
 	// constructor (optional)
 	public BoardCell() {
@@ -52,6 +57,30 @@ public class BoardCell {
 		 }
 		 
 		 return isD; 
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public void setCol(int col) {
+		this.col = col;
+	}
+
+	public char getInitial() {
+		return initial;
+	}
+
+	public void setInitial(char initial) {
+		this.initial = initial;
 	}
 	
 }

@@ -45,8 +45,8 @@ public class IntBoard {
 			for (int j = 0; j < 4; j++)
 			{
 				boardCell = new BoardCell();
-				boardCell.col = i;
-				boardCell.row = j;
+				boardCell.setCol(i);
+				boardCell.setRow(j); 
 				grid[i][j] = boardCell;
 			}
 		}
@@ -112,8 +112,8 @@ public class IntBoard {
 		// initially set targets to an empty list
 		targets.clear();
 		// add start location to the visited list
-		int x = startCell.col;
-		int y = startCell.row;
+		int x = startCell.getCol();
+		int y = startCell.getRow();
 		visited.add(grid[x][y]);
 		// call recursive function (findAllTargets) 
 		findAllTargets(startCell, pathLength);
@@ -133,8 +133,8 @@ public class IntBoard {
 		adjCell = adjMtx.get(startCell);
 		
 		 
-		int x = startCell.col;
-		int y = startCell.row; 
+		int x = startCell.getCol();
+		int y = startCell.getRow(); 
 		
 		if (x - 1 >= 0 && x + 1 < 4 && y - 1 >= 0 && y + 1 < 4)
 		{
