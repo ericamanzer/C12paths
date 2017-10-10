@@ -2,6 +2,7 @@ package test;
 
 /*
  * This program tests that config files are loaded properly.
+ * This uses
  */
 
 // Doing a static import allows me to write assertEquals rather than
@@ -14,9 +15,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clueGame.Board;
-import clueGame.BoardCell;
-import clueGame.DoorDirection;
+import clueGame.*;
 
 public class CR_FileInitTests {
 	// Constants that I will use to test whether the file was loaded correctly

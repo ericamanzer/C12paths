@@ -8,6 +8,9 @@ package test;
 import static org.junit.Assert.*;
 import experiment.*;
 import org.junit.Test;
+
+import clueGame.BoardCell;
+
 import java.util.*;
 import org.junit.Before;
 

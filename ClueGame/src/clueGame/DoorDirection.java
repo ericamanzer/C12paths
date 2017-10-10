@@ -1,13 +1,13 @@
-package experiment;
+package clueGame;
 
-public class DoorDirection {
-	
-	public enum Direction {
-		UP, DOWN, RIGHT, LEFT, NONE; 
-	}
-	
-	
+public enum DoorDirection {
+	UP, DOWN, RIGHT, LEFT, NONE;
+}
+
+
+//FIXME May need. If not, erase. 
 	// I was unsure how much work the instructions wanted on this class. Everything below this comment might need double checked 
+	/*
 	
 	Direction direction; 
 	BoardCell position; 
@@ -42,6 +42,4 @@ public class DoorDirection {
 			break; 
 		}
 	}
-	
-	
-}
+	*/

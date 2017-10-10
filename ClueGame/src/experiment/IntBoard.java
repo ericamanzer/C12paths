@@ -5,6 +5,8 @@
 package experiment;
 import java.util.*;
 
+import clueGame.BoardCell;
+
 // For this exercise, you will write and test the adjacency and 
 // target calculation algorithms for a simple 4x4 grid.
 
