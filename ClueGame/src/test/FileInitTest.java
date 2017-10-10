@@ -39,6 +39,7 @@ public class FileInitTest {
 	@Test
 	public void testNotDoorCount()
 	{
+		// testing the door count based of the amount of doors that are doorDirectins.NONE
 		int door = 0, notDoor = 0;
 		//BoardCell[] array = new BoardCell[NUM_COLUMNS];
 		for (int x = 0; x < NUM_ROWS; x++)
@@ -61,6 +62,7 @@ public class FileInitTest {
 	@Test
 	public void verifyDoorDirection()
 	{
+		// testing the board directions with counters and a boolean test
 		int right =0, left = 0, up = 0, down = 0;
 		boolean foundDir = false;
 		for (int i = 0; i < clueBoard.getNumRows(); i++)
@@ -83,9 +85,10 @@ public class FileInitTest {
 	@Test
 	public void testBoardDim()
 	{
+		// test the board dimensions useing to assertTrue with two booleans
 		boolean col = false, row = false;
-		if (NUM_ROWS == clueBoard.getNumRows()) row = true;
-		if (NUM_COLUMNS == clueBoard.getNumColumns()) col = true; 
+		if (NUM_ROWS == clueBoard.getNumRows()){ row = true;}
+		if (NUM_COLUMNS == clueBoard.getNumColumns()){ col = true;} 
 		assertTrue(row);
 		assertTrue(col);
 	}
@@ -93,6 +96,7 @@ public class FileInitTest {
 	@Test
 	public void testLegend()
 	{
+		// testing the legends using the initial characters from the board
 		Map<Character, String> leg = clueBoard.getLegend();
 		
 		char letter = clueBoard.getCellAt(0, 0).getInitial();

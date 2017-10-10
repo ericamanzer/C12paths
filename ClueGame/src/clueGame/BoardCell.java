@@ -19,7 +19,7 @@ public class BoardCell {
 	private int row, col;
 	private char initial;
 	private DoorDirection doorDir;
-	
+
 	// default constructor
 	public BoardCell() {
 		row = 0;
@@ -47,14 +47,17 @@ public class BoardCell {
 		return false;
 	}
 	public boolean isDoorway() {
-		 if (doorDir != DoorDirection.NONE) {  //FIXME change doorway char
-			 return true; 
-		 }
-		 return false;
+		if (doorDir != DoorDirection.NONE) {  //FIXME change doorway char
+			return true; 
+		}
+		return false;
 	}
 	// Getters {
 	public int getRow() {
-		return row;
+		// correct way
+		//return row;
+		// making test fail
+		return 0;
 	}
 
 	public void setRow(int row) {
@@ -62,7 +65,10 @@ public class BoardCell {
 	}
 
 	public int getCol() {
-		return col;
+		// correct way
+		//return col;
+		// making test fail
+		return 0;
 	}
 
 	public void setCol(int col) {
@@ -70,7 +76,10 @@ public class BoardCell {
 	}
 
 	public char getInitial() {
-		return initial;
+		// correct way
+		//return initial;
+		// making test fail
+		return 'C';
 	}
 
 	public void setInitial(char initial) {
@@ -78,7 +87,10 @@ public class BoardCell {
 	}
 	public DoorDirection getDoorDirection()
 	{
-		return doorDir;
+		// correct way
+		//return doorDir;
+		// making test fail
+		return DoorDirection.NONE;
 	}
-	
+
 }

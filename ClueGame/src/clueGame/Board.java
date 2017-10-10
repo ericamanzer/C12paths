@@ -223,11 +223,17 @@ public class Board extends BoardCell {
 	}
 	public int getNumRows()
 	{
-		return numRows;
+		// correct way
+		// return numRows;
+		// making test fail
+		return 0;
 	}
 	public int getNumColumns()
 	{
-		return numColumns;
+		// correct way
+		// return numColumns;
+		// making test fail
+		return 0;
 	}
 	public BoardCell getCellAt(int row, int col)
 	{
