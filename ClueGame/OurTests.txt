@@ -1,0 +1,42 @@
+
+public void testRoomDoors() 
+{
+	Testing Doors to see if they were recorded as room as well as Doors.
+	Also, testing the door direction.
+}
+
+public void testNotDoorCount()
+{
+	Searching through the board and look for cell with DoorDirection.NONE.
+	There is a counter that keeps track (aka notDoor);
+	A total is calculated from (NUM_ROWS * NUM_COLUMNS) - count of doors;
+	If notDoors and doors, then the test should pass.
+	
+}
+
+public void verifyDoorDirection()
+{
+	There is a counter for each direction: left, right, up and down.
+	Search through the cells and if the DoorDirection is anything besides NONE, it adds to
+	the appropriate counter.
+	If all of the counter increase by at least one, then a boolean is switched to true.
+	If the assertTrue pass, then the test passes. 
+}
+
+public void testBoardDim()
+{
+	Two boolean variables are initialized to false.
+	If the sizes of the columns and rows matches the hard coded values, 
+	then the booleans are set to true.
+	If the assertTrue passes on both booleans, then the test passes. 
+}
+
+public void testLegend()
+{
+	The legend is tested based on the board. 
+	I get a position on the board and return the initial. 
+	An assertEquals compares if the return value with the return initial as the key
+	are the same. If they are, the test pass. 
+}
+	
+	

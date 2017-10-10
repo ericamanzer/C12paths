@@ -1,0 +1,11 @@
+P, Paths, Other (hallway) 
+K, Kafadar, Other (closet)  
+M, Marquez, Card
+H, Hill Hall, Card 
+G, Guggenheim, Card 
+B, Brown, Card 
+R, Randall, Card  
+A, Alderson, Card  
+C, Coolbaugh, Card 
+E, Elm, Card 
+W, Weaver, Card 

@@ -104,6 +104,10 @@ public class Board extends BoardCell {
 			("Unable to open/load " + boardConfigFile + " .");
 
 		}
+		finally
+		{
+			scan.close();
+		}
 
 	}
 
@@ -209,7 +213,7 @@ public class Board extends BoardCell {
 
 		}
 		visited.clear();
-		System.out.println(" Added to targets " + count + " times");
+		//System.out.println(" Added to targets " + count + " times");
 	}
 
 	//NOTE: Getters {
@@ -228,6 +232,10 @@ public class Board extends BoardCell {
 	public BoardCell getCellAt(int row, int col)
 	{
 		return board[row][col];
+	}
+	public BoardCell[][] getBoard()
+	{
+		return board;
 	}
 
 
