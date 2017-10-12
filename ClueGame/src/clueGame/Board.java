@@ -54,6 +54,11 @@ public class Board extends BoardCell {
 			System.out.println
 			("Unable to open file " + roomConfigFile + ".");
 		}
+		catch (NullPointerException a)
+		{
+			BadConfigFormatException b = new BadConfigFormatException(a.getLocalizedMessage());
+			b.getMessage();
+		}
 		finally
 		{
 			scan.close();
@@ -104,6 +109,11 @@ public class Board extends BoardCell {
 			System.out.println
 			("Unable to open/load " + boardConfigFile + " .");
 
+		}
+		catch (NullPointerException a) 
+		{
+			BadConfigFormatException b = new BadConfigFormatException(a.getMessage()); 
+			b.getMessage();
 		}
 		finally
 		{
