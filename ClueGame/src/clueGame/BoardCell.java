@@ -55,9 +55,7 @@ public class BoardCell {
 	// Getters {
 	public int getRow() {
 		// correct way
-		//return row;
-		// making test fail
-		return 0;
+		return row;
 	}
 
 	public void setRow(int row) {
@@ -66,9 +64,7 @@ public class BoardCell {
 
 	public int getCol() {
 		// correct way
-		//return col;
-		// making test fail
-		return 0;
+		return col;
 	}
 
 	public void setCol(int col) {
@@ -77,9 +73,7 @@ public class BoardCell {
 
 	public char getInitial() {
 		// correct way
-		//return initial;
-		// making test fail
-		return 'C';
+		return initial;
 	}
 
 	public void setInitial(char initial) {
@@ -88,9 +82,7 @@ public class BoardCell {
 	public DoorDirection getDoorDirection()
 	{
 		// correct way
-		//return doorDir;
-		// making test fail
-		return DoorDirection.NONE;
+		return doorDir;
 	}
 
 }

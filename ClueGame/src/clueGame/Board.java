@@ -90,6 +90,7 @@ public class Board extends BoardCell {
 						if (dir == 'L') cell = new BoardCell(x, y, letter, DoorDirection.LEFT);
 						if (dir == 'U') cell = new BoardCell(x, y, letter, DoorDirection.UP);
 						if (dir == 'D') cell = new BoardCell(x, y, letter, DoorDirection.DOWN);
+						if (dir == 'N') cell = new BoardCell(x, y, letter, DoorDirection.NONE);
 						board[x][y] = cell;
 					}
 				}
@@ -224,16 +225,12 @@ public class Board extends BoardCell {
 	public int getNumRows()
 	{
 		// correct way
-		// return numRows;
-		// making test fail
-		return 0;
+		return numRows;
 	}
 	public int getNumColumns()
 	{
 		// correct way
-		// return numColumns;
-		// making test fail
-		return 0;
+		return numColumns;
 	}
 	public BoardCell getCellAt(int row, int col)
 	{
