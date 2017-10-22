@@ -169,16 +169,16 @@ public class Board extends BoardCell {
 		}
 	}
 
-	public void calcTargets(BoardCell cell, int pathlength) 
+	public void calcTargets(int row, int col, int pathlength) 
 	{ 
 		// set visited list to empty
 		visited.clear();
 		// initially set targets to an empty list
 		targets.clear();
 		// add start location to the visited list
-		int x = cell.getCol();
-		int y = cell.getRow();
-		visited.add(board[x][y]);
+		BoardCell cell = new BoardCell();
+		cell = board[col][row]; 
+		visited.add(board[col][row]);
 		// call recursive function (findAllTargets) 
 		findAllTargets(cell, pathlength);
 	}
@@ -249,6 +249,19 @@ public class Board extends BoardCell {
 	public BoardCell[][] getBoard()
 	{
 		return board;
+	}
+	public Set<BoardCell> getAdjList( int row, int col)
+	{
+		BoardCell cell = new BoardCell();
+		cell = getCellAt(row, col);
+		Set<BoardCell> found = new HashSet<BoardCell>();
+		found = adjMatrix.get(cell);
+		return found;
+	}
+	
+	public Set<BoardCell> getTargets()
+	{
+		return targets;
 	}
 
 
