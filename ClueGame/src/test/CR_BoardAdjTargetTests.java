@@ -176,7 +176,7 @@ public class CR_BoardAdjTargetTests {
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
 	public void testTargetsOneStep() {
-		board.calcTargets(21, 7, 1);
+		board.calcTargets();
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCellAt(20, 7)));
