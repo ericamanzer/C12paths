@@ -16,12 +16,13 @@ import clueGame.BoardCell;
  *
  */
 public class BoardAdjTargetsTests {
-	
-	// Setting up the board to be used for the test.
+	// Making the board static so that only one copy of itself
+	private static Board board;
 	@BeforeClass
 	public void setUp() throws Exception {
-		
-		
+		board = Board.getInstance();
+		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
+		board.initialize();
 		
 		
 		
