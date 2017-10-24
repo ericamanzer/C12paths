@@ -302,18 +302,17 @@ public class Board extends BoardCell {
 			adjCell = adjMatrix.get(board[row][col]);
 			for (BoardCell test: adjCell)
 			{
-				if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM");
+				
 				if (visited.contains(test))
 				{
-					if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM WHY");
+					
 				}
 				else
 				{
-					if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM WHAT");
+					
 					visited.add(test);
 					if (pathLength == 1)
 					{
-						if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM AGAIN");
 						targets.add(test);
 					}
 					else
