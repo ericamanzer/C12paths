@@ -1,26 +1,26 @@
 package clueGame;
 import java.util.*;
 import java.io.*;
-import clueGame.BoardCell;
+import clueGame.BoardCell_CR;
 
-public class Board extends BoardCell {
+public class Board_CR extends BoardCell_CR {
 	// Variables:
 	public static final int MAX_BOARD_SIZE = 50;
 	private int numRows;
 	private int numColumns;
 
-	private BoardCell[][] board;
+	private BoardCell_CR[][] board;
 	private Map<Character, String> legend;
-	static private Map<BoardCell, Set<BoardCell>> adjMatrix;
-	private Set<BoardCell> targets;
-	private Set<BoardCell> visited;
+	static private Map<BoardCell_CR, Set<BoardCell_CR>> adjMatrix;
+	private Set<BoardCell_CR> targets;
+	private Set<BoardCell_CR> visited;
 	private String boardConfigFile;
 	private String roomConfigFile;
 	// Functions:
 	//NOTE: Singleton pattern 
-	private static Board theInstance = new Board();
-	private Board() {}
-	public static Board getInstance() 
+	private static Board_CR theInstance = new Board_CR();
+	private Board_CR() {}
+	public static Board_CR getInstance() 
 	{
 		return theInstance;
 	}
@@ -82,20 +82,20 @@ public class Board extends BoardCell {
 				{
 					if (array[y].length() == 1)
 					{
-						char letter = array[y].charAt(0);
-						BoardCell cell = new BoardCell(x, y, letter, DoorDirection.NONE);
-						board[x][y] = cell;
+					char letter = array[y].charAt(0);
+					BoardCell_CR cell = new BoardCell_CR(x, y, letter, DoorDirection.NONE);
+					board[x][y] = cell;
 					}
 					if (array[y].length() == 2)
 					{
 						char letter = array[y].charAt(0);
 						char dir = array[y].charAt(1);
-						BoardCell cell = new BoardCell();
-						if (dir == 'R') cell = new BoardCell(x, y, letter, DoorDirection.RIGHT);
-						if (dir == 'L') cell = new BoardCell(x, y, letter, DoorDirection.LEFT);
-						if (dir == 'U') cell = new BoardCell(x, y, letter, DoorDirection.UP);
-						if (dir == 'D') cell = new BoardCell(x, y, letter, DoorDirection.DOWN);
-						if (dir == 'N') cell = new BoardCell(x, y, letter, DoorDirection.NONE);
+						BoardCell_CR cell = new BoardCell_CR();
+						if (dir == 'R') cell = new BoardCell_CR(x, y, letter, DoorDirection.RIGHT);
+						if (dir == 'L') cell = new BoardCell_CR(x, y, letter, DoorDirection.LEFT);
+						if (dir == 'U') cell = new BoardCell_CR(x, y, letter, DoorDirection.UP);
+						if (dir == 'D') cell = new BoardCell_CR(x, y, letter, DoorDirection.DOWN);
+						if (dir == 'N') cell = new BoardCell_CR(x, y, letter, DoorDirection.NONE);
 						board[x][y] = cell;
 					}
 				}
@@ -124,29 +124,29 @@ public class Board extends BoardCell {
 
 	public void initialize() {
 		legend = new HashMap<Character, String>();
-		targets = new HashSet<BoardCell>();
-		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-		visited = new HashSet<BoardCell>();
-		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
-
+		targets = new HashSet<BoardCell_CR>();
+		board = new BoardCell_CR[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		visited = new HashSet<BoardCell_CR>();
+		adjMatrix = new HashMap<BoardCell_CR, Set<BoardCell_CR>>();
+		
 		//NOTE: used to load configuration files
 		loadRoomConfig();
 		loadBoardConfig();
-
+		
 		//find adjacencies
 		calcAdjacencies();
-
+		
 	}
 
 	public void calcAdjacencies() 
 	{ 
-
+		
 		// calculating the adjacency
 		for (int i = 0; i < numRows; i++)  // i = x
 		{
 			for (int j = 0; j < numColumns; j++)  // j = y
 			{
-				Set<BoardCell> adj = new HashSet<BoardCell>();
+				Set<BoardCell_CR> adj = new HashSet<BoardCell_CR>();
 				if ( i - 1 >= 0)
 				{
 					//checking if it is a walkway possibility
@@ -162,13 +162,13 @@ public class Board extends BoardCell {
 							break;
 						}
 					}
-
+					
 					//checking if it is a door with the correct direction
 					if (board[i - 1][j].isDoorway() && board[i - 1][j].getDoorDirection() == DoorDirection.DOWN)
 					{
 						adj.add(board[i - 1][j]);
 					}
-
+					
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -198,7 +198,7 @@ public class Board extends BoardCell {
 					{
 						adj.add(board[i + 1][j]);
 					}
-
+					
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -229,7 +229,7 @@ public class Board extends BoardCell {
 					{
 						adj.add(board[i][j - 1]);
 					}
-
+					
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -259,7 +259,7 @@ public class Board extends BoardCell {
 					{
 						adj.add(board[i][j + 1]);
 					}
-
+					
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -269,9 +269,9 @@ public class Board extends BoardCell {
 						}
 					}
 				}
-
-
-				adjMatrix.put(board[i][j], new HashSet<BoardCell>(adj));
+				
+				
+				adjMatrix.put(board[i][j], new HashSet<BoardCell_CR>(adj));
 				adj.clear();
 			}
 		}
@@ -296,11 +296,11 @@ public class Board extends BoardCell {
 
 	public void find (int row, int col, int pathLength)
 	{
-		Set<BoardCell> adjCell = new HashSet<BoardCell>();
+		Set<BoardCell_CR> adjCell = new HashSet<BoardCell_CR>();
 		if (adjMatrix.containsKey(board[row][col]))
 		{
 			adjCell = adjMatrix.get(board[row][col]);
-			for (BoardCell test: adjCell)
+			for (BoardCell_CR test: adjCell)
 			{
 				if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM");
 				if (visited.contains(test))
@@ -324,8 +324,8 @@ public class Board extends BoardCell {
 				}
 			}
 			//testing {
-			if (board[row][col] == board[13][13] && pathLength == 6){
-				for (BoardCell see: targets)
+			if (board[row][col] == board[14][0] && pathLength == 6){
+				for (BoardCell_CR see: targets)
 				{
 					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
 				}
@@ -336,9 +336,6 @@ public class Board extends BoardCell {
 			System.out.println("This key does not exist in the adjMatrix");
 		}
 	}
-
-
-
 	//NOTE: Getters {
 	public Map<Character, String> getLegend()
 	{
@@ -354,25 +351,24 @@ public class Board extends BoardCell {
 		// correct way
 		return numColumns;
 	}
-	public BoardCell getCellAt(int row, int col)
+	public BoardCell_CR getCellAt(int row, int col)
 	{
 		return board[row][col];
 	}
-	public BoardCell[][] getBoard()
+	public BoardCell_CR[][] getBoard()
 	{
 		return board;
 	}
-	public Set<BoardCell> getAdjList( int row, int col)
+	public Set<BoardCell_CR> getAdjList( int row, int col)
 	{
-		BoardCell cell = new BoardCell();
+		BoardCell_CR cell = new BoardCell_CR();
 		cell = getCellAt(row, col);
-		Set<BoardCell> found = new HashSet<BoardCell>();
+		Set<BoardCell_CR> found = new HashSet<BoardCell_CR>();
 		found = adjMatrix.get(cell);
 		//System.out.println("size of found set: " + found.size());
 		return found;
 	}
-
-	public Set<BoardCell> getTargets()
+	public Set<BoardCell_CR> getTargets()
 	{
 		return targets;
 	}

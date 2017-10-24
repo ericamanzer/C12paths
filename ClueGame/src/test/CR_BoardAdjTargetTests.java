@@ -12,17 +12,17 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clueGame.Board;
-import clueGame.BoardCell;
+import clueGame.Board_CR;
+import clueGame.BoardCell_CR;
 
 public class CR_BoardAdjTargetTests {
 	// We make the Board static because we can load it one time and 
 	// then do all the tests. 
-	private static Board board;
+	private static Board_CR board;
 	@BeforeClass
 	public static void setUp() {
-		// Board is singleton, get the only instance and initialize it		
-		board = Board.getInstance();
+		// Board_CR is singleton, get the only instance and initialize it		
+		board = Board_CR.getInstance();
 		// set the file names to use my config files
 		board.setConfigFiles("CR_ClueLayout.csv", "CR_ClueLegend.txt");		
 		board.initialize();
@@ -35,7 +35,7 @@ public class CR_BoardAdjTargetTests {
 	public void testAdjacenciesInsideRooms() //PASSING
 	{
 		// Test a corner
-		Set<BoardCell> testList = board.getAdjList(0, 0);
+		Set<BoardCell_CR> testList = board.getAdjList(0, 0);
 		assertEquals(0, testList.size());
 		// Test one that has walkway underneath
 		testList = board.getAdjList(4, 0);
@@ -62,7 +62,7 @@ public class CR_BoardAdjTargetTests {
 	public void testAdjacencyRoomExit() //PASSING
 	{
 		// TEST DOORWAY RIGHT 
-		Set<BoardCell> testList = board.getAdjList(11, 6);
+		Set<BoardCell_CR> testList = board.getAdjList(11, 6);
 		assertEquals(1, testList.size());
 		assertTrue(testList.contains(board.getCellAt(11, 7)));
 		// TEST DOORWAY LEFT 
@@ -90,7 +90,7 @@ public class CR_BoardAdjTargetTests {
 	public void testAdjacencyDoorways() //PASSING
 	{
 		// Test beside a door direction RIGHT
-		Set<BoardCell> testList = board.getAdjList(4, 4);
+		Set<BoardCell_CR> testList = board.getAdjList(4, 4);
 		assertTrue(testList.contains(board.getCellAt(4, 3)));
 		assertTrue(testList.contains(board.getCellAt(4, 5)));
 		assertTrue(testList.contains(board.getCellAt(5, 4)));
@@ -123,7 +123,7 @@ public class CR_BoardAdjTargetTests {
 	public void testAdjacencyWalkways()  //PASSING
 	{
 		// Test on top edge of board, just one walkway piece
-		Set<BoardCell> testList = board.getAdjList(0, 4);
+		Set<BoardCell_CR> testList = board.getAdjList(0, 4);
 		assertTrue(testList.contains(board.getCellAt(0, 5)));
 		assertEquals(1, testList.size());
 		
@@ -178,7 +178,7 @@ public class CR_BoardAdjTargetTests {
 	@Test
 	public void testTargetsOneStep() {  //PASSING
 		board.calcTargets(21, 7, 1);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell_CR> targets= board.getTargets();
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCellAt(20, 7)));
 		assertTrue(targets.contains(board.getCellAt(21, 6)));	
@@ -196,7 +196,7 @@ public class CR_BoardAdjTargetTests {
 	@Test
 	public void testTargetsTwoSteps() { //PASSING
 		board.calcTargets(21, 7, 2);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell_CR> targets= board.getTargets();
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCellAt(19, 7)));
 		assertTrue(targets.contains(board.getCellAt(20, 6)));
@@ -214,7 +214,7 @@ public class CR_BoardAdjTargetTests {
 	@Test
 	public void testTargetsFourSteps() {
 		board.calcTargets(21, 7, 4);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell_CR> targets= board.getTargets();
 		assertEquals(4, targets.size());
 		assertTrue(targets.contains(board.getCellAt(17, 7)));
 		assertTrue(targets.contains(board.getCellAt(19, 7)));
@@ -237,7 +237,7 @@ public class CR_BoardAdjTargetTests {
 	@Test
 	public void testTargetsSixSteps() {
 		board.calcTargets(14, 0, 6);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell_CR> targets= board.getTargets();
 		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 6)));
 		assertTrue(targets.contains(board.getCellAt(15, 5)));	
@@ -252,11 +252,11 @@ public class CR_BoardAdjTargetTests {
 	// These are LIGHT BLUE on the planning spreadsheet
 
 	@Test 
-	public void testTargetsIntoRoom()  //PASSING
+	public void testTargetsIntoRoom()
 	{
 		// One room is exactly 2 away
 		board.calcTargets(17, 16, 2);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell_CR> targets= board.getTargets();
 		assertEquals(7, targets.size());
 		// directly left (can't go right 2 steps)
 		assertTrue(targets.contains(board.getCellAt(17, 14)));
@@ -276,7 +276,7 @@ public class CR_BoardAdjTargetTests {
 	public void testTargetsIntoRoomShortcut() 
 	{
 		board.calcTargets(12, 7, 3);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell_CR> targets= board.getTargets();
 		assertEquals(12, targets.size());
 		// directly up and down
 		assertTrue(targets.contains(board.getCellAt(15, 7)));
@@ -307,7 +307,7 @@ public class CR_BoardAdjTargetTests {
 	{
 		// Take one step, essentially just the adj list
 		board.calcTargets(4, 20, 1);
-		Set<BoardCell> targets= board.getTargets();
+		Set<BoardCell_CR> targets= board.getTargets();
 		// Ensure doesn't exit through the wall
 		assertEquals(1, targets.size());
 		assertTrue(targets.contains(board.getCellAt(4, 19)));

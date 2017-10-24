@@ -14,21 +14,22 @@
 
 package clueGame;
 
-public class BoardCell {
+
+public class BoardCell_CR {
 	// three member variables to represent the row, column, and initial 
 	private int row, col;
 	private char initial;
 	private DoorDirection doorDir;
 
 	// default constructor
-	public BoardCell() {
+	public BoardCell_CR() {
 		row = 0;
 		col = 0;
-		initial = 'P';
+		initial = 'W';
 		doorDir = DoorDirection.NONE;
 	} 
 	// constructor with parameters
-	public BoardCell(int c, int r, char initial, DoorDirection doorDir) { 
+	public BoardCell_CR(int c, int r, char initial, DoorDirection doorDir) { 
 		row = r; 
 		col = c; 
 		this.initial = initial;
@@ -36,13 +37,13 @@ public class BoardCell {
 	}
 	
 	public boolean isWalkway() { 
-		if (initial == 'P') {
+		if (initial == 'W') {
 			return true; 
 		}
 		return false;
 	}
 	public boolean isRoom() { 
-		if (initial != 'K' && initial != 'P') { 
+		if (initial != 'X' && initial != 'W') { 
 			return true; 
 		}
 		return false;

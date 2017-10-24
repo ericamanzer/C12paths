@@ -5,7 +5,7 @@
 package experiment;
 import java.util.*;
 
-import clueGame.BoardCell;
+import clueGame.BoardCell_CR;
 
 // For this exercise, you will write and test the adjacency and 
 // target calculation algorithms for a simple 4x4 grid.
@@ -14,17 +14,17 @@ public class IntBoard {
 
 	int startCell, pathLength; 
 	// data  structure containing the board cells
-	private Map<BoardCell, Set<BoardCell>> adjMtx;
+	private Map<BoardCell_CR, Set<BoardCell_CR>> adjMtx;
 	// visited list
-	private Set<BoardCell> visited;
+	private Set<BoardCell_CR> visited;
 	// targets list
-	private Set<BoardCell> targets;
+	private Set<BoardCell_CR> targets;
 	// grid - 2D array 
-	private BoardCell[][] grid;
+	private BoardCell_CR[][] grid;
 	// BoardCell object
-	private BoardCell boardCell;
+	private BoardCell_CR boardCell_CR;
 	// Set used to add to adjMtx
-	public Set<BoardCell> setAdjMtx;
+	public Set<BoardCell_CR> setAdjMtx;
 
 	// default constructor
 	public IntBoard() 
@@ -32,29 +32,29 @@ public class IntBoard {
 		super();
 		startCell = 0;
 		pathLength = 0;
-		boardCell = new BoardCell();
+		boardCell_CR = new BoardCell_CR();
 
 		// A good application of an adjacency list is a map
 		// initializing a HashMap using a static initializer
-		adjMtx = new HashMap<BoardCell, Set<BoardCell>>();
-		visited = new HashSet<BoardCell>();
-		targets = new HashSet<BoardCell>();
-		setAdjMtx = new HashSet<BoardCell>();
-		grid = new BoardCell [4][4];
+		adjMtx = new HashMap<BoardCell_CR, Set<BoardCell_CR>>();
+		visited = new HashSet<BoardCell_CR>();
+		targets = new HashSet<BoardCell_CR>();
+		setAdjMtx = new HashSet<BoardCell_CR>();
+		grid = new BoardCell_CR [4][4];
 		
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				boardCell = new BoardCell();
-				boardCell.setCol(i);
-				boardCell.setRow(j); 
-				grid[i][j] = boardCell;
+				boardCell_CR = new BoardCell_CR();
+				boardCell_CR.setCol(i);
+				boardCell_CR.setRow(j); 
+				grid[i][j] = boardCell_CR;
 			}
 		}
 	}
 	public void calcAdjancies() {
-		adjMtx = new HashMap<BoardCell, Set<BoardCell>>();
+		adjMtx = new HashMap<BoardCell_CR, Set<BoardCell_CR>>();
 		// calculating the adjacency
 		// for loop going through all the cell in grid {
 		for (int i = 0; i < 4; i++)  // i = x
@@ -62,7 +62,7 @@ public class IntBoard {
 			
 			for (int j = 0; j < 4; j++)  // j = y
 			{
-				Set<BoardCell> adj = new HashSet<BoardCell>();
+				Set<BoardCell_CR> adj = new HashSet<BoardCell_CR>();
 				//boardCell = grid[i][j];
 				//System.out.println(i + " " + j);
 				//  look at each neighbor {
@@ -97,7 +97,7 @@ public class IntBoard {
 				//for (BoardCell x : adj) {
 				//	System.out.println(i + " "+j + " The set " + x.col + " " +x.row);
 				//}
-				adjMtx.put(grid[i][j], new HashSet<BoardCell>(adj));
+				adjMtx.put(grid[i][j], new HashSet<BoardCell_CR>(adj));
 				adj.clear();
 			}
 			
@@ -107,7 +107,7 @@ public class IntBoard {
 
 	
 
-	public void calcTargets(BoardCell startCell, int pathLength) 
+	public void calcTargets(BoardCell_CR startCell, int pathLength) 
 	{ 
 		// set visited list to empty
 		visited.clear();
@@ -121,7 +121,7 @@ public class IntBoard {
 		findAllTargets(startCell, pathLength);
 	}
 
-	public void findAllTargets(BoardCell startCell, int pathLength)
+	public void findAllTargets(BoardCell_CR startCell, int pathLength)
 	{
 		int count = 0;
 		boolean validCell = true; 
@@ -131,7 +131,7 @@ public class IntBoard {
 			targets.clear();
 			visited.add(startCell); 
 		}
-		Set<BoardCell> adjCell = new HashSet<BoardCell>();
+		Set<BoardCell_CR> adjCell = new HashSet<BoardCell_CR>();
 		adjCell = adjMtx.get(startCell);
 		
 		 
@@ -144,7 +144,7 @@ public class IntBoard {
 		}
 		
 		//Map.Entry<BoardCell, Set<BoardCell>> temp : adjMtx.entrySet()
-		for (BoardCell temp: adjCell)
+		for (BoardCell_CR temp: adjCell)
 		{
 			if ( !visited.contains(temp) && validCell == true)
 			{
@@ -167,22 +167,22 @@ public class IntBoard {
 		System.out.println(" Added to targets " + count + " times");
 	}
 	// getters
-	public Set<BoardCell> getTargets()
+	public Set<BoardCell_CR> getTargets()
 	{
 		//return null; 
 		return targets;
 	}
 	
-	public Set<BoardCell> getAdjList(BoardCell cell)
+	public Set<BoardCell_CR> getAdjList(BoardCell_CR cell)
 	{
 		//return null; 
-		 Set<BoardCell> ans = new HashSet<BoardCell>();
+		 Set<BoardCell_CR> ans = new HashSet<BoardCell_CR>();
 		 ans = adjMtx.get(cell);
 		 return ans;
 
 	}
 	
-	public BoardCell getCell(int y, int x) { 
+	public BoardCell_CR getCell(int y, int x) { 
 		
 		//return null; 
 		return grid[y][x];

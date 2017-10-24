@@ -15,7 +15,9 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clueGame.*;
+import clueGame.Board_CR;
+import clueGame.BoardCell_CR;
+import clueGame.DoorDirection;
 
 public class CR_FileInitTests {
 	// Constants that I will use to test whether the file was loaded correctly
@@ -25,12 +27,12 @@ public class CR_FileInitTests {
 
 	// NOTE: I made Board static because I only want to set it up one 
 	// time (using @BeforeClass), no need to do setup before each test.
-	private static Board board;
+	private static Board_CR board;
 	
 	@BeforeClass
 	public static void setUp() {
 		// Board is singleton, get the only instance
-		board = Board.getInstance();
+		board = Board_CR.getInstance();
 		// set the file names to use my config files
 		board.setConfigFiles("CR_ClueLayout.csv", "CR_ClueLegend.txt");		
 		// Initialize will load BOTH config files 
@@ -63,7 +65,7 @@ public class CR_FileInitTests {
 	// These cells are white on the planning spreadsheet
 	@Test
 	public void FourDoorDirections() {
-		BoardCell room = board.getCellAt(4, 3);
+		BoardCell_CR room = board.getCellAt(4, 3);
 		assertTrue(room.isDoorway());
 		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
 		room = board.getCellAt(4, 8);
@@ -79,7 +81,7 @@ public class CR_FileInitTests {
 		room = board.getCellAt(14, 14);
 		assertFalse(room.isDoorway());	
 		// Test that walkways are not doors
-		BoardCell cell = board.getCellAt(0, 6);
+		BoardCell_CR cell = board.getCellAt(0, 6);
 		assertFalse(cell.isDoorway());		
 
 	}
@@ -91,7 +93,7 @@ public class CR_FileInitTests {
 		int numDoors = 0;
 		for (int row=0; row<board.getNumRows(); row++)
 			for (int col=0; col<board.getNumColumns(); col++) {
-				BoardCell cell = board.getCellAt(row, col);
+				BoardCell_CR cell = board.getCellAt(row, col);
 				if (cell.isDoorway())
 					numDoors++;
 			}
