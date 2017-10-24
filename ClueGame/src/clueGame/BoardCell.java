@@ -34,6 +34,7 @@ public class BoardCell {
 		this.initial = initial;
 		this.doorDir = doorDir;
 	}
+	
 	public boolean isWalkway() { 
 		if (initial == 'W') {
 			return true; 
@@ -47,7 +48,7 @@ public class BoardCell {
 		return false;
 	}
 	public boolean isDoorway() {
-		if (doorDir != DoorDirection.NONE) {  //FIXME change doorway char
+		if (doorDir != DoorDirection.NONE) {  
 			return true; 
 		}
 		return false;

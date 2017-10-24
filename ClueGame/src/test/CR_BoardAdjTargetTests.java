@@ -26,12 +26,13 @@ public class CR_BoardAdjTargetTests {
 		// set the file names to use my config files
 		board.setConfigFiles("CR_ClueLayout.csv", "CR_ClueLegend.txt");		
 		board.initialize();
+		
 	}
 
 	// Ensure that player does not move around within room
 	// These cells are ORANGE on the planning spreadsheet
 	@Test
-	public void testAdjacenciesInsideRooms()
+	public void testAdjacenciesInsideRooms() //PASSING
 	{
 		// Test a corner
 		Set<BoardCell> testList = board.getAdjList(0, 0);
@@ -58,7 +59,7 @@ public class CR_BoardAdjTargetTests {
 	// direction test. 
 	// These tests are PURPLE on the planning spreadsheet
 	@Test
-	public void testAdjacencyRoomExit()
+	public void testAdjacencyRoomExit() //PASSING
 	{
 		// TEST DOORWAY RIGHT 
 		Set<BoardCell> testList = board.getAdjList(11, 6);
@@ -86,7 +87,7 @@ public class CR_BoardAdjTargetTests {
 	// Test adjacency at entrance to rooms
 	// These tests are GREEN in planning spreadsheet
 	@Test
-	public void testAdjacencyDoorways()
+	public void testAdjacencyDoorways() //PASSING
 	{
 		// Test beside a door direction RIGHT
 		Set<BoardCell> testList = board.getAdjList(4, 4);
@@ -119,7 +120,7 @@ public class CR_BoardAdjTargetTests {
 	// Test a variety of walkway scenarios
 	// These tests are LIGHT PURPLE on the planning spreadsheet
 	@Test
-	public void testAdjacencyWalkways()
+	public void testAdjacencyWalkways()  //PASSING
 	{
 		// Test on top edge of board, just one walkway piece
 		Set<BoardCell> testList = board.getAdjList(0, 4);
@@ -175,7 +176,7 @@ public class CR_BoardAdjTargetTests {
 	// only test two edges here
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
-	public void testTargetsOneStep() {
+	public void testTargetsOneStep() {  //PASSING
 		board.calcTargets(21, 7, 1);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(2, targets.size());
@@ -193,7 +194,7 @@ public class CR_BoardAdjTargetTests {
 	// Tests of just walkways, 2 steps
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
-	public void testTargetsTwoSteps() {
+	public void testTargetsTwoSteps() { //PASSING
 		board.calcTargets(21, 7, 2);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(2, targets.size());
@@ -251,7 +252,7 @@ public class CR_BoardAdjTargetTests {
 	// These are LIGHT BLUE on the planning spreadsheet
 
 	@Test 
-	public void testTargetsIntoRoom()
+	public void testTargetsIntoRoom()  //PASSING
 	{
 		// One room is exactly 2 away
 		board.calcTargets(17, 16, 2);
@@ -302,7 +303,7 @@ public class CR_BoardAdjTargetTests {
 	// Test getting out of a room
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
-	public void testRoomExit()
+	public void testRoomExit() //PASSING
 	{
 		// Take one step, essentially just the adj list
 		board.calcTargets(4, 20, 1);
