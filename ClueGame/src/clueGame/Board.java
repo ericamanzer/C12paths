@@ -91,11 +91,11 @@ public class Board extends BoardCell {
 						char letter = array[y].charAt(0);
 						char dir = array[y].charAt(1);
 						BoardCell cell = new BoardCell();
-						if (dir == 'R') cell = new BoardCell(x, y, letter, DoorDirection.RIGHT);
-						if (dir == 'L') cell = new BoardCell(x, y, letter, DoorDirection.LEFT);
-						if (dir == 'U') cell = new BoardCell(x, y, letter, DoorDirection.UP);
-						if (dir == 'D') cell = new BoardCell(x, y, letter, DoorDirection.DOWN);
-						if (dir == 'N') cell = new BoardCell(x, y, letter, DoorDirection.NONE);
+						if (dir == 'R' || dir == 'r') cell = new BoardCell(x, y, letter, DoorDirection.RIGHT);
+						if (dir == 'L'|| dir == 'l') cell = new BoardCell(x, y, letter, DoorDirection.LEFT);
+						if (dir == 'U' || dir == 'u') cell = new BoardCell(x, y, letter, DoorDirection.UP);
+						if (dir == 'D' || dir == 'd') cell = new BoardCell(x, y, letter, DoorDirection.DOWN);
+						if (dir == 'N' || dir == 'n') cell = new BoardCell(x, y, letter, DoorDirection.NONE);
 						board[x][y] = cell;
 					}
 				}
