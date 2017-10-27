@@ -1,0 +1,23 @@
+commit e80dc78ad0c313e0e9b69fa109c68f403531ff17
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Sep 12 14:16:40 2017 -0600
+
+    Changing README test file for practice
+
+commit 88f5d0eeb67dc20a5ba0667fb2773996aa0ea50b
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Sep 12 14:14:49 2017 -0600
+
+    Adding Stove Porject to Repository
+
+commit db752ca3056233d2096eba038d8a9f5e9c15f571
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Sep 10 15:07:17 2017 -0600
+
+    changed README file for testing
+
+commit 5c8eb047a30fc6405fe318011025eeecd25a24eb
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Sun Sep 10 14:55:03 2017 -0600
+
+    Initial commit

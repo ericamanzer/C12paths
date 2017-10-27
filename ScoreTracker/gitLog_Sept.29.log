@@ -1,0 +1,66 @@
+commit 15b2dfee966da1445a4ee76a76e19f117a1f1178
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Sep 29 11:49:16 2017 -0600
+
+    editing author to the ScoreTracker.java
+
+commit aa15d0bc8c1356e0cb94fe6cfc2f6c8a5e710212
+Merge: b4f1e67 7852f11
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Sep 29 11:47:19 2017 -0600
+
+    Merge branch 'master' of https://github.com/monawade0507/CSCI306
+
+commit b4f1e67b830c11b13d1544287810142503b0524f
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Sep 29 11:47:02 2017 -0600
+
+    adding files/projects as of Sept. 29
+
+commit 7852f114572a29c5e4a62dbcce9aa380b0202c1f
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Wed Sep 20 17:54:19 2017 -0600
+
+    LevelGame.xml
+
+commit 64b9aa3c94b5cf2f0dded987ccedf08ac9369b01
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Wed Sep 20 17:49:21 2017 -0600
+
+    LevelGame.xml
+
+commit 17d664e36d126c8ce25549f966c63e8d18e14dee
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Wed Sep 20 16:12:52 2017 -0600
+
+    LevelGame.xml
+
+commit f4abeab7cd1224f8e9193a409abc2823a1713197
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Sep 17 11:23:45 2017 -0600
+
+    Adding latest project: Stove
+
+commit e80dc78ad0c313e0e9b69fa109c68f403531ff17
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Sep 12 14:16:40 2017 -0600
+
+    Changing README test file for practice
+
+commit 88f5d0eeb67dc20a5ba0667fb2773996aa0ea50b
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Sep 12 14:14:49 2017 -0600
+
+    Adding Stove Porject to Repository
+
+commit db752ca3056233d2096eba038d8a9f5e9c15f571
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Sep 10 15:07:17 2017 -0600
+
+    changed README file for testing
+
+commit 5c8eb047a30fc6405fe318011025eeecd25a24eb
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Sun Sep 10 14:55:03 2017 -0600
+
+    Initial commit

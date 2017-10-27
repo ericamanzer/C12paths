@@ -1,0 +1,31 @@
+Title: Description of Pieces for Level Game
+Authors: Demonna Wade and Erica Manzer
+Date: Sept. 20
+
+
+Symbol: d
+Task: Sits in the same place. Worth no point. Does not advance player to next level.
+	It is only Drawable.
+
+Symbol: K
+Task: This is a moveable piece. It moves one space at a time. Once it hits the end of the board, it
+	restarts at beginning. 
+
+Symbol: g
+Task: This is a moveable piece. It moves two space at a time. It 
+	also dupilicates itself and removes copies of itself at random.
+
+Symbol: e
+Task: This is an interaction piece. When the player lands on it, it causes damage.
+
+Symbol: * 
+Task: This is an interaction piece. When the player lands on it, the player instantly dies.
+
+Symbol: T
+Task: This is an interaction piece. When the player is 1 space behing this piece, it earns a point.  
+
+Symbol: o
+Task: This is an interaction piece. When the player lands on it, the player advances to the next level.   
+
+Symbol: w
+Task: This is an interaction piece. When the player is 2 spaces infront of this piece, it earns a point.  

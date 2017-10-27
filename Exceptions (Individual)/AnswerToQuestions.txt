@@ -1,0 +1,18 @@
+Why is BigDecimal better than double for representing dollar amounts?
+
+	Doubles do not offer a way to control how numbers are rounded or a way to limit
+	the precision in computation. BigDecimal gives this control.
+	
+List 3 good practices related to exception handling.
+
+	1.} A debugging practice: including cause of Exception in stack-trace. This helps
+	discover the source of an exception and provide information on the root of the 
+	exception.
+	
+	2.} A debugging practice: provide detailed/meaning-full messages on Exception.
+	This helps point out the cause of the problem. Also helps find the source of the 
+	exception.
+	
+	3.} Latency: Exceptions are costly. Exceptions cause code to slow down. If you can,
+	use boolean variables instead, rather than just throw and catch exception. Avoid 
+	unnecessary Exception handling by fixing root cause.   

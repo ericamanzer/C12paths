@@ -1,1 +1,0 @@
-# Warren Tech CodeQuest team
