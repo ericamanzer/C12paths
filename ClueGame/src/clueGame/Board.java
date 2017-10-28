@@ -212,7 +212,7 @@ public class Board extends BoardCell {
 				{
 					//checking if it is a walkway possibility
 					if (board[i][j - 1].isWalkway()){
-						if (board[i][j] == board[11][6]) System.out.println("HERE j - 1");
+						//if (board[i][j] == board[11][6]) System.out.println("HERE j - 1");
 						switch (board[i][j].getDoorDirection()){
 						case LEFT:
 							adj.add(board[i][j - 1]);
@@ -322,13 +322,14 @@ public class Board extends BoardCell {
 					visited.remove(test);
 				}
 			}
-			//testing {
+			/* testing {
 			if (board[row][col] == board[13][13] && pathLength == 6){
 				for (BoardCell see: targets)
 				{
 					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
 				}
 			}
+			*/
 		}
 		else 
 		{
