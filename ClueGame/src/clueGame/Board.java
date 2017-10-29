@@ -302,25 +302,23 @@ public class Board extends BoardCell {
 			adjCell = adjMatrix.get(board[row][col]);
 			for (BoardCell test: adjCell)
 			{
-				
+
 				if (visited.contains(test))
 				{
-					
+					continue; 
+				}
+
+				visited.add(test);
+				if (pathLength == 1)
+				{
+					targets.add(test);
 				}
 				else
 				{
-					
-					visited.add(test);
-					if (pathLength == 1)
-					{
-						targets.add(test);
-					}
-					else
-					{
-						find(test.getCol(), test.getRow(), pathLength - 1);
-					}
-					visited.remove(test);
+					find(test.getCol(), test.getRow(), pathLength - 1);
 				}
+				visited.remove(test);
+
 			}
 			/* testing {
 			if (board[row][col] == board[13][13] && pathLength == 6){
@@ -329,7 +327,7 @@ public class Board extends BoardCell {
 					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
 				}
 			}
-			*/
+			 */
 		}
 		else 
 		{
