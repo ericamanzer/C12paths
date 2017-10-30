@@ -285,12 +285,7 @@ public class Board extends BoardCell {
 		targets.clear();
 		// add start location to the visited list
 		visited.add(board[row][col]);
-		/*
-		 * Thinking that I would run test based on what the being startCell is.
-		 * Example, if the being startCell is a door with step 1, there is only one place it can go because of DoorDirection.
-		 * A switch would help diff. the findAllTargets functions. Afterwards, it would be called recursively. 
-		 * findAllTargets(row, col, pathlength);
-		 */
+		
 		find(row, col, pathlength);
 	}
 
@@ -327,14 +322,7 @@ public class Board extends BoardCell {
 				visited.remove(test);
 
 			}
-			/* testing {
-			if (board[row][col] == board[13][13] && pathLength == 6){
-				for (BoardCell see: targets)
-				{
-					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
-				}
-			}
-			 */
+			
 		}
 		else 
 		{
