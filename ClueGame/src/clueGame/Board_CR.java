@@ -82,9 +82,9 @@ public class Board_CR extends BoardCell_CR {
 				{
 					if (array[y].length() == 1)
 					{
-					char letter = array[y].charAt(0);
-					BoardCell_CR cell = new BoardCell_CR(x, y, letter, DoorDirection.NONE);
-					board[x][y] = cell;
+						char letter = array[y].charAt(0);
+						BoardCell_CR cell = new BoardCell_CR(x, y, letter, DoorDirection.NONE);
+						board[x][y] = cell;
 					}
 					if (array[y].length() == 2)
 					{
@@ -128,19 +128,19 @@ public class Board_CR extends BoardCell_CR {
 		board = new BoardCell_CR[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		visited = new HashSet<BoardCell_CR>();
 		adjMatrix = new HashMap<BoardCell_CR, Set<BoardCell_CR>>();
-		
+
 		//NOTE: used to load configuration files
 		loadRoomConfig();
 		loadBoardConfig();
-		
+
 		//find adjacencies
 		calcAdjacencies();
-		
+
 	}
 
 	public void calcAdjacencies() 
 	{ 
-		
+
 		// calculating the adjacency
 		for (int i = 0; i < numRows; i++)  // i = x
 		{
@@ -162,13 +162,13 @@ public class Board_CR extends BoardCell_CR {
 							break;
 						}
 					}
-					
+
 					//checking if it is a door with the correct direction
 					if (board[i - 1][j].isDoorway() && board[i - 1][j].getDoorDirection() == DoorDirection.DOWN)
 					{
 						adj.add(board[i - 1][j]);
 					}
-					
+
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -198,7 +198,7 @@ public class Board_CR extends BoardCell_CR {
 					{
 						adj.add(board[i + 1][j]);
 					}
-					
+
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -229,7 +229,7 @@ public class Board_CR extends BoardCell_CR {
 					{
 						adj.add(board[i][j - 1]);
 					}
-					
+
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -259,7 +259,7 @@ public class Board_CR extends BoardCell_CR {
 					{
 						adj.add(board[i][j + 1]);
 					}
-					
+
 					//checking if it is a room with DoorDirection.NONE
 					if (board[i][j].isRoom() && board[i][j].getDoorDirection() == DoorDirection.NONE)
 					{
@@ -269,8 +269,8 @@ public class Board_CR extends BoardCell_CR {
 						}
 					}
 				}
-				
-				
+
+
 				adjMatrix.put(board[i][j], new HashSet<BoardCell_CR>(adj));
 				adj.clear();
 			}
@@ -302,29 +302,33 @@ public class Board_CR extends BoardCell_CR {
 			adjCell = adjMatrix.get(board[row][col]);
 			for (BoardCell_CR test: adjCell)
 			{
-				if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM");
+
+				if (test.isDoorway() && !visited.contains(test))
+				{
+					targets.add(test);
+				}
 				if (visited.contains(test))
 				{
-					if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM WHY");
+					continue;
 				}
 				else
 				{
-					if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM WHAT");
 					visited.add(test);
-					if (pathLength == 1)
-					{
-						if (test.getCol() == 13 && test.getRow() == 4 ) System.out.println("SCREAM AGAIN");
-						targets.add(test);
-					}
-					else
-					{
-						find(test.getCol(), test.getRow(), pathLength - 1);
-					}
-					visited.remove(test);
 				}
+
+				if (pathLength == 1)
+				{
+					targets.add(test);
+				}
+				else
+				{
+					find(test.getCol(), test.getRow(), pathLength - 1);
+				}
+				visited.remove(test);
+
 			}
 			//testing {
-			if (board[row][col] == board[14][0] && pathLength == 6){
+			if (board[row][col] == board[4][20] && pathLength == 2){
 				for (BoardCell_CR see: targets)
 				{
 					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");

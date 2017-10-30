@@ -303,12 +303,19 @@ public class Board extends BoardCell {
 			for (BoardCell test: adjCell)
 			{
 
+				if (test.isDoorway())
+				{
+					targets.add(test);
+				}
+				
 				if (visited.contains(test))
 				{
 					continue; 
 				}
-
-				visited.add(test);
+				else 
+				{
+					visited.add(test);
+				}
 				if (pathLength == 1)
 				{
 					targets.add(test);
