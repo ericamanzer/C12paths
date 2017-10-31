@@ -35,7 +35,85 @@ After Change:
 				case LEFT:
 					adj.add(board[i][j - 1]);
 				break;
+Before Change:
+	public void find (int row, int col, int pathLength)
+	{
+		Set<BoardCell> adjCell = new HashSet<BoardCell>();
+		if (adjMatrix.containsKey(board[row][col]))
+		{
+			adjCell = adjMatrix.get(board[row][col]);
+			for (BoardCell test: adjCell)
+			{
+				
+				if (visited.contains(test))
+				{
+					 
+				}
+				else
+				{
+					
+					visited.add(test);
+					if (pathLength == 1)
+					{
+						targets.add(test);
+					}
+					else
+					{
+						find(test.getCol(), test.getRow(), pathLength - 1);
+					}
+					visited.remove(test);
+				}
+			}
+			/* testing {
+			if (board[row][col] == board[13][13] && pathLength == 6){
+				for (BoardCell see: targets)
+				{
+					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
+				}
+			}
+			*/
+		}
+		else 
+		{
+			System.out.println("This key does not exist in the adjMatrix");
+		}
+	}
 
+After Change:
+	public void find (int row, int col, int pathLength)
+	{
+		Set<BoardCell> adjCell = new HashSet<BoardCell>();
+		if (adjMatrix.containsKey(board[row][col]))
+		{
+			adjCell = adjMatrix.get(board[row][col]);
+			for (BoardCell test: adjCell)
+			{
+				
+				if (visited.contains(test))
+				{
+					 
+				}
+				else
+				{
+					
+					visited.add(test);
+					if (pathLength == 1)
+					{
+						targets.add(test);
+					}
+					else
+					{
+						find(test.getCol(), test.getRow(), pathLength - 1);
+					}
+					visited.remove(test);
+				}
+			}
+		}
+		else 
+		{
+			System.out.println("This key does not exist in the adjMatrix");
+		}
+	}
 Before Change:
 void find (int row, int col, int pathLength)
 	{
@@ -63,13 +141,6 @@ void find (int row, int col, int pathLength)
 				}
 				visited.remove(test);
 
-			}
-			//testing {
-			if (board[row][col] == board[4][20] && pathLength == 2){
-				for (BoardCell_CR see: targets)
-				{
-					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
-				}
 			}
 		}
 		else 
@@ -111,18 +182,12 @@ public void find (int row, int col, int pathLength)
 				visited.remove(test);
 
 			}
-			//testing {
-			if (board[row][col] == board[4][20] && pathLength == 2){
-				for (BoardCell_CR see: targets)
-				{
-					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
-				}
-			}
 		}
 		else 
 		{
 			System.out.println("This key does not exist in the adjMatrix");
 		}
+
 Before Changes:
 	public BoardCell() {
 		row = 0;
