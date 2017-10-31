@@ -2,9 +2,9 @@ package clueGame;
 
 public class Player {
 
-	String playerName; 
-	int row, column; 
-	Color color; 
+	private String playerName; 
+	private int row, column; 
+	private Color color; 
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		
