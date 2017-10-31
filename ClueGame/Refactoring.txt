@@ -37,4 +37,105 @@ After Change:
 				break;
 
 Before Change:
+void find (int row, int col, int pathLength)
+	{
+		Set<BoardCell_CR> adjCell = new HashSet<BoardCell_CR>();
+		if (adjMatrix.containsKey(board[row][col]))
+		{
+			adjCell = adjMatrix.get(board[row][col]);
+			for (BoardCell_CR test: adjCell)
+			{
+
+				if (visited.contains(test))
+				{
+
+				}
+
+				visited.add(test);
+
+				if (pathLength == 1)
+				{
+					targets.add(test);
+				}
+				else
+				{
+					find(test.getCol(), test.getRow(), pathLength - 1);
+				}
+				visited.remove(test);
+
+			}
+			//testing {
+			if (board[row][col] == board[4][20] && pathLength == 2){
+				for (BoardCell_CR see: targets)
+				{
+					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
+				}
+			}
+		}
+		else 
+		{
+			System.out.println("This key does not exist in the adjMatrix");
+		}:
+
+After Change:
+public void find (int row, int col, int pathLength)
+	{
+		Set<BoardCell_CR> adjCell = new HashSet<BoardCell_CR>();
+		if (adjMatrix.containsKey(board[row][col]))
+		{
+			adjCell = adjMatrix.get(board[row][col]);
+			for (BoardCell_CR test: adjCell)
+			{
+
+				if (test.isDoorway() && !visited.contains(test))
+				{
+					targets.add(test);
+				}
+				if (visited.contains(test))
+				{
+					continue;
+				}
+				else
+				{
+					visited.add(test);
+				}
+
+				if (pathLength == 1)
+				{
+					targets.add(test);
+				}
+				else
+				{
+					find(test.getCol(), test.getRow(), pathLength - 1);
+				}
+				visited.remove(test);
+
+			}
+			//testing {
+			if (board[row][col] == board[4][20] && pathLength == 2){
+				for (BoardCell_CR see: targets)
+				{
+					System.out.println("Targets: [" + see.getCol() + "][" + see.getRow() + "]");
+				}
+			}
+		}
+		else 
+		{
+			System.out.println("This key does not exist in the adjMatrix");
+		}
+Before Changes:
+	public BoardCell() {
+		row = 0;
+		col = 0;
+		initial = 'P';
+		doorDir = DoorDirection.NONE;
+	} 
+
+After Changes: 	
+	public BoardCell() {
+		this.row = 0;
+		this.col = 0;
+		this.initial = 'P';
+		this.doorDir = DoorDirection.NONE;
+	} 
 

@@ -361,7 +361,6 @@ public class Board extends BoardCell {
 		cell = getCellAt(row, col);
 		Set<BoardCell> found = new HashSet<BoardCell>();
 		found = adjMatrix.get(cell);
-		//System.out.println("size of found set: " + found.size());
 		return found;
 	}
 

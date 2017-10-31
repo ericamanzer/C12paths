@@ -22,15 +22,15 @@ public class BoardCell {
 
 	// default constructor
 	public BoardCell() {
-		row = 0;
-		col = 0;
-		initial = 'P';
-		doorDir = DoorDirection.NONE;
+		this.row = 0;
+		this.col = 0;
+		this.initial = 'P';
+		this.doorDir = DoorDirection.NONE;
 	} 
 	// constructor with parameters
 	public BoardCell(int c, int r, char initial, DoorDirection doorDir) { 
-		row = r; 
-		col = c; 
+		this.row = r; 
+		this.col = c; 
 		this.initial = initial;
 		this.doorDir = doorDir;
 	}
@@ -54,35 +54,38 @@ public class BoardCell {
 		return false;
 	}
 	// Getters {
-	public int getRow() {
-		// correct way
-		return row;
+	public int getRow() 
+	{
+		return this.row;
 	}
 
-	public void setRow(int row) {
+	public void setRow(int row) 
+	{
 		this.row = row;
 	}
 
-	public int getCol() {
-		// correct way
-		return col;
+	public int getCol() 
+	{
+		return this.col;
 	}
 
-	public void setCol(int col) {
+	public void setCol(int col) 
+	{
 		this.col = col;
 	}
 
-	public char getInitial() {
-		// correct way
-		return initial;
+	public char getInitial() 
+	{
+		return this.initial;
 	}
 
-	public void setInitial(char initial) {
+	public void setInitial(char initial) 
+	{
 		this.initial = initial;
 	}
+	
 	public DoorDirection getDoorDirection()
 	{
-		// correct way
 		return doorDir;
 	}
 
