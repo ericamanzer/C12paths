@@ -1,0 +1,6 @@
+CompSci, Blue
+MechE, Red
+ChemE, Green
+Mining, Brown
+Geology, White
+Physics, Orange
