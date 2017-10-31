@@ -369,5 +369,17 @@ public class Board extends BoardCell {
 		return targets;
 	}
 
-
+	public void selectAnswer() { 
+		
+	}
+	
+	public Card handleSugestion(TBD) {
+		
+	}
+	
+	public boolean checkAccusation(Solution accusation) {
+		
+	}
+	
+	
 }
