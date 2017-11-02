@@ -20,6 +20,8 @@ public class Board extends BoardCell {
 	private Set<ComputerPlayer> computerPlayers;
 	// Set that would hold the human player
 	private Set<HumanPlayer> humanPlayer;
+	private Set<String> weapons; 
+	private Set<String> rooms; 
 	private Set<Card> deck;
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -62,6 +64,10 @@ public class Board extends BoardCell {
 				String letterString = lineArray[0];
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
+				
+				String card = lineArray[2]; 
+				
+				
 			}
 
 		}
@@ -138,7 +144,7 @@ public class Board extends BoardCell {
 		}
 
 	}
-	
+
 	public void loadPeopleConfig()
 	{
 		//TODO load People config file
@@ -179,13 +185,45 @@ public class Board extends BoardCell {
 		}
 	}
 
+	public void loadWeaponConfig() { 
+		//TODO load room config file
+		File file = new File(weaponsConfigFile);
+		Scanner scan = null;
+		try 
+		{
+			scan = new Scanner(file);
+			while (scan.hasNextLine())
+			{
+				String line = scan.nextLine();
+				weapons.add(line);
+			}
+
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println(e.getMessage());
+			System.out.println
+			("Unable to open file " + roomConfigFile + ".");
+		}
+		catch (NullPointerException a)
+		{
+			BadConfigFormatException b = new BadConfigFormatException(a.getLocalizedMessage());
+			b.getMessage();
+		}
+		finally
+		{
+			scan.close();
+		}
+	}
+
+
 	public void initialize() {
 		legend = new HashMap<Character, String>();
 		targets = new HashSet<BoardCell>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		visited = new HashSet<BoardCell>();
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
-		
+
 		computerPlayers = new HashSet<ComputerPlayer>();
 		humanPlayer = new HashSet<HumanPlayer>();
 		deck = new HashSet<Card>();
@@ -346,7 +384,7 @@ public class Board extends BoardCell {
 		targets.clear();
 		// add start location to the visited list
 		visited.add(board[row][col]);
-		
+
 		find(row, col, pathlength);
 	}
 
@@ -363,7 +401,7 @@ public class Board extends BoardCell {
 				{
 					targets.add(test);
 				}
-				
+
 				if (visited.contains(test))
 				{
 					continue; 
@@ -383,7 +421,7 @@ public class Board extends BoardCell {
 				visited.remove(test);
 
 			}
-			
+
 		}
 		else 
 		{
@@ -431,16 +469,22 @@ public class Board extends BoardCell {
 	}
 
 	public void selectAnswer() { 
-		
+
 	}
-	
+
 	public Card handleSugestion(TBD) {
-		
+
 	}
-	
+
 	public boolean checkAccusation(Solution accusation) {
-		
+
 	}
-	
-	
+
+
 }
+
+
+
+
+
+
