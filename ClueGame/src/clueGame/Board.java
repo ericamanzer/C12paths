@@ -14,8 +14,15 @@ public class Board extends BoardCell {
 	static private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
+	// Set that would hold the computer player
+	private Set<ComputerPlayer> computerPlayers;
+	// Set that would hold the human player
+	private Set<HumanPlayer> humanPlayer;
+	
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private String peopleConfigFile;
+	private String weaponsConfigFile;
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
@@ -29,6 +36,14 @@ public class Board extends BoardCell {
 	{
 		boardConfigFile = boardFile;
 		roomConfigFile = roomFile;
+	}
+	public void setWeaponsConfigFile(String weaponsFile)
+	{
+		weaponsConfigFile = weaponsFile;
+	}
+	public void setPeopleConfigFile (String peopleFile)
+	{
+		peopleConfigFile = peopleFile;
 	}
 
 	public void loadRoomConfig() { 
@@ -120,6 +135,41 @@ public class Board extends BoardCell {
 			scan.close();
 		}
 
+	}
+	
+	public void loadPeopleConfig()
+	{
+		//TODO load People config file
+		File file = new File(roomConfigFile);
+		Scanner scan = null;
+		try 
+		{
+			scan = new Scanner(file);
+			while (scan.hasNextLine())
+			{
+				String line = scan.nextLine();
+				String[] lineArray = line.split(", ");
+				String letterString = lineArray[0];
+				char letter = letterString.charAt(0);
+				legend.put(letter, lineArray[1]);
+			}
+
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println(e.getMessage());
+			System.out.println
+			("Unable to open file " + roomConfigFile + ".");
+		}
+		catch (NullPointerException a)
+		{
+			BadConfigFormatException b = new BadConfigFormatException(a.getLocalizedMessage());
+			b.getMessage();
+		}
+		finally
+		{
+			scan.close();
+		}
 	}
 
 	public void initialize() {
