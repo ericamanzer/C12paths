@@ -3,6 +3,8 @@ import java.util.*;
 import java.io.*;
 import clueGame.BoardCell;
 import java.awt.Color;
+import java.lang.reflect.Field;
+
 public class Board extends BoardCell {
 	// Variables:
 	public static final int MAX_BOARD_SIZE = 50;
@@ -150,11 +152,13 @@ public class Board extends BoardCell {
 				String line = scan.nextLine();
 				String[] lineArray = line.split(", ");
 				String playerName = lineArray[0];
-				//lineArray[1] = Color
-				//lineArray[2] = col
-				//lineArray[3] = row
-				char letter = letterString.charAt(0);
-				legend.put(letter, lineArray[1]);
+								
+				//TODO: incorporate the color function
+				String color = lineArray[1];
+				int locationCol = Integer.parseInt(lineArray[2]);
+				int locationRow = Integer.parseInt(lineArray[3]);
+				
+				
 			}
 
 		}
