@@ -431,5 +431,45 @@ public class Board extends BoardCell {
 		
 	}
 	
+	public void loadWeaponConfig() { 
+		//TODO load room config file
+		File file = new File(roomConfigFile);
+		Scanner scan = null;
+		try 
+		{
+			scan = new Scanner(file);
+			while (scan.hasNextLine())
+			{
+				String line = scan.nextLine();
+				String[] lineArray = line.split(", ");
+				String letterString = lineArray[0];
+				char letter = letterString.charAt(0);
+				legend.put(letter, lineArray[1]);
+			}
+
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println(e.getMessage());
+			System.out.println
+			("Unable to open file " + roomConfigFile + ".");
+		}
+		catch (NullPointerException a)
+		{
+			BadConfigFormatException b = new BadConfigFormatException(a.getLocalizedMessage());
+			b.getMessage();
+		}
+		finally
+		{
+			scan.close();
+		}
+	}
+	
 	
 }
+
+
+
+
+
+
