@@ -2,7 +2,7 @@ package clueGame;
 import java.util.*;
 import java.io.*;
 import clueGame.BoardCell;
-
+import java.awt.Color;
 public class Board extends BoardCell {
 	// Variables:
 	public static final int MAX_BOARD_SIZE = 50;
@@ -18,7 +18,9 @@ public class Board extends BoardCell {
 	private Set<ComputerPlayer> computerPlayers;
 	// Set that would hold the human player
 	private Set<HumanPlayer> humanPlayer;
-	
+	private Set<String> weapons; 
+	private Set<String> rooms; 
+	private Set<Card> deck;
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String peopleConfigFile;
@@ -60,6 +62,10 @@ public class Board extends BoardCell {
 				String letterString = lineArray[0];
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
+				
+				String card = lineArray[2]; 
+				
+				
 			}
 
 		}
@@ -136,11 +142,11 @@ public class Board extends BoardCell {
 		}
 
 	}
-	
+
 	public void loadPeopleConfig()
 	{
 		//TODO load People config file
-		File file = new File(roomConfigFile);
+		File file = new File(peopleConfigFile);
 		Scanner scan = null;
 		try 
 		{
@@ -149,7 +155,10 @@ public class Board extends BoardCell {
 			{
 				String line = scan.nextLine();
 				String[] lineArray = line.split(", ");
-				String letterString = lineArray[0];
+				String playerName = lineArray[0];
+				//lineArray[1] = Color
+				//lineArray[2] = col
+				//lineArray[3] = row
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
 			}
@@ -172,12 +181,48 @@ public class Board extends BoardCell {
 		}
 	}
 
+	public void loadWeaponConfig() { 
+		//TODO load room config file
+		File file = new File(weaponsConfigFile);
+		Scanner scan = null;
+		try 
+		{
+			scan = new Scanner(file);
+			while (scan.hasNextLine())
+			{
+				String line = scan.nextLine();
+				weapons.add(line);
+			}
+
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println(e.getMessage());
+			System.out.println
+			("Unable to open file " + roomConfigFile + ".");
+		}
+		catch (NullPointerException a)
+		{
+			BadConfigFormatException b = new BadConfigFormatException(a.getLocalizedMessage());
+			b.getMessage();
+		}
+		finally
+		{
+			scan.close();
+		}
+	}
+
+
 	public void initialize() {
 		legend = new HashMap<Character, String>();
 		targets = new HashSet<BoardCell>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		visited = new HashSet<BoardCell>();
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
+
+		computerPlayers = new HashSet<ComputerPlayer>();
+		humanPlayer = new HashSet<HumanPlayer>();
+		deck = new HashSet<Card>();
 
 		//NOTE: used to load configuration files
 		loadRoomConfig();
@@ -335,7 +380,7 @@ public class Board extends BoardCell {
 		targets.clear();
 		// add start location to the visited list
 		visited.add(board[row][col]);
-		
+
 		find(row, col, pathlength);
 	}
 
@@ -352,7 +397,7 @@ public class Board extends BoardCell {
 				{
 					targets.add(test);
 				}
-				
+
 				if (visited.contains(test))
 				{
 					continue; 
@@ -372,7 +417,7 @@ public class Board extends BoardCell {
 				visited.remove(test);
 
 			}
-			
+
 		}
 		else 
 		{
@@ -420,52 +465,18 @@ public class Board extends BoardCell {
 	}
 
 	public void selectAnswer() { 
-		
-	}
-	
-	public Card handleSugestion(TBD) {
-		
-	}
-	
-	public boolean checkAccusation(Solution accusation) {
-		
-	}
-	
-	public void loadWeaponConfig() { 
-		//TODO load room config file
-		File file = new File(roomConfigFile);
-		Scanner scan = null;
-		try 
-		{
-			scan = new Scanner(file);
-			while (scan.hasNextLine())
-			{
-				String line = scan.nextLine();
-				String[] lineArray = line.split(", ");
-				String letterString = lineArray[0];
-				char letter = letterString.charAt(0);
-				legend.put(letter, lineArray[1]);
-			}
 
-		}
-		catch (FileNotFoundException e)
-		{
-			System.out.println(e.getMessage());
-			System.out.println
-			("Unable to open file " + roomConfigFile + ".");
-		}
-		catch (NullPointerException a)
-		{
-			BadConfigFormatException b = new BadConfigFormatException(a.getLocalizedMessage());
-			b.getMessage();
-		}
-		finally
-		{
-			scan.close();
-		}
 	}
-	
-	
+
+	public Card handleSugestion(TBD) {
+
+	}
+
+	public boolean checkAccusation(Solution accusation) {
+
+	}
+
+
 }
 
 
