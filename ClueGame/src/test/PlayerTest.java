@@ -74,7 +74,8 @@ public class PlayerTest {
 		assertEquals(0, deckSize); 
 		assertEquals(3, keySize);
 		assertTrue(3, board.getHumanPlayer().getMyCardSize());
-		assertTrue(3, board.getComputerPlayer().getMyCardSize()); 
+		assertTrue(3, board.getComputerPlayers().getMyCardSize()); 
+		assertTrue(3, board.getComputerPlayers().getMyCardSize()); 
 	}
 	
 	
