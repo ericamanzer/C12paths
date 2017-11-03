@@ -2,7 +2,12 @@ package clueGame;
 import java.util.*;
 import java.io.*;
 
-public class ComputerPlayer {
+public class ComputerPlayer extends Player {
+	ComputerPlayer()
+	{
+		super();
+	}
+	
 	/*
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		
