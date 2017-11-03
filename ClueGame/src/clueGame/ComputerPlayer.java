@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class ComputerPlayer {
-
+	/*
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		
 	}
@@ -15,5 +15,6 @@ public class ComputerPlayer {
 	public void createSuggestion(TBD) {
 		
 	}
+	*/
 	
 }

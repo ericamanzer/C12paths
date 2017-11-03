@@ -469,7 +469,7 @@ public class Board extends BoardCell {
 	{
 		return targets;
 	}
-
+	/*
 	public void selectAnswer() { 
 
 	}
@@ -481,7 +481,7 @@ public class Board extends BoardCell {
 	public boolean checkAccusation(Solution accusation) {
 
 	}
-
+	*/
 	
 	public Set<ComputerPlayer> getComputerPlayers() {
 		return computerPlayers;

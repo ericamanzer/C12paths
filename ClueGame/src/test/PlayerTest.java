@@ -6,14 +6,14 @@ import org.junit.Test;
 import clueGame.*;
 
 public class PlayerTest {
-
+	private static Board board;
 	@Test
 	public void testLoadingPeople() {
-		int peopleSize = getComputerPlayers().size() + getHumanPlayers().size(); 
+		int peopleSize = board.getComputerPlayers().size() + board.getHumanPlayer().size(); 
 		Set<HumanPlayer> TempHuman = new HashSet<HumanPlayer>(); 
-		TempHuman = getHumanPlayer(); 
+		TempHuman = board.getHumanPlayer(); 
 		assertEquals(6, peopleSize); 
-		assertTrue("CompSci", TempHuman); 
+		assertTrue("CompSci", TempHuman);   // change 
 		assertTrue("MechE", getComputerPlayers[0]); 
 		assertTrue("ChemE", getComputerPlayers[1]); 
 		assertTrue("Mining", getComputerPlayers[2]); 
@@ -24,12 +24,12 @@ public class PlayerTest {
 
 	@Test 
 	public void testDeealCardsOut() {
-		int deckSize = getDeck().size(); 
-		int keySize = getKey().size(); 
+		int deckSize = board.getDeck().size(); 
+		int keySize = board.getKey().size(); 
 		assertEquals(0, deckSize); 
 		assertEquals(3, keySize);
-		assertTrue(3, getHumanPlayer().getMyCardSize());
-		assertTrue(3, getComputerPlayer().getMyCardSize()); 
+		assertTrue(3, board.getHumanPlayer().getMyCardSize());
+		assertTrue(3, board.getComputerPlayer().getMyCardSize()); 
 	}
 	
 	

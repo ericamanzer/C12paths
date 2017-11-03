@@ -12,11 +12,11 @@ public class Player {
 	private Set<Card> myCards; 
 	private Set<Card> seenCards; 
 	
-	
+	/*
 	public Card disproveSuggestion(Solution suggestion) {
 		
 	}
-	
+	*/
 	public Color convertColor (String strColor)
 	{
 		Color color;
