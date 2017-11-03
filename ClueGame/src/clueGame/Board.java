@@ -64,7 +64,7 @@ public class Board extends BoardCell {
 				legend.put(letter, lineArray[1]);
 				
 				String card = lineArray[2]; 
-				
+				rooms.add(card); 
 				
 			}
 
