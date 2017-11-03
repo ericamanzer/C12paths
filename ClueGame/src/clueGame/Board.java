@@ -21,7 +21,8 @@ public class Board extends BoardCell {
 	// Set that would hold the human player
 	private Set<HumanPlayer> humanPlayer;
 	private Set<String> weapons; 
-	private Set<String> rooms; 
+	private Set<String> rooms;
+	private Set<Card> key; 
 	private Set<Card> deck;
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -87,6 +88,7 @@ public class Board extends BoardCell {
 			scan.close();
 		}
 	}
+
 
 	public void loadBoardConfig() {
 		//TODO load board config file
@@ -480,6 +482,30 @@ public class Board extends BoardCell {
 
 	}
 
+	
+	public Set<ComputerPlayer> getComputerPlayers() {
+		return computerPlayers;
+	}
+
+	public Set<HumanPlayer> getHumanPlayer() {
+		return humanPlayer;
+	}
+
+	public Set<String> getWeapons() {
+		return weapons;
+	}
+
+	public Set<String> getRooms() {
+		return rooms;
+	}
+
+	public Set<Card> getDeck() {
+		return deck;
+	}
+
+	public Set<Card> getKey() {
+		return key; 
+	}
 
 }
 
