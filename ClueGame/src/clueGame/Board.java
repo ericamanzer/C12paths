@@ -152,6 +152,7 @@ public class Board extends BoardCell {
 		//TODO load People config file
 		File file = new File(peopleConfigFile);
 		Scanner scan = null;
+		int count = 0;
 		try 
 		{
 			scan = new Scanner(file);
@@ -159,6 +160,11 @@ public class Board extends BoardCell {
 			{
 				String line = scan.nextLine();
 				String[] lineArray = line.split(", ");
+				if (count == 0)
+				{
+					HumanPlayer human = new HumanPlayer();
+					
+				}
 				String playerName = lineArray[0];
 								
 				//TODO: incorporate the color function
