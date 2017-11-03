@@ -3,10 +3,18 @@ import java.util.*;
 import java.io.*;
 
 public class ComputerPlayer extends Player {
+	//Parameterized Constructor
+	// 
+	
+	
+	// Default Constructor
+	//@param no parameters
+	//@return no return values; default constructors
 	public ComputerPlayer()
 	{
 		super();
 	}
+	
 	
 	/*
 	public BoardCell pickLocation(Set<BoardCell> targets) {
@@ -20,6 +28,6 @@ public class ComputerPlayer extends Player {
 	public void createSuggestion(TBD) {
 		
 	}
-	*/
+	*/ //hello
 	
-}
+} 

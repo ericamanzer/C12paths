@@ -21,6 +21,6 @@ public class HumanPlayer extends Player {
 	public HumanPlayer(String name, String color, int r, int c)
 	{
 		super(name, color, r, c);
-	}
+	} //hello
 
 }

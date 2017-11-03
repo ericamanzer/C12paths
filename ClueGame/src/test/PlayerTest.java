@@ -33,7 +33,7 @@ public class PlayerTest {
 		assertTrue(tempComputer.contains("Geology"));
 		assertTrue(tempComputer.contains("Physics"));
 
-	}
+	} //hello
 
 	@Test
 	public void completingDeckTest() {
