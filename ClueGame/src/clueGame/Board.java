@@ -483,26 +483,44 @@ public class Board extends BoardCell {
 	}
 	*/
 	
+	// Getter for computerPlayers 
+	// @param no parameter 
+	// @return computerPlayers a set of player that are not the player 1 
 	public Set<ComputerPlayer> getComputerPlayers() {
 		return computerPlayers;
 	}
 
+	// Getter for humanPlayers	
+	// @param no parameter 
+	// @return humanPlayer a set of size one that only contains player 1 
 	public Set<HumanPlayer> getHumanPlayer() {
 		return humanPlayer;
 	}
 
+	// Getter for weapons 
+	// @param no parameter 
+	// @return weapons a set of Strings that represent each of the weapons possible 
 	public Set<String> getWeapons() {
 		return weapons;
 	}
 
+	// Getter for rooms 
+	// @param no parameter 
+	// @return rooms a set of strings that represent each of the rooms possible 
 	public Set<String> getRooms() {
 		return rooms;
 	}
 
+	// Getter for deck
+	// @param no parameter 
+	// @return deck a set of cards that represent each of the people, weapons, and rooms 
 	public Set<Card> getDeck() {
 		return deck;
 	}
 
+	// Getter for key 
+	// @param no parameter 
+	// @return key a set of card, one of each type of card, that represent the murderer, the killing weapon, and the room where the murder took place 
 	public Set<Card> getKey() {
 		return key; 
 	}
