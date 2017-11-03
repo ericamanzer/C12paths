@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class ComputerPlayer extends Player {
-	ComputerPlayer()
+	public ComputerPlayer()
 	{
 		super();
 	}

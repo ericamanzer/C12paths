@@ -8,7 +8,7 @@ public class HumanPlayer extends Player {
 	// Default constructor
 	//@param no parameters
 	//@return nothing return; default constructor
-	HumanPlayer()
+	public HumanPlayer()
 	{
 		super();
 	}
@@ -18,9 +18,9 @@ public class HumanPlayer extends Player {
 	//@param r player's location via row
 	//@param c player's location via column
 	//@param color player's color that is read as a string from a file
-	HumanPlayer(String name, int r, int c, String color)
+	public HumanPlayer(String name, String color, int r, int c)
 	{
-		super(name, r, c, color);
+		super(name, color, r, c);
 	}
 
 }

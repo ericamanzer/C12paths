@@ -34,7 +34,7 @@ public class Player {
 	// Player default constructor
 	//@param no parameter
 	//@return returns nothing; this is a default constructor
-	Player()
+	public Player()
 	{
 		this.playerName = "";
 		this.row = 0;
@@ -48,7 +48,7 @@ public class Player {
 	//@param r location of the player via row
 	//@param c location of the player via column
 	//@param color the string read from the file that says the player's color
-	Player( String name, int r, int c, String color)
+	public Player( String name, String color, int r, int c )
 	{
 		this.playerName = name;
 		this.row = r;
@@ -60,6 +60,9 @@ public class Player {
 		
 	}
 	*/
-	
+	public int getMyCardSize()
+	{
+		return myCards.size();
+	}
 	
 }
