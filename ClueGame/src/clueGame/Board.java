@@ -57,7 +57,7 @@ public class Board extends BoardCell {
 
 	public void loadRoomConfig() { 
 		//TODO load room config file
-		
+		int count = 0;
 		File file = new File(roomConfigFile);
 		Scanner scan = null;
 		try 
@@ -71,19 +71,19 @@ public class Board extends BoardCell {
 				String letterString = lineArray[0];
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
-				
+				System.out.println(lineArray[2]);
 				//String card = lineArray[1]; 
 				//rooms.add(card);
 				
 				// adding to the roomPile
-				/*
-				if (lineArray[3] == "Card")
+				
+				if (count > 1)
 				{
 					Card room = new Card(lineArray[1], CardType.ROOM);
 					roomPile.add(room);
-					System.out.println(" Adding to roomPile");
+					System.out.println("Adding to roomPile");
 				}
-				*/
+				count ++;
 			}
 
 		}
@@ -221,7 +221,7 @@ public class Board extends BoardCell {
 			while (scan.hasNextLine())
 			{
 				String line = scan.nextLine();
-				weapons.add(line);
+				//weapons.add(line);
 				
 				// add the weapons to the deck
 				Card weapon = new Card (line, CardType.WEAPON);

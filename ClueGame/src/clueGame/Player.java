@@ -69,4 +69,9 @@ public class Player {
 		myCards.add(card);
 	}
 	
+	public String getPlayerName()
+	{
+		return this.playerName;
+	}
+	
 }
