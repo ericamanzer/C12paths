@@ -21,7 +21,7 @@ public class PlayerTest {
 		
 		board.initialize();
 	}
-	//@Test
+	@Test
 	public void testLoadingPeople() {
 		int peopleSize = board.getComputerPlayers().size() + board.getHumanPlayer().size(); 
 		Set<HumanPlayer> tempHuman = new HashSet<HumanPlayer>(); 
@@ -36,7 +36,7 @@ public class PlayerTest {
 		assertTrue(tempComputer.contains("Geology"));
 		assertTrue(tempComputer.contains("Physics"));
 
-	} //hello
+	} 
 
 	@Test
 	public void completingDeckTest() {
@@ -95,7 +95,7 @@ public class PlayerTest {
 
 	}
 
-	//@Test 
+	@Test 
 	public void testDealCardsOut() {
 		int deckSize = board.getDeck().size(); 
 		//int keySize = board.getKey().size(); 
