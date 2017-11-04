@@ -1,6 +1,7 @@
 package clueGame;
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 import clueGame.BoardCell;
 import java.awt.Color;
 import java.lang.reflect.Field;
@@ -24,6 +25,9 @@ public class Board extends BoardCell {
 	private Set<String> rooms;
 	private Set<Card> key; 
 	private Set<Card> deck;
+	private Set<Card> roomPile;
+	private Set<Card> peoplePile;
+	private Set<Card> weaponsPile;
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String peopleConfigFile;
@@ -53,10 +57,12 @@ public class Board extends BoardCell {
 
 	public void loadRoomConfig() { 
 		//TODO load room config file
+		
 		File file = new File(roomConfigFile);
 		Scanner scan = null;
 		try 
 		{
+			
 			scan = new Scanner(file);
 			while (scan.hasNextLine())
 			{
@@ -66,9 +72,22 @@ public class Board extends BoardCell {
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
 				
-				String card = lineArray[2]; 
-				rooms.add(card); 
+				String card = lineArray[1]; 
+				rooms.add(card);
 				
+				// adding to the roomPile
+				/*
+				if (lineArray[3] == "Card")
+				{
+					Card room = new Card(lineArray[1], CardType.ROOM);
+					roomPile.add(room);
+					System.out.println(" Adding to roomPile");
+				}
+				*/
+				if (lineArray[3] == "Card")
+				{
+					System.out.println(" WHY");
+				}
 			}
 
 		}
@@ -87,6 +106,7 @@ public class Board extends BoardCell {
 		{
 			scan.close();
 		}
+		
 	}
 
 
@@ -138,7 +158,7 @@ public class Board extends BoardCell {
 		catch (NullPointerException a) 
 		{
 			BadConfigFormatException b = new BadConfigFormatException(a.getMessage()); 
-			b.getMessage();
+			System.out.println(b.getMessage());
 		}
 		finally
 		{
@@ -159,20 +179,22 @@ public class Board extends BoardCell {
 			while (scan.hasNextLine())
 			{
 				String line = scan.nextLine();
-				String[] lineArray = line.split(", ");
-				if (count == 0)
+				String[] lineArray = line.split(",");
+				if (count <= 0)
 				{
-					HumanPlayer human = new HumanPlayer();
-					
+					HumanPlayer human = new HumanPlayer(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Integer.parseInt(lineArray[3]));
+					humanPlayer.add(human);
 				}
-				String playerName = lineArray[0];
-								
-				//TODO: incorporate the color function
-				String color = lineArray[1];
-				int locationCol = Integer.parseInt(lineArray[2]);
-				int locationRow = Integer.parseInt(lineArray[3]);
+				else
+				{
+					ComputerPlayer computer = new ComputerPlayer(lineArray[0], lineArray[1], Integer.parseUnsignedInt(lineArray[2]), Integer.parseUnsignedInt(lineArray[3]));
+					computerPlayers.add(computer);
+				}
+				count ++;
 				
-				
+				// add players to larger deck
+				Card people = new Card (lineArray[0], CardType.PERSON);
+				peoplePile.add(people);
 			}
 
 		}
@@ -204,6 +226,10 @@ public class Board extends BoardCell {
 			{
 				String line = scan.nextLine();
 				weapons.add(line);
+				
+				// add the weapons to the deck
+				Card weapon = new Card (line, CardType.WEAPON);
+				weaponsPile.add(weapon);
 			}
 
 		}
@@ -235,11 +261,15 @@ public class Board extends BoardCell {
 		computerPlayers = new HashSet<ComputerPlayer>();
 		humanPlayer = new HashSet<HumanPlayer>();
 		deck = new HashSet<Card>();
+		roomPile = new HashSet<Card>();
+		peoplePile = new HashSet<Card>();
+		weaponsPile = new HashSet<Card>();
 
 		//NOTE: used to load configuration files
 		loadRoomConfig();
+		loadPeopleConfig();
+		loadWeaponConfig();
 		loadBoardConfig();
-
 		//find adjacencies
 		calcAdjacencies();
 
@@ -529,6 +559,30 @@ public class Board extends BoardCell {
 	// @return key a set of card, one of each type of card, that represent the murderer, the killing weapon, and the room where the murder took place 
 	public Set<Card> getKey() {
 		return key; 
+	}
+	
+	// Getter for roomPile
+	// @param no parameter
+	// @return roomPile the set of room cards
+	public Set<Card> getRoomPile()
+	{
+		return roomPile;
+	}
+	
+	// Getter for weaponsPile
+	// @param no parameter
+	// @return weaponsPile the set of weapons card
+	public Set<Card> getWeaponsPile()
+	{
+		return weaponsPile;
+	}
+	
+	// Getter for peoplePile
+	// @param no parameter
+	// @return peoplePile the set of people cards
+	public Set<Card> getPeoplePile()
+	{
+		return peoplePile;
 	}
 
 }
