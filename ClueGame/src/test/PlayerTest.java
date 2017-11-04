@@ -21,6 +21,7 @@ public class PlayerTest {
 		
 		board.initialize();
 	}
+
 	@Test
 	public void testLoadingPeople() {
 		int peopleSize = board.getComputerPlayers().size() + board.getHumanPlayer().size(); 
@@ -29,12 +30,43 @@ public class PlayerTest {
 		Set<ComputerPlayer> tempComputer = new HashSet<ComputerPlayer>(); 
 		tempComputer = board.getComputerPlayers(); 
 		assertEquals(6, peopleSize); 
-		assertTrue(tempHuman.contains("CompSci")); 
-		assertTrue(tempComputer.contains("MechE")); 
-		assertTrue(tempComputer.contains("ChemE"));
-		assertTrue(tempComputer.contains("Mining"));
-		assertTrue(tempComputer.contains("Geology"));
-		assertTrue(tempComputer.contains("Physics"));
+		for (HumanPlayer human : tempHuman)
+		{
+			if (human.getPlayerName().equals("CompSci"))
+			{
+				//System.out.println("works");
+				assertTrue(true);
+			}
+		}
+		int found = 0;
+		for (ComputerPlayer comput : tempComputer)
+		{
+			if (comput.getPlayerName().equals("MechE"))
+			{
+				assertTrue(true);
+				found++;
+			}
+			
+			else if (comput.getPlayerName().equals("ChemE"))
+			{
+				found ++;
+			}
+			else if (comput.getPlayerName().equals("Mining"))
+			{
+				found ++;
+			}
+			else if (comput.getPlayerName().equals("Geology"))
+			{
+				found ++;
+			}
+			else if (comput.getPlayerName().equals("Physics"))
+			{
+				found ++;
+			}
+			
+		}
+		assertEquals(5, found); 
+		
 
 	} 
 
@@ -46,18 +78,18 @@ public class PlayerTest {
 		for (Card card : board.getWeaponsPile())
 		{
 			deck.add(card);
-			System.out.println("weaponsPile");
+			//System.out.println("weaponsPile");
 		}
 		for (Card card : board.getPeoplePile())
 		{
 			deck.add(card);
-			System.out.println("peoplePile");
+			//System.out.println("peoplePile");
 		}
 
 		for (Card card : board.getRoomPile())
 		{
 			deck.add(card);
-			System.out.println("roomPile");
+			//System.out.println("roomPile");
 		}
 		
 		// Testing the size of the deck
@@ -94,9 +126,10 @@ public class PlayerTest {
 		assertEquals(1, exist);
 
 	}
-
+ 
 	@Test 
 	public void testDealCardsOut() {
+		
 		int deckSize = board.getDeck().size(); 
 		//int keySize = board.getKey().size(); 
 
@@ -105,10 +138,13 @@ public class PlayerTest {
 		for (HumanPlayer player: board.getHumanPlayer())
 		{
 			assertEquals(3, player.getMyCardSize());
+			System.out.println(player.getMyCardSize());
 		}
 		for (ComputerPlayer player: board.getComputerPlayers())
 		{
+			System.out.println("yo");
 			assertEquals(3, player.getMyCardSize());
+			
 		}
 
 	}

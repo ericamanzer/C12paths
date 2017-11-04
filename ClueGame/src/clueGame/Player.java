@@ -54,6 +54,9 @@ public class Player {
 		this.row = r;
 		this.column = c;
 		this.color = convertColor(color);
+		this.myCards = new HashSet<Card>();
+		this.seenCards = new HashSet<Card>();
+		
 	}
 	/*
 	public Card disproveSuggestion(Solution suggestion) {
@@ -67,6 +70,11 @@ public class Player {
 	
 	public void addCard(Card card) {
 		myCards.add(card);
+	}
+	
+	public String getPlayerName()
+	{
+		return this.playerName;
 	}
 	
 }

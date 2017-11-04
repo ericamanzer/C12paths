@@ -57,7 +57,7 @@ public class Board extends BoardCell {
 
 	public void loadRoomConfig() { 
 		//TODO load room config file
-		
+		int count = 0;
 		File file = new File(roomConfigFile);
 		Scanner scan = null;
 		try 
@@ -71,19 +71,19 @@ public class Board extends BoardCell {
 				String letterString = lineArray[0];
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
-				
+				//System.out.println(lineArray[2]);
 				//String card = lineArray[1]; 
 				//rooms.add(card);
 				
 				// adding to the roomPile
-				/*
-				if (lineArray[3] == "Card")
+				
+				if (count > 1)
 				{
 					Card room = new Card(lineArray[1], CardType.ROOM);
 					roomPile.add(room);
-					System.out.println(" Adding to roomPile");
+					//System.out.println("Adding to roomPile");
 				}
-				*/
+				count ++;
 			}
 
 		}
@@ -221,7 +221,7 @@ public class Board extends BoardCell {
 			while (scan.hasNextLine())
 			{
 				String line = scan.nextLine();
-				weapons.add(line);
+				//weapons.add(line);
 				
 				// add the weapons to the deck
 				Card weapon = new Card (line, CardType.WEAPON);
@@ -257,6 +257,7 @@ public class Board extends BoardCell {
 		computerPlayers = new HashSet<ComputerPlayer>();
 		humanPlayer = new HashSet<HumanPlayer>();
 		deck = new HashSet<Card>();
+		key = new HashSet<Card>();
 		roomPile = new HashSet<Card>();
 		peoplePile = new HashSet<Card>();
 		weaponsPile = new HashSet<Card>();
@@ -268,6 +269,9 @@ public class Board extends BoardCell {
 		loadBoardConfig();
 		//find adjacencies
 		calcAdjacencies();
+		
+		//deal deck
+		dealDeck();
 
 	}
 
@@ -544,52 +548,31 @@ public class Board extends BoardCell {
 		for (Card temp: deck) {
 			possibleCards.add(temp);  
 		}
+		System.out.println(possibleCards.size());
 		
 		// Keeps track of the cards all players have 
-		Player[] player = new Player[6];
+		ArrayList<Player> player = new ArrayList<Player>();
 		
-		for (int j = 0; j < 3; j++) { 
-			r = rand.nextInt(possibleCards.size());
-			player[0].addCard(possibleCards.get(r));
-			deck.remove(possibleCards.get(r)); 
-			possibleCards.remove(r); 	
+		for(HumanPlayer person: humanPlayer) {
+			for (int j = 0; j < 3; j++) { 
+				r = rand.nextInt(possibleCards.size());
+				person.addCard(possibleCards.get(r));
+				deck.remove(possibleCards.get(r)); 
+				possibleCards.remove(r); 	
+			}
 		}
 		
-		for (int j = 0; j < 3; j++) { 
-			r = rand.nextInt(possibleCards.size());
-			player[1].addCard(possibleCards.get(r));
-			deck.remove(possibleCards.get(r)); 
-			possibleCards.remove(r); 	
+		for(ComputerPlayer person: computerPlayers) {
+			for (int j = 0; j < 3; j++) { 
+				r = rand.nextInt(possibleCards.size());
+				person.addCard(possibleCards.get(r));
+				deck.remove(possibleCards.get(r)); 
+				possibleCards.remove(r); 	
+			}
 		}
 		
-		for (int j = 0; j < 3; j++) { 
-			r = rand.nextInt(possibleCards.size());
-			player[2].addCard(possibleCards.get(r));
-			deck.remove(possibleCards.get(r)); 
-			possibleCards.remove(r); 	
-		}
-		
-		for (int j = 0; j < 3; j++) { 
-			r = rand.nextInt(possibleCards.size());
-			player[3].addCard(possibleCards.get(r));
-			deck.remove(possibleCards.get(r)); 
-			possibleCards.remove(r); 	
-		}
-		
-		for (int j = 0; j < 3; j++) { 
-			r = rand.nextInt(possibleCards.size());
-			player[4].addCard(possibleCards.get(r));
-			deck.remove(possibleCards.get(r)); 
-			possibleCards.remove(r); 	
-		}
-		
-		for (int j = 0; j < 3; j++) { 
-			r = rand.nextInt(possibleCards.size());
-			player[5].addCard(possibleCards.get(r));
-			deck.remove(possibleCards.get(r)); 
-			possibleCards.remove(r); 	
-		}
-		
+	
+
 		
 	}
 	
