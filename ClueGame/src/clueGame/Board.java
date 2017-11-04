@@ -67,13 +67,13 @@ public class Board extends BoardCell {
 			while (scan.hasNextLine())
 			{
 				String line = scan.nextLine();
-				String[] lineArray = line.split(", ");
+				String[] lineArray = line.split(",");
 				String letterString = lineArray[0];
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
 				
-				String card = lineArray[1]; 
-				rooms.add(card);
+				//String card = lineArray[1]; 
+				//rooms.add(card);
 				
 				// adding to the roomPile
 				/*
@@ -84,10 +84,6 @@ public class Board extends BoardCell {
 					System.out.println(" Adding to roomPile");
 				}
 				*/
-				if (lineArray[3] == "Card")
-				{
-					System.out.println(" WHY");
-				}
 			}
 
 		}
@@ -187,7 +183,7 @@ public class Board extends BoardCell {
 				}
 				else
 				{
-					ComputerPlayer computer = new ComputerPlayer(lineArray[0], lineArray[1], Integer.parseUnsignedInt(lineArray[2]), Integer.parseUnsignedInt(lineArray[3]));
+					ComputerPlayer computer = new ComputerPlayer(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Integer.parseInt(lineArray[3]));
 					computerPlayers.add(computer);
 				}
 				count ++;

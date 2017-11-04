@@ -2,5 +2,5 @@ CompSci,Blue,22,10
 MechE,Red,11,0
 ChemE,Green,4,21
 Mining,Brown,3,0
-Geology,White,0,13 
+Geology,White,0,13
 Physics,Orange,17,21
