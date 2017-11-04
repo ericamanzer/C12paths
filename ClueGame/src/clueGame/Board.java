@@ -475,6 +475,100 @@ public class Board extends BoardCell {
 	{
 		return targets;
 	}
+	
+	public void dealDeck() { 
+		
+		
+		// Temporary ArrayLists to keep track of each card type and the total deck dynamically 
+		ArrayList<Card> possibleCards = new ArrayList<Card>();
+		ArrayList<Card> possiblePeople = new ArrayList<Card>();  
+		ArrayList<Card> possibleWeapons = new ArrayList<Card>(); 
+		ArrayList<Card> possibleRooms = new ArrayList<Card>();
+		
+		
+		// Loads the deck and temporary Arrayists with every card read into program 
+		for (Card temp: peoplePile) {
+			deck.add(temp); 
+			possiblePeople.add(temp); 
+		}
+		for (Card temp: weaponsPile) { 
+			deck.add(temp); 
+			possibleWeapons.add(temp); 
+		}
+		for(Card temp: roomPile) {
+			deck.add(temp); 
+			possibleRooms.add(temp);
+		}
+		
+		
+		Random rand = new Random(); 
+		// Get random person for murderer 
+		int r = rand.nextInt(possiblePeople.size()); 
+		key.add(possiblePeople.get(r)); 
+		deck.remove(possiblePeople.get(r)); 
+		// Get random weapon for murder weapon 
+		r = rand.nextInt(possibleWeapons.size()); 
+		key.add(possibleWeapons.get(r)); 
+		deck.remove(possibleWeapons.get(r));
+		// Get random room for crime scene 
+		key.add(possibleRooms.get(r)); 
+		deck.remove(possibleRooms.get(r)); 
+		
+		// Loads remaining deck values into the temp ArrayList 
+		for (Card temp: deck) {
+			possibleCards.add(temp);  
+		}
+		
+		// Keeps track of the cards all players have 
+		Player[] player = new Player[6];
+		
+		for (int j = 0; j < 3; j++) { 
+			r = rand.nextInt(possibleCards.size());
+			player[0].addCard(possibleCards.get(r));
+			deck.remove(possibleCards.get(r)); 
+			possibleCards.remove(r); 	
+		}
+		
+		for (int j = 0; j < 3; j++) { 
+			r = rand.nextInt(possibleCards.size());
+			player[1].addCard(possibleCards.get(r));
+			deck.remove(possibleCards.get(r)); 
+			possibleCards.remove(r); 	
+		}
+		
+		for (int j = 0; j < 3; j++) { 
+			r = rand.nextInt(possibleCards.size());
+			player[2].addCard(possibleCards.get(r));
+			deck.remove(possibleCards.get(r)); 
+			possibleCards.remove(r); 	
+		}
+		
+		for (int j = 0; j < 3; j++) { 
+			r = rand.nextInt(possibleCards.size());
+			player[3].addCard(possibleCards.get(r));
+			deck.remove(possibleCards.get(r)); 
+			possibleCards.remove(r); 	
+		}
+		
+		for (int j = 0; j < 3; j++) { 
+			r = rand.nextInt(possibleCards.size());
+			player[4].addCard(possibleCards.get(r));
+			deck.remove(possibleCards.get(r)); 
+			possibleCards.remove(r); 	
+		}
+		
+		for (int j = 0; j < 3; j++) { 
+			r = rand.nextInt(possibleCards.size());
+			player[5].addCard(possibleCards.get(r));
+			deck.remove(possibleCards.get(r)); 
+			possibleCards.remove(r); 	
+		}
+		
+		
+	}
+	
+	
+	
 	/*
 	public void selectAnswer() { 
 

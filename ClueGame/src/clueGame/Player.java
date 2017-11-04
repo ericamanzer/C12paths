@@ -65,4 +65,8 @@ public class Player {
 		return myCards.size();
 	}
 	
+	public void addCard(Card card) {
+		myCards.add(card);
+	}
+	
 }
