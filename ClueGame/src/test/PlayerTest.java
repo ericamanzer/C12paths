@@ -110,6 +110,7 @@ public class PlayerTest {
 		{
 			assertEquals(3, player.getMyCardSize());
 		}
+
 	}
 
 
