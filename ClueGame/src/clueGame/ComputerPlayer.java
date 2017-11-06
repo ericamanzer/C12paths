@@ -12,7 +12,7 @@ public class ComputerPlayer extends Player {
 	{
 		super(name, color, r, c);
 	}
-	
+
 	// Default Constructor
 	//@param no parameters
 	//@return no return values; default constructors
@@ -20,20 +20,31 @@ public class ComputerPlayer extends Player {
 	{
 		super();
 	}
-	
-	
+
+
 	/*
 	public BoardCell pickLocation(Set<BoardCell> targets) {
-		
+
 	}
-	
+
 	public void makeAccusation() {
-		
+
 	}
-	
+
 	public void createSuggestion(TBD) {
-		
+
 	}
-	*/ //hello
-	
+	 */
+
+	public BoardCell selectTarget() { 
+
+		// call calcAdj function (targets set will be updated)  
+		// call getter for previouslocation and previous row 
+		// range loop to organize values into room or pathway 
+		// if else statements to pick next location
+		// if room = 0 
+
+	}
+
+
 } 

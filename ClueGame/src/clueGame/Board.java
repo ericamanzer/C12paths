@@ -32,6 +32,7 @@ public class Board extends BoardCell {
 	private String roomConfigFile;
 	private String peopleConfigFile;
 	private String weaponsConfigFile;
+	ArrayList<Player> player = new ArrayList<Player>();
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
@@ -516,7 +517,7 @@ public class Board extends BoardCell {
 		ArrayList<Card> possibleRooms = new ArrayList<Card>();
 		
 		
-		// Loads the deck and temporary Arrayists with every card read into program 
+		// Loads the deck and temporary ArrayLists with every card read into program 
 		for (Card temp: peoplePile) {
 			deck.add(temp); 
 			possiblePeople.add(temp); 
@@ -552,8 +553,6 @@ public class Board extends BoardCell {
 		}
 		System.out.println(possibleCards.size());
 		
-		// Keeps track of the cards all players have 
-		ArrayList<Player> player = new ArrayList<Player>();
 		
 		for(HumanPlayer person: humanPlayer) {
 			for (int j = 0; j < 3; j++) { 
@@ -660,6 +659,9 @@ public class Board extends BoardCell {
 		return peoplePile;
 	}
 
+
+	
+	
 }
 
 
