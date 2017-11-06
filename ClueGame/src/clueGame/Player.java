@@ -7,15 +7,16 @@ import java.lang.reflect.Field;
 public class Player {
 
 	private String playerName; 
-	private int row, column; 
+	private int currentRow, currentColumn, previousRow, previousColumn; 
 	private Color color; 
 	private Set<Card> myCards; 
 	private Set<Card> seenCards;
 	
+	
 	// color conversion function. 
 	// @param strColor the color of the player
 	// @return color return the Java Object Color
-	public Color convertColor (String strColor)
+	public Color convertColor (String strColor) 
 	{
 		Color color;
 		try 
@@ -37,7 +38,7 @@ public class Player {
 	public Player()
 	{
 		this.playerName = "";
-		this.row = 0;
+		this.currentRow = 0;
 		this.myCards = new HashSet<Card>();
 		this.seenCards = new HashSet<Card>();
 		this.color = Color.white;
@@ -51,8 +52,8 @@ public class Player {
 	public Player( String name, String color, int r, int c )
 	{
 		this.playerName = name;
-		this.row = r;
-		this.column = c;
+		this.currentRow = r;
+		this.currentColumn = c;
 		this.color = convertColor(color);
 		this.myCards = new HashSet<Card>();
 		this.seenCards = new HashSet<Card>();
@@ -76,5 +77,21 @@ public class Player {
 	{
 		return this.playerName;
 	}
+	
+	public void updatePosition(int c, int r) { 
+		previousColumn = currentColumn; 
+		currentColumn = c; 
+		previousRow = currentRow; 
+		currentRow = r; 
+	}
+	
+	public int getPreviousColumn() {
+		return previousColumn; 
+	}
+	
+	public  int getPreviousRow() {
+		return previousRow; 
+	}
+	
 	
 }
