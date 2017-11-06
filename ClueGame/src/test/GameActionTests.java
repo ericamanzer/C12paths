@@ -38,7 +38,7 @@ public class GameActionTests {
 		assertTrue(targets.contains(board.getCellAt(4, 3)));
 		assertTrue(targets.contains(board.getCellAt(5, 2)));
 		
-		
+		//HELLO
 		// If no rooms in list, choose a target randomnly 
 		
 	}
