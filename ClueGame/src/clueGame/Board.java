@@ -11,7 +11,7 @@ public class Board extends BoardCell {
 	public static final int MAX_BOARD_SIZE = 50;
 	private int numRows;
 	private int numColumns;
-
+	private Solution answerKey;
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
 	static private Map<BoardCell, Set<BoardCell>> adjMatrix;
@@ -253,7 +253,7 @@ public class Board extends BoardCell {
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		visited = new HashSet<BoardCell>();
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
-
+		answerKey = new Solution();
 		computerPlayers = new HashSet<ComputerPlayer>();
 		humanPlayer = new HashSet<HumanPlayer>();
 		deck = new HashSet<Card>();
@@ -536,14 +536,16 @@ public class Board extends BoardCell {
 		int r = rand.nextInt(possiblePeople.size()); 
 		key.add(possiblePeople.get(r)); 
 		deck.remove(possiblePeople.get(r)); 
+		answerKey.setAnswerKeyPerson(possiblePeople.get(r).getCardname());
 		// Get random weapon for murder weapon 
 		r = rand.nextInt(possibleWeapons.size()); 
 		key.add(possibleWeapons.get(r)); 
 		deck.remove(possibleWeapons.get(r));
+		answerKey.setAnswerKeyWeapon(possibleWeapons.get(r).getCardname());
 		// Get random room for crime scene 
 		key.add(possibleRooms.get(r)); 
 		deck.remove(possibleRooms.get(r)); 
-		
+		answerKey.setAnswerKeyRoom(possiblePeople.get(r).getCardname());
 		// Loads remaining deck values into the temp ArrayList 
 		for (Card temp: deck) {
 			possibleCards.add(temp);  

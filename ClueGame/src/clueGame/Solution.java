@@ -2,6 +2,21 @@ package clueGame;
 
 public class Solution {
 
-	String person, room, weapon; 
+	private String person, room, weapon; 
+	
+	public void setAnswerKeyPerson (String answerPerson)
+	{
+		this.person = answerPerson;
+	}
+	
+	public void setAnswerKeyRoom ( String answerRoom )
+	{
+		this.room = answerRoom;
+	}
+	
+	public void setAnswerKeyWeapon ( String answerWeapon )
+	{
+		this.weapon = answerWeapon;
+	}
 	
 }
