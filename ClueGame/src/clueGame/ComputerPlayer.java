@@ -57,8 +57,8 @@ public class ComputerPlayer extends Player {
 			return availablePaths.get(selected);
 		}
 		
-	}
-	//HELLO
+	} 
+	
 	/*
 	public void makeAccusation() {
 

@@ -38,9 +38,6 @@ public class GameActionTests {
 		assertTrue(targets.contains(board.getCellAt(9, 17)));
 		// Last target tested is doorway 
 		assertTrue(targets.contains(board.getCellAt(13, 19)));
-
-		// testing to see if the selected room is equal to the correct room (the room it should be)
-		BoardCell correctSelection = new BoardCell (13, 19, 'B', DoorDirection.UP );
 		
 		// need to call ComputerPlayer with the pickLocation function and return the selected position
 		ComputerPlayer computer = new ComputerPlayer();
