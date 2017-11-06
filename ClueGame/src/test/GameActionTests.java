@@ -27,6 +27,11 @@ public class GameActionTests {
 		
 		//should only choose a valid target; calculating targets already tested
 		board.calcTargets(4, 2, 3);
+		// save current location into BoardCell previous
+		BoardCell current =  board.getCellAt(4, 2);
+		Player computer = new Player();
+		computer.savingTestLocation(current);
+		
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(9, targets.size());
 		assertTrue(targets.contains(board.getCellAt(4, 1)));

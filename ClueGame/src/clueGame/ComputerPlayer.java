@@ -22,11 +22,17 @@ public class ComputerPlayer extends Player {
 	}
 
 
-	/*
+	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
-
+		
+		for (BoardCell cell : targets)
+		{
+			previous.
+		}
+		
 	}
-
+	
+	/*
 	public void makeAccusation() {
 
 	}
@@ -36,15 +42,7 @@ public class ComputerPlayer extends Player {
 	}
 	 */
 
-	public BoardCell selectTarget() { 
 
-		// call calcAdj function (targets set will be updated)  
-		// call getter for previouslocation and previous row 
-		// range loop to organize values into room or pathway 
-		// if else statements to pick next location
-		// if room = 0 
-
-	}
 
 
 } 

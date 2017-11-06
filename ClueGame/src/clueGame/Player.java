@@ -12,6 +12,10 @@ public class Player {
 	private Set<Card> myCards; 
 	private Set<Card> seenCards;
 	
+	// handling the the previous and current BoardCell for pickLocation for ComputerPlayer 
+	private BoardCell current;
+	private BoardCell previous; 
+	
 	
 	// color conversion function. 
 	// @param strColor the color of the player
@@ -76,6 +80,17 @@ public class Player {
 	public String getPlayerName()
 	{
 		return this.playerName;
+	}
+	
+	// called in the test to save the testing location into BoardCell previous
+	public void savingTestLocation( BoardCell current)
+	{
+		previous.setCol(current.getCol());
+		previous.setRow(current.getRow());
+		previous.setInitial(current.getInitial());
+		
+		// missing initial and DoorDirection 
+		
 	}
 	
 	public void updatePosition(int c, int r) { 

@@ -254,7 +254,7 @@ public class BoardAdjTargetsTests {
 	}
 	
 	@Test
-	public void testTargetsIntoRoomShortcut() //Passing , Marron
+	public void testTargetsIntoRoomShortcut() //Passing , Maroon
 	{
 		board.calcTargets(4, 2, 3);
 		Set<BoardCell> targets= board.getTargets();
