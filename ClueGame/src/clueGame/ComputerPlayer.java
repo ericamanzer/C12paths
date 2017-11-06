@@ -23,14 +23,14 @@ public class ComputerPlayer extends Player {
 
 
 	
-	public BoardCell pickLocation(Set<BoardCell> targets) {
+	/*public BoardCell pickLocation(Set<BoardCell> targets) {
 		
 		for (BoardCell cell : targets)
 		{
 			previous.
 		}
 		
-	}
+	} */
 	//HELLO
 	/*
 	public void makeAccusation() {

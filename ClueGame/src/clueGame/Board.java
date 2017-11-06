@@ -587,11 +587,33 @@ public class Board extends BoardCell {
 	public Card handleSugestion(TBD) {
 
 	}
+	*/ 
+
 
 	public boolean checkAccusation(Solution accusation) {
-
+			
+		String p, w, r;   
+		p = accusation.getPerson(); 
+		w = accusation.getWeapon(); 
+		r = accusation.getRoom(); 
+		
+		// check person 
+		if (!answerKey.getPerson().equals(p)) {
+			return false; 
+		}
+		// check weapon 
+		if (!answerKey.getWeapon().equals(w)) {
+			return false; 
+		}
+		// check room 
+		if (!answerKey.getRoom().equals(r)) {
+			return false; 
+		}
+		
+		// If no differences exist then returns true 
+		return true;
 	}
-	*/
+	
 	
 	// Getter for computerPlayers 
 	// @param no parameter 
@@ -659,7 +681,9 @@ public class Board extends BoardCell {
 		return peoplePile;
 	}
 
-
+	public Solution getAnswerKey() {
+		return answerKey; 
+	}
 	
 	
 }
