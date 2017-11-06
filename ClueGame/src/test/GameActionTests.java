@@ -46,4 +46,41 @@ public class GameActionTests {
 
 	}
 
+	
+	@Test 
+	public void testAccusation() {
+		 Solution answerKey = board.getAnswerKey(); 
+		 String ansP = answerKey.getPerson(); 
+		 String ansW = answerKey.getWeapon(); 
+		 String ansR = answerKey.getRoom(); 
+		 
+		 Solution accusation = new Solution();
+		 
+		 // Solution that is correct 
+		 accusation.setAnswerKeyPerson(ansP);
+		 accusation.setAnswerKeyWeapon(ansW); 
+		 accusation.setAnswerKeyRoom(ansR); 
+		 
+		 assertTrue(board.checkAccusation(accusation));
+		 
+		 // Solution with wrong person 
+		 accusation.setAnswerKeyPerson("wrong");
+		 
+		 assertFalse(board.checkAccusation(accusation));
+		 
+		 // Solution with wrong weapon 
+		 accusation.setAnswerKeyPerson(ansP);
+		 accusation.setAnswerKeyWeapon("wrong");
+		 
+		 assertFalse(board.checkAccusation(accusation)); 
+		 
+		 // Solution with wrong room 
+		 accusation.setAnswerKeyWeapon(ansW);
+		 accusation.setAnswerKeyRoom("wrong");
+		 
+		 assertFalse(board.checkAccusation(accusation)); 
+		 
+	}
+	
+
 }
