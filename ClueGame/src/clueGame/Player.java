@@ -104,9 +104,19 @@ public class Player {
 		return previousColumn; 
 	}
 	
-	public  int getPreviousRow() {
+	public int getPreviousRow() {
 		return previousRow; 
 	}
 	
+	public void addSeen(Card card) {
+		seenCards.add(card); 
+	}
 	
+	public Set<Card> getSeenCards() {
+		return seenCards; 
+	}
+	
+	public Set<Card> getMyCards() {
+		return myCards; 
+	}
 }

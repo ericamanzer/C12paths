@@ -584,9 +584,7 @@ public class Board extends BoardCell {
 
 	}
 
-	public Card handleSugestion(TBD) {
-
-	}
+	
 	*/ 
 
 
@@ -614,6 +612,24 @@ public class Board extends BoardCell {
 		return true;
 	}
 	
+	public Card handleSuggestion(Player player) {
+		
+		ArrayList<Card> possibleSuggestions = new ArrayList<Card>(); 
+		
+		for(ComputerPlayer tempPlayer: computerPlayers) {
+			if (tempPlayer == player) {
+				continue;  
+			}
+			for(Card tempCard: tempPlayer.getMyCards()) {
+				possibleSuggestions.add(tempCard); 
+			}
+		}
+		
+		// call createsuggestion then dissprovesuggestion 
+		// random int for possibleSugestions[random] to return 
+		
+		return null; // FIXME !!!
+	}
 	
 	// Getter for computerPlayers 
 	// @param no parameter 
@@ -681,6 +697,10 @@ public class Board extends BoardCell {
 		return peoplePile;
 	}
 
+	
+	// Getter for getAnswerKey() 
+	// @param no parameter 
+	// @return answerKey 
 	public Solution getAnswerKey() {
 		return answerKey; 
 	}
