@@ -20,6 +20,15 @@ public class GameActionTests {
 
 		board.initialize();
 	}
+	
+	@Test
+	public void testCreateSuggestion()
+	{
+		ComputerPlayer computerPlayer = new ComputerPlayer ("CompSci","Blue", 11, 17);
+		computerPlayer.createSuggestion(board[11][17], board.possiblePeople, board.possibleWeapons, board.getRooms());
+		// will be comparing things to the Solution class which uses strings
+		
+	}
 
 	@Test
 	public void testSelectingATarget() {
