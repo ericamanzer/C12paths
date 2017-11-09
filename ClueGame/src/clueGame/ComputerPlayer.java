@@ -67,9 +67,32 @@ public class ComputerPlayer extends Player {
 
 	}
 */
+	// Default Constructor
+	//@param BoardCell cell, ArrayList<Card> people, ArrayList
+	//@return no return values; default constructors
+	public void createSuggestion(BoardCell cell, ArrayList<Card> people, ArrayList<Card> weapons, Set<String> rooms) {
+		//selecting the room suggestion based on the current location of the player
+		char roomInitial = cell.getInitial();
+		String room = "";
+		for (String r : rooms)
+		{
+			if ( roomInitial == r.charAt(0))
+			{
+				room = r;
+			}
+		}
+		
+		// selecting the person and weapon suggestion
+		Random rand = new Random();
+		int select = rand.nextInt();
+		Card person = people.get(select);
+		select = rand.nextInt();
+		Card weapon = people.get(select);
 	
-	public void createSuggestion(TBD) {
-
+		// make the suggestion using the Solution class
+		createdSoln.setAnswerKeyPerson(person.getCardname());
+		createdSoln.setAnswerKeyWeapon(weapon.getCardname());
+		createdSoln.setAnswerKeyRoom(room);
 	}
 
 	public Card disproveSuggestion(Solution soln) {
