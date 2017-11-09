@@ -132,5 +132,8 @@ public class ComputerPlayer extends Player {
 		 
 	}
 
+	public Solution getCreatedSoln() { 
+		return createdSoln; 
+	}
 
 } 
