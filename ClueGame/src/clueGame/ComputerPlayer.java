@@ -76,17 +76,16 @@ public class ComputerPlayer extends Player {
 		String room = "";
 		for (String r : rooms)
 		{
-			if ( roomInitial == r.charAt(0))
+			if (roomInitial == r.charAt(0))
 			{
+				System.out.println( "Found ");
 				room = r;
 			}
 		}
 		Card person;
 		Card weapon;
-		// loop: if the card is in seen, restart the loop
 		while (true)
 		{
-			// selecting the person and weapon suggestion
 			Random rand = new Random();
 			int select = rand.nextInt(people.size());
 			person = people.get(select);
@@ -100,10 +99,7 @@ public class ComputerPlayer extends Player {
 			{
 				continue;
 			}
-			else 
-			{
-				break;
-			}
+			else break;
 		}
 		// make the suggestion using the Solution class
 		createdSoln.setAnswerKeyPerson(person.getCardname());

@@ -631,7 +631,7 @@ public class Board extends BoardCell {
 		int row = computerPlayer.getCurrentRow(); 
 		int col = computerPlayer.getCurrentColumn();
 		
-		//computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms); 
+		computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms, computerPlayer); 
 		
 		ArrayList<Card> foundCards = new ArrayList<Card>(); 
 		

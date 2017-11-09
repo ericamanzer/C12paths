@@ -26,7 +26,7 @@ public class GameActionTests {
 	{
 
 		ComputerPlayer computerPlayer = new ComputerPlayer ("CompSci","Blue", 14, 15);
-		//computerPlayer.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms());
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer);
 		// will be comparing things to the Solution class which uses strings
 		Solution sol = computerPlayer.getCreatedSoln();
 		String solutionRoom = sol.getRoom();
