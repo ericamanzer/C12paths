@@ -34,7 +34,7 @@ public class GameActionTests {
 		
 	}
 
-	@Test
+	//@Test
 	public void testSelectingATarget() {
 		// One room is exactly 2 away
 		board.calcTargets(12, 16, 4);
@@ -95,13 +95,13 @@ public class GameActionTests {
 		 
 	}
 	
-	//@Test 
+	@Test 
 	public void testDisproveSugesstion() { 
 		
 		BoardCell testCell = new BoardCell(5, 3, 't', DoorDirection.RIGHT); 
-		ComputerPlayer computerPlayer = new ComputerPlayer(); 
+		ComputerPlayer computerPlayer = new ComputerPlayer("CompSci", "Blue", 5, 3); 
 		
-		//computerPlayer.createSuggestion(testCell, board.possiblePeople, board.possibleWeapons, board.getRooms()); 
+		computerPlayer.createSuggestion(testCell, board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer); 
 		
 		Solution s1 = computerPlayer.getCreatedSoln(); 
 		String p1 = s1.getPerson(); 
@@ -109,18 +109,19 @@ public class GameActionTests {
 		String r1 = s1.getRoom(); 
 	
 		
-		String p2 = "wrong"; 
-		String w2 = "wrong"; 
+		String p2 = p1; 
+		String w2 = w1; 
 		String r2 = r1; 
 		
 		Solution s2 = new Solution(p2, w2, r2); 
 		
-		Card card = computerPlayer.disproveSuggestion(s2); 
-		String cardName = card.getCardname(); 
+		Card returnedCard = computerPlayer.disproveSuggestion(s2); 
+		Card test = new Card(r1, CardType.ROOM);
 		
+		String t = test.getCardname(); 
+		System.out.println(t);
 		
-		
-		assertTrue(cardName.equals(r2)); 
+		assertEquals(test, returnedCard); 
 		
 		
 	}
