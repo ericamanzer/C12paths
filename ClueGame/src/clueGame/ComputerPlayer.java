@@ -119,15 +119,15 @@ public class ComputerPlayer extends Player {
 		r2 = createdSoln.getRoom();
 
 		ArrayList<Card> possibleReturns = new ArrayList<Card>(); 
-		if(p1 == p2) {
+		if (p1.equals(p2)) {
 			Card p = new Card(p1, CardType.PERSON); 
 			possibleReturns.add(p); 
 		}
-		if (w1 == w2) { 
+		if (w1.equals(w2)) { 
 			Card w = new Card(w1, CardType.WEAPON); 
 			possibleReturns.add(w); 
 		}
-		if (r1 == r2) {
+		if (r1.equals(r2)) {
 			Card r = new Card(r1, CardType.ROOM); 
 			possibleReturns.add(r); 
 		}
