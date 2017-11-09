@@ -4,6 +4,17 @@ public class Solution {
 
 	private String person, room, weapon; 
 	
+	public Solution() {
+		super();
+	}
+
+	public Solution(String person, String room, String weapon) {
+		super();
+		this.person = person;
+		this.room = room;
+		this.weapon = weapon;
+	}
+
 	public void setAnswerKeyPerson (String answerPerson)
 	{
 		this.person = answerPerson;

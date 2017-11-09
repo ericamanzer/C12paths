@@ -21,12 +21,10 @@ public class GameActionTests {
 		board.initialize();
 	}
 	
-	@Test
+	//@Test
 	public void testCreateSuggestion()
 	{
-		ComputerPlayer computerPlayer = new ComputerPlayer ("CompSci","Blue", 11, 17);
-		computerPlayer.createSuggestion(board[11][17], board.possiblePeople, board.possibleWeapons, board.getRooms());
-		// will be comparing things to the Solution class which uses strings
+		
 		
 	}
 
@@ -94,12 +92,30 @@ public class GameActionTests {
 	@Test 
 	public void testDisproveSugesstion() { 
 		
-		BoardCell testCell = new BoardCell(5, 3, 't', DoorDirection.NONE); 
+		BoardCell testCell = new BoardCell(5, 3, 't', DoorDirection.RIGHT); 
 		ComputerPlayer computerPlayer = new ComputerPlayer(); 
 		
 		computerPlayer.createSuggestion(testCell, board.possiblePeople, board.possibleWeapons, board.getRooms()); 
 		
-		Card p1 = computerPlayer.
+		Solution s1 = computerPlayer.getCreatedSoln(); 
+		String p1 = s1.getPerson(); 
+		String w1 = s1.getWeapon(); 
+		String r1 = s1.getRoom(); 
+	
+		
+		String p2 = "wrong"; 
+		String w2 = "wrong"; 
+		String r2 = r1; 
+		
+		Solution s2 = new Solution(p2, w2, r2); 
+		
+		Card card = computerPlayer.disproveSuggestion(s2); 
+		String cardName = card.getCardname(); 
+		
+		
+		
+		assertTrue(cardName.equals(r2)); 
+		
 		
 	}
 	
