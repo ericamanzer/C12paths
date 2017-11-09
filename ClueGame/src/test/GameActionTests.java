@@ -24,7 +24,13 @@ public class GameActionTests {
 	//@Test
 	public void testCreateSuggestion()
 	{
-		
+
+		ComputerPlayer computerPlayer = new ComputerPlayer ("CompSci","Blue", 14, 15);
+		//computerPlayer.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms());
+		// will be comparing things to the Solution class which uses strings
+		Solution sol = computerPlayer.getCreatedSoln();
+		String solutionRoom = sol.getRoom();
+		assertEquals("Guggenheim", solutionRoom);
 		
 	}
 
@@ -89,13 +95,13 @@ public class GameActionTests {
 		 
 	}
 	
-	@Test 
+	//@Test 
 	public void testDisproveSugesstion() { 
 		
 		BoardCell testCell = new BoardCell(5, 3, 't', DoorDirection.RIGHT); 
 		ComputerPlayer computerPlayer = new ComputerPlayer(); 
 		
-		computerPlayer.createSuggestion(testCell, board.possiblePeople, board.possibleWeapons, board.getRooms()); 
+		//computerPlayer.createSuggestion(testCell, board.possiblePeople, board.possibleWeapons, board.getRooms()); 
 		
 		Solution s1 = computerPlayer.getCreatedSoln(); 
 		String p1 = s1.getPerson(); 
