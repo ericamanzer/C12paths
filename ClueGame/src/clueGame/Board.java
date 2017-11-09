@@ -78,7 +78,7 @@ public class Board extends BoardCell {
 				legend.put(letter, lineArray[1]);
 				//System.out.println(lineArray[2]);
 				//String card = lineArray[1]; 
-				//rooms.add(card);
+				rooms.add(lineArray[1]);
 
 				// adding to the roomPile
 
@@ -266,6 +266,7 @@ public class Board extends BoardCell {
 		roomPile = new HashSet<Card>();
 		peoplePile = new HashSet<Card>();
 		weaponsPile = new HashSet<Card>();
+		rooms = new HashSet<String>();
 
 		//NOTE: used to load configuration files
 		loadRoomConfig();
@@ -630,7 +631,7 @@ public class Board extends BoardCell {
 		int row = computerPlayer.getCurrentRow(); 
 		int col = computerPlayer.getCurrentColumn();
 		
-		computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms); 
+		//computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms); 
 		
 		ArrayList<Card> foundCards = new ArrayList<Card>(); 
 		
@@ -651,6 +652,7 @@ public class Board extends BoardCell {
 			return null;
 		}
 		else { 
+			computerPlayer.addSeen(foundCards.get(location));
 			return foundCards.get(location); 
 		}
 		
