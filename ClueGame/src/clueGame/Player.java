@@ -119,4 +119,10 @@ public class Player {
 	public Set<Card> getMyCards() {
 		return myCards; 
 	}
+	public int getCurrentRow() {
+		return currentRow; 
+	}
+	public int getCurrentColumn() {
+		return currentColumn; 
+	}
 }

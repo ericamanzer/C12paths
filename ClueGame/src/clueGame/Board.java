@@ -31,7 +31,11 @@ public class Board extends BoardCell {
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String peopleConfigFile;
-	private String weaponsConfigFile;
+	private String weaponsConfigFile; 
+	ArrayList<Card> possibleCards = new ArrayList<Card>();
+	ArrayList<Card> possiblePeople = new ArrayList<Card>();  
+	ArrayList<Card> possibleWeapons = new ArrayList<Card>(); 
+	ArrayList<Card> possibleRooms = new ArrayList<Card>();
 	ArrayList<Player> player = new ArrayList<Player>();
 	// Functions:
 	//NOTE: Singleton pattern 
@@ -63,7 +67,7 @@ public class Board extends BoardCell {
 		Scanner scan = null;
 		try 
 		{
-			
+
 			scan = new Scanner(file);
 			while (scan.hasNextLine())
 			{
@@ -75,9 +79,9 @@ public class Board extends BoardCell {
 				//System.out.println(lineArray[2]);
 				//String card = lineArray[1]; 
 				//rooms.add(card);
-				
+
 				// adding to the roomPile
-				
+
 				if (count > 1)
 				{
 					Card room = new Card(lineArray[1], CardType.ROOM);
@@ -103,7 +107,7 @@ public class Board extends BoardCell {
 		{
 			scan.close();
 		}
-		
+
 	}
 
 
@@ -188,7 +192,7 @@ public class Board extends BoardCell {
 					computerPlayers.add(computer);
 				}
 				count ++;
-				
+
 				// add players to larger deck
 				Card people = new Card (lineArray[0], CardType.PERSON);
 				peoplePile.add(people);
@@ -223,7 +227,7 @@ public class Board extends BoardCell {
 			{
 				String line = scan.nextLine();
 				//weapons.add(line);
-				
+
 				// add the weapons to the deck
 				Card weapon = new Card (line, CardType.WEAPON);
 				weaponsPile.add(weapon);
@@ -270,7 +274,7 @@ public class Board extends BoardCell {
 		loadBoardConfig();
 		//find adjacencies
 		calcAdjacencies();
-		
+
 		//deal deck
 		dealDeck();
 
@@ -506,16 +510,14 @@ public class Board extends BoardCell {
 	{
 		return targets;
 	}
-	
+
 	public void dealDeck() { 
+
 		
-		
-		// Temporary ArrayLists to keep track of each card type and the total deck dynamically 
-		ArrayList<Card> possibleCards = new ArrayList<Card>();
-		ArrayList<Card> possiblePeople = new ArrayList<Card>();  
-		ArrayList<Card> possibleWeapons = new ArrayList<Card>(); 
-		ArrayList<Card> possibleRooms = new ArrayList<Card>();
-		
+		possibleCards.clear(); 
+		possiblePeople.clear();
+		possibleWeapons.clear(); 
+		possibleRooms.clear(); 		
 		
 		// Loads the deck and temporary ArrayLists with every card read into program 
 		for (Card temp: peoplePile) {
@@ -530,8 +532,8 @@ public class Board extends BoardCell {
 			deck.add(temp); 
 			possibleRooms.add(temp);
 		}
-		
-		
+
+
 		Random rand = new Random(); 
 		// Get random person for murderer 
 		int r = rand.nextInt(possiblePeople.size()); 
@@ -552,8 +554,8 @@ public class Board extends BoardCell {
 			possibleCards.add(temp);  
 		}
 		System.out.println(possibleCards.size());
-		
-		
+
+
 		for(HumanPlayer person: humanPlayer) {
 			for (int j = 0; j < 3; j++) { 
 				r = rand.nextInt(possibleCards.size());
@@ -562,7 +564,7 @@ public class Board extends BoardCell {
 				possibleCards.remove(r); 	
 			}
 		}
-		
+
 		for(ComputerPlayer person: computerPlayers) {
 			for (int j = 0; j < 3; j++) { 
 				r = rand.nextInt(possibleCards.size());
@@ -571,30 +573,30 @@ public class Board extends BoardCell {
 				possibleCards.remove(r); 	
 			}
 		}
-		
-	
 
-		
+
+
+
 	}
-	
-	
-	
+
+
+
 	/*
 	public void selectAnswer() { 
 
 	}
 
-	
-	*/ 
+
+	 */ 
 
 
 	public boolean checkAccusation(Solution accusation) {
-			
+
 		String p, w, r;   
 		p = accusation.getPerson(); 
 		w = accusation.getWeapon(); 
 		r = accusation.getRoom(); 
-		
+
 		// check person 
 		if (!answerKey.getPerson().equals(p)) {
 			return false; 
@@ -607,30 +609,53 @@ public class Board extends BoardCell {
 		if (!answerKey.getRoom().equals(r)) {
 			return false; 
 		}
-		
+
 		// If no differences exist then returns true 
 		return true;
 	}
-	
-	public Card handleSuggestion(Player player) {
-		
+
+	public Card handleSuggestion(ComputerPlayer computerPlayer) {
+
 		ArrayList<Card> possibleSuggestions = new ArrayList<Card>(); 
-		
+
 		for(ComputerPlayer tempPlayer: computerPlayers) {
-			if (tempPlayer == player) {
+			if (tempPlayer == computerPlayer) {
 				continue;  
 			}
 			for(Card tempCard: tempPlayer.getMyCards()) {
 				possibleSuggestions.add(tempCard); 
 			}
 		}
+
+		int row = computerPlayer.getCurrentRow(); 
+		int col = computerPlayer.getCurrentColumn();
 		
-		// call createsuggestion then dissprovesuggestion 
-		// random int for possibleSugestions[random] to return 
+		computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms); 
 		
-		return null; // FIXME !!!
+		ArrayList<Card> foundCards = new ArrayList<Card>(); 
+		
+		for(ComputerPlayer tempPlayer: computerPlayers) {
+			if (tempPlayer == computerPlayer) {
+				continue;  
+			}
+			else { 
+				Card temp = tempPlayer.disproveSuggestion(computerPlayer.createdSoln); 
+				foundCards.add(temp); 
+			}
+		}
+
+		Random rand = new Random(); 
+		int location = rand.nextInt(foundCards.size() + 1); 
+
+		if (foundCards.size() == 0) {
+			return null;
+		}
+		else { 
+			return foundCards.get(location); 
+		}
+		
 	}
-	
+
 	// Getter for computerPlayers 
 	// @param no parameter 
 	// @return computerPlayers a set of player that are not the player 1 
@@ -672,7 +697,7 @@ public class Board extends BoardCell {
 	public Set<Card> getKey() {
 		return key; 
 	}
-	
+
 	// Getter for roomPile
 	// @param no parameter
 	// @return roomPile the set of room cards
@@ -680,7 +705,7 @@ public class Board extends BoardCell {
 	{
 		return roomPile;
 	}
-	
+
 	// Getter for weaponsPile
 	// @param no parameter
 	// @return weaponsPile the set of weapons card
@@ -688,7 +713,7 @@ public class Board extends BoardCell {
 	{
 		return weaponsPile;
 	}
-	
+
 	// Getter for peoplePile
 	// @param no parameter
 	// @return peoplePile the set of people cards
@@ -697,15 +722,15 @@ public class Board extends BoardCell {
 		return peoplePile;
 	}
 
-	
+
 	// Getter for getAnswerKey() 
 	// @param no parameter 
 	// @return answerKey 
 	public Solution getAnswerKey() {
 		return answerKey; 
 	}
-	
-	
+
+
 }
 
 
