@@ -33,9 +33,9 @@ public class Board extends BoardCell {
 	private String peopleConfigFile;
 	private String weaponsConfigFile; 
 	ArrayList<Card> possibleCards = new ArrayList<Card>();
-	ArrayList<Card> possiblePeople = new ArrayList<Card>();  
-	ArrayList<Card> possibleWeapons = new ArrayList<Card>(); 
-	ArrayList<Card> possibleRooms = new ArrayList<Card>();
+	public ArrayList<Card> possiblePeople = new ArrayList<Card>();  
+	public ArrayList<Card> possibleWeapons = new ArrayList<Card>(); 
+	public ArrayList<Card> possibleRooms = new ArrayList<Card>();
 	ArrayList<Player> player = new ArrayList<Player>();
 	// Functions:
 	//NOTE: Singleton pattern 
@@ -729,8 +729,7 @@ public class Board extends BoardCell {
 	public Solution getAnswerKey() {
 		return answerKey; 
 	}
-
-
+	
 }
 
 

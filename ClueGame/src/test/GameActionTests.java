@@ -91,5 +91,17 @@ public class GameActionTests {
 		 
 	}
 	
+	@Test 
+	public void testDisproveSugesstion() { 
+		
+		BoardCell testCell = new BoardCell(5, 3, 't', DoorDirection.NONE); 
+		ComputerPlayer computerPlayer = new ComputerPlayer(); 
+		
+		computerPlayer.createSuggestion(testCell, board.possiblePeople, board.possibleWeapons, board.getRooms()); 
+		
+		Card p1 = computerPlayer.
+		
+	}
+	
 
 }
