@@ -3,6 +3,9 @@ import java.util.*;
 import java.io.*;
 
 public class ComputerPlayer extends Player {
+	
+	Solution createdSoln = new Solution(); 
+	
 	//Parameterized Constructor
 	//@param name computer's name
 	//@param color color of the computer player
@@ -71,12 +74,39 @@ public class ComputerPlayer extends Player {
 
 	public Card disproveSuggestion(Solution soln) {
 
-		String p, w, r;  
+		String p1, p2, w1, w2, r1, r2;  
 		
+		p1 = soln.getPerson();
+		p2 = createdSoln.getPerson(); 
+		w1 = soln.getWeapon(); 
+		w2 = createdSoln.getWeapon(); 
+		r1 = soln.getRoom(); 
+		r2 = createdSoln.getRoom();
 		
-		
+		ArrayList<Card> possibleReturns = new ArrayList<Card>(); 
+		if(p1 == p2) {
+			Card p = new Card(p1, CardType.PERSON); 
+			possibleReturns.add(p); 
+		}
+		if (w1 == w2) { 
+			Card w = new Card(w1, CardType.WEAPON); 
+			possibleReturns.add(w); 
+		}
+		if (r1 == r2) {
+			Card r = new Card(r1, CardType.ROOM); 
+			possibleReturns.add(r); 
+		}
 
-		return null; // FIXME!!!!!!!!
+		if (possibleReturns.size() == 0) {
+			return null;
+		}
+		else {
+			Random rand = new Random(); 
+			int possition = rand.nextInt(possibleReturns.size() + 1);
+			
+			return possibleReturns.get(possition); 
+		}
+		 
 	}
 
 
