@@ -19,7 +19,9 @@ public class GameActionTests {
 		board.setPeopleConfigFile("PeopleConfig.txt");
 
 		board.initialize();
+
 	}
+
 	@Test
 	public void testCreateSuggestion()
 	{
@@ -129,6 +131,7 @@ public class GameActionTests {
 		System.out.println(card.getCardname() + " " + solution);
 
 		assertEquals(card.getCardname(), solution);
+
 	}
 
 	@Test
@@ -289,35 +292,49 @@ public class GameActionTests {
 		//Suggestion no one can disprove returns null
 
 
-		Set<ComputerPlayer> computerPlayers = new HashSet<ComputerPlayer>();  
-		computerPlayers = board.getComputerPlayers(); 
+		
+		ComputerPlayer player = new ComputerPlayer("Person", "Color", 13, 19);  
+		board.clearPossiblePeople();
+		board.clearPossibleWeapons();
+		board.clearPossibleRooms();
 
-		ComputerPlayer computerPlayer = new ComputerPlayer(); 
 
-
-		for (ComputerPlayer temp: computerPlayers) {
-
-			computerPlayer = temp; 
-			break; 
-		}
-
-		//computerPlayer.clearCards(); 
-
-		//Suggestion only accusing player can disprove returns null
-
-		Set<Card> myCards = new HashSet<Card>(); 
-		computerPlayer.getMyCards();
-		ArrayList<Card> possibleCards = new ArrayList<Card>(); 
-		possibleCards.addAll(board.possiblePeople); 
-		possibleCards.addAll(board.possibleRooms); 
-		possibleCards.addAll(board.possibleWeapons);
-		for (Card temp: myCards) { 
-
-		}
-
-		System.out.println("Mycards.size(): " + myCards.size());
-
+		
+		Solution answerKey = new Solution();
+		Card keyPerson = new Card (answerKey.getPerson(), CardType.PERSON); 
+		Card keyWeapon = new Card (answerKey.getWeapon(), CardType.WEAPON); 
+		String keyRoom = answerKey.getRoom(); 
+		board.addPossiblePeople(keyPerson);
+		board.addPossibleWeapons(keyWeapon);
+		board.addPossibleRooms(keyRoom);
+		
+		//assertNull(board.handleSuggestion(player));
+		
+		
 		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+
+		
+		board.clearPossiblePeople();
+		board.clearPossibleWeapons();
+		board.clearPossibleRooms();
+		
+		Card person = new Card("CompSci", CardType.PERSON); 
+		board.addPossiblePeople(person);	
+		
+		Card weapon = new Card("Keyboard", CardType.WEAPON); 
+		board.addPossibleWeapons(weapon);
+		
+		Card room = new Card("Berthod", CardType.ROOM); 
+		String roomName = room.getCardname(); 
+		board.addPossibleRooms(roomName);
+		
+		String personName = person.getCardname(); 
+		String weaponName = weapon.getCardname(); 
+		
+		
+		
+		assertNull(board.handleSuggestion(player));
+		
 		//Suggestion only human can disprove, but human is accuser, returns null
 		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
 		//Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer

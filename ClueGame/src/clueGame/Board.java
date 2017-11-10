@@ -732,6 +732,30 @@ public class Board extends BoardCell {
 		return answerKey; 
 	}
 	
+	public void clearPossiblePeople() { 
+		possiblePeople.clear();
+	}
+	
+	public void addPossiblePeople(Card card) { 
+		possiblePeople.add(card); 
+	}
+	
+	public void clearPossibleWeapons() { 
+		possibleWeapons.clear();
+	}
+	
+	public void addPossibleWeapons(Card card) { 
+		possibleWeapons.add(card); 
+	}
+	
+	public void clearPossibleRooms() { 
+		rooms.clear();
+	}
+	
+	public void addPossibleRooms(String room) { 
+		rooms.add(room); 
+	}
+	
 }
 
 
