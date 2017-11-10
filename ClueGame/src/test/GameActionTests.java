@@ -2,11 +2,13 @@ package test;
 
 import static org.junit.Assert.*;
 import java.util.*;
-
+import org.junit.runners.MethodSorters;
+import org.junit.FixMethodOrder;
 import org.junit.*;
 import org.junit.Test;
 import clueGame.*;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GameActionTests {
 	// Making the board static so that only one copy of itself
 	private static Board board;
@@ -293,29 +295,30 @@ public class GameActionTests {
 	@Test
 	public void testHandleSuggestions() { 
 		//Suggestion no one can disprove returns null
-
-
 		
-		ComputerPlayer player = new ComputerPlayer("Person", "Color", 13, 19);  
+		
+		
+		
+		ComputerPlayer player = new ComputerPlayer("Person", "Color", 13, 19);
+		  
 		board.clearPossiblePeople();
 		board.clearPossibleWeapons();
 		board.clearPossibleRooms();
 
-
-		
-		Solution answerKey = new Solution();
-		Card keyPerson = new Card (answerKey.getPerson(), CardType.PERSON); 
-		Card keyWeapon = new Card (answerKey.getWeapon(), CardType.WEAPON); 
-		String keyRoom = answerKey.getRoom(); 
+		Card keyPerson = new Card ("wrong", CardType.PERSON); 
+		Card keyWeapon = new Card ("wrong", CardType.WEAPON); 
+		String keyRoom = "wrong"; 
 		board.addPossiblePeople(keyPerson);
 		board.addPossibleWeapons(keyWeapon);
 		board.addPossibleRooms(keyRoom);
 		
-		//assertNull(board.handleSuggestion(player));
+		assertNull(board.handleSuggestion(player));
+		
 		
 		
 		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
 
+		
 		
 		board.clearPossiblePeople();
 		board.clearPossibleWeapons();

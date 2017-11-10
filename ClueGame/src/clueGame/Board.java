@@ -645,8 +645,9 @@ public class Board extends BoardCell {
 			}
 		}
 
+
 		Random rand = new Random(); 
-		int location = rand.nextInt(foundCards.size() + 1); 
+		int location = rand.nextInt(foundCards.size()); 
 
 		if (foundCards.size() == 0) {
 			return null;
