@@ -25,38 +25,24 @@ public class GameActionTests {
 
 	@Test
 	public void testCreateSuggestion()
-	{
-
-		ArrayList<Card> weapons = new ArrayList<Card>();
-		ArrayList<Card> people = new ArrayList<Card>();		
+	{	
 		Card card = new Card("Keyboard", CardType.WEAPON);
 		Card card2 = new Card ("MatLab", CardType.WEAPON);
 		Card card3 = new Card ("Chemical", CardType.WEAPON);
 		Card card4 = new Card ("Pickaxe", CardType.WEAPON);
 		Card card5 = new Card ("Rock", CardType.WEAPON);
 		Card card6 = new Card ("Exams", CardType.WEAPON);
+		
 		Card card7 = new Card ("CompSci", CardType.PERSON);
 		Card card8 = new Card ("MechE", CardType.PERSON);
 		Card card9 = new Card ("ChemE", CardType.PERSON);
 		Card card10 = new Card ("Mining", CardType.PERSON);
 		Card card11 = new Card ("Geology", CardType.PERSON);
 		Card card12 = new Card ("Physics", CardType.PERSON);
-		weapons.add(card);
-		weapons.add(card2);
-		weapons.add(card3);
-		weapons.add(card4);
-		weapons.add(card5);
-		weapons.add(card6);
-		people.add(card7);
-		people.add(card8);
-		people.add(card9);
-		people.add(card10);
-		people.add(card11);
-		people.add(card12);
+
 		System.out.println("Rooms size before: " + board.getRooms().size());
 		ComputerPlayer computerPlayer = new ComputerPlayer ("CompSci","Blue", 14, 15);
-		computerPlayer.createSuggestion(board.getCellAt(14, 15), people, weapons, board.getRooms(), computerPlayer);
-		// will be comparing things to the Solution class which uses strings
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer);
 		Solution sol = computerPlayer.getCreatedSoln();
 		String solutionRoom = sol.getRoom();
 		// room matches current location
@@ -79,7 +65,9 @@ public class GameActionTests {
 
 		// If only one people not seen, it's selected; 
 		computerPlayer.clearSeenCards();
-
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		ArrayList<Card> weapons = new ArrayList<Card>();
+		ArrayList<Card> people = new ArrayList<Card>();
 		computerPlayer.addSeen(card);
 		computerPlayer.addSeen(card2);
 		computerPlayer.addSeen(card3);
@@ -91,12 +79,25 @@ public class GameActionTests {
 		computerPlayer.addSeen(card9);
 		computerPlayer.addSeen(card10);
 		computerPlayer.addSeen(card11);
-		
-		//System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		//computerPlayer.addSeen(card12);
+		weapons.add(card);
+		weapons.add(card2);
+		weapons.add(card3);
+		weapons.add(card4);
+		weapons.add(card5);
+		weapons.add(card6);
+		people.add(card7);
+		people.add(card8);
+		people.add(card9);
+		people.add(card10);
+		people.add(card11);
+		people.add(card12);
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
 		computerPlayer.createSuggestion(board.getCellAt(14, 15), people, weapons, board.getRooms(), computerPlayer);
 		sol = computerPlayer.getCreatedSoln();
 		solution = sol.getPerson();
-		System.out.println(card12.getCardname() + " = " + solution + " .Seen card size: " + computerPlayer.getSeenCards().size());
+		System.out.println(card12.getCardname() + " " + solution);
+
 		assertEquals(card12.getCardname(), solution);
 		
 		//If only one weapon not seen, it's selected
@@ -168,7 +169,40 @@ public class GameActionTests {
 		System.out.println(solution);
 
 		assertNotNull(solution);
+		
+		//multiple choices, weapon
+		computerPlayer.clearSeenCards();
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		ArrayList<Card> weapons4 = new ArrayList<Card>();
+		ArrayList<Card> people4 = new ArrayList<Card>();
 
+		computerPlayer.addSeen(card5);
+		computerPlayer.addSeen(card6);
+		computerPlayer.addSeen(card7);
+		computerPlayer.addSeen(card8);
+		computerPlayer.addSeen(card9);
+		computerPlayer.addSeen(card10);
+		computerPlayer.addSeen(card11);
+		computerPlayer.addSeen(card12);
+		weapons4.add(card);
+		weapons4.add(card2);
+		weapons4.add(card3);
+		weapons4.add(card4);
+		weapons4.add(card5);
+		weapons4.add(card6);
+		people4.add(card7);
+		people4.add(card8);
+		people4.add(card9);
+		people4.add(card10);
+		people4.add(card11);
+		people4.add(card12);
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), people4, weapons4, board.getRooms(), computerPlayer);
+		sol = computerPlayer.getCreatedSoln();
+		solution = sol.getWeapon();
+		System.out.println(solution);
+
+		assertNotNull(solution);
 		
 	
 	}
