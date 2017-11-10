@@ -107,7 +107,7 @@ public class Board extends BoardCell {
 		{
 			scan.close();
 		}
-
+		System.out.println("Set<String> room size: " + rooms.size());
 	}
 
 
@@ -165,7 +165,7 @@ public class Board extends BoardCell {
 		{
 			scan.close();
 		}
-
+		
 	}
 
 	public void loadPeopleConfig()
@@ -554,7 +554,7 @@ public class Board extends BoardCell {
 		for (Card temp: deck) {
 			possibleCards.add(temp);  
 		}
-		System.out.println(possibleCards.size());
+		//System.out.println(possibleCards.size());
 
 
 		for(HumanPlayer person: humanPlayer) {

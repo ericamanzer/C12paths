@@ -78,6 +78,7 @@ public class ComputerPlayer extends Player {
 		weapons = weaponsArray;
 		char roomInitial = cell.getInitial();
 		String room = "";
+		//System.out.println("room size" + rooms.size());
 		for (String r : rooms)
 		{
 			if (roomInitial == r.charAt(0))
@@ -116,7 +117,7 @@ public class ComputerPlayer extends Player {
 			if ( seen.size() == 12)
 			{
 				//you can't pick a card you have already seen and there are only 12 cards total
-				createdSoln.setAnswerKeyRoom(null);
+				createdSoln.setAnswerKeyRoom(room);
 				createdSoln.setAnswerKeyPerson(null);
 				createdSoln.setAnswerKeyWeapon(null);
 			}
@@ -128,7 +129,7 @@ public class ComputerPlayer extends Player {
 		else createdSoln.setAnswerKeyWeapon(null);
 		createdSoln.setAnswerKeyRoom(room);
 		String done = " done";
-		System.out.println(done);
+		//System.out.println(done);
 	}
 
 	public Card disproveSuggestion(Solution soln) {
@@ -138,18 +139,18 @@ public class ComputerPlayer extends Player {
 		Set<Card> myCards = new HashSet<Card>(); 
 		myCards = getMyCards(); 
 		ArrayList<Card> cardsFound = new ArrayList<Card>();
-		System.out.println(myCards.size());
+		//System.out.println(myCards.size());
 		for (Card found: myCards) {
 			if (soln.getPerson() == found.getCardname()) {
-				System.out.println("1st");
+				//System.out.println("1st");
 				cardsFound.add(found); 
 			}
 			if (soln.getWeapon() == found.getCardname()) {
-				System.out.println("2nd");
+				//System.out.println("2nd");
 				cardsFound.add(found); 
 			}
 			if (soln.getRoom() == found.getCardname()) {
-				System.out.println("3rd");
+				//System.out.println("3rd");
 				cardsFound.add(found); 
 			}
 			 
