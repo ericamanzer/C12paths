@@ -183,13 +183,12 @@ public class GameActionTests {
 		Solution s4 = new Solution(p2, w2, r2); 
 		
 		assertNull(testPlayer.disproveSuggestion(s4));
-		
-		
-		 
-		
-		
+
 		
 	}
 
+	public void testHandleSuggestions() { 
+		
+	}
 
 }
