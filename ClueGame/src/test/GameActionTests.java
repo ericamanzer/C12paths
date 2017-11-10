@@ -96,10 +96,9 @@ public class GameActionTests {
 		computerPlayer.createSuggestion(board.getCellAt(14, 15), people, weapons, board.getRooms(), computerPlayer);
 		sol = computerPlayer.getCreatedSoln();
 		solution = sol.getPerson();
-		//System.out.println(card12.getCardname() + " " + solution);
+		System.out.println(card12.getCardname() + " = " + solution + " .Seen card size: " + computerPlayer.getSeenCards().size());
 		assertEquals(card12.getCardname(), solution);
-		/*
-		System.out.println("HERE !!!!");
+		
 		//If only one weapon not seen, it's selected
 		computerPlayer.clearSeenCards();
 		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
@@ -135,7 +134,43 @@ public class GameActionTests {
 		System.out.println(card.getCardname() + " " + solution);
 
 		assertEquals(card.getCardname(), solution);
-	*/
+		
+		// mutiple choices, people
+		computerPlayer.clearSeenCards();
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		ArrayList<Card> weapons3 = new ArrayList<Card>();
+		ArrayList<Card> people3 = new ArrayList<Card>();
+		computerPlayer.addSeen(card2);
+		computerPlayer.addSeen(card3);
+		computerPlayer.addSeen(card4);
+		computerPlayer.addSeen(card5);
+		computerPlayer.addSeen(card6);
+		computerPlayer.addSeen(card7);
+		computerPlayer.addSeen(card8);
+		computerPlayer.addSeen(card9);
+	
+		weapons3.add(card);
+		weapons3.add(card2);
+		weapons3.add(card3);
+		weapons3.add(card4);
+		weapons3.add(card5);
+		weapons3.add(card6);
+		people3.add(card7);
+		people3.add(card8);
+		people3.add(card9);
+		people3.add(card10);
+		people3.add(card11);
+		people3.add(card12);
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), people3, weapons3, board.getRooms(), computerPlayer);
+		sol = computerPlayer.getCreatedSoln();
+		solution = sol.getPerson();
+		System.out.println(solution);
+
+		assertNotNull(solution);
+
+		
+	
 	}
 
 	@Test
