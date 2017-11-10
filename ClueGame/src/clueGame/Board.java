@@ -735,7 +735,7 @@ public class Board extends BoardCell {
 	
 	public void clearPossiblePeople() { 
 		possiblePeople.clear();
-	}
+	} 
 	
 	public void addPossiblePeople(Card card) { 
 		possiblePeople.add(card); 

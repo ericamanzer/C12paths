@@ -316,7 +316,7 @@ public class GameActionTests {
 
 
 		p2 = "wrong"; 
-		w2 = "wrong"; 
+		w2 = "wrong";  
 		r2 = "wrong"; 
 
 		Solution s4 = new Solution(p2, w2, r2); 
@@ -336,12 +336,12 @@ public class GameActionTests {
 		possibleWeapons = board.possibleWeapons; 
 		Set<String> rooms = new HashSet<String>(); 
 		rooms = board.getRooms(); 
-		
+		 
 		
 		ComputerPlayer player = new ComputerPlayer("Person", "Color", 13, 19);
 		  
 		board.clearPossiblePeople();
-		board.clearPossibleWeapons();
+		board.clearPossibleWeapons(); 
 		board.clearPossibleRooms();
 
 		Card keyPerson = new Card ("wrong", CardType.PERSON); 

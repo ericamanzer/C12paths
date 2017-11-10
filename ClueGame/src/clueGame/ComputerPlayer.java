@@ -84,7 +84,7 @@ public class ComputerPlayer extends Player {
 			if (roomInitial == r.charAt(0))
 			{
 				room = r;
-			}
+			} 
 		}
 		Card person = new Card("", CardType.PERSON);
 		Card weapon = new Card("", CardType.PERSON);

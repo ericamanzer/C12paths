@@ -2,7 +2,7 @@ package clueGame;
 
 public class Solution {
 
-	private String person, room, weapon; 
+	private String person, room, weapon;  
 	
 	public Solution() {
 		super();

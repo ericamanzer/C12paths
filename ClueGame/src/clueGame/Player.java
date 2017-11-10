@@ -75,7 +75,7 @@ public class Player {
 	
 	public void addCard(Card card) {
 		myCards.add(card);
-	}
+	} 
 	
 	public void clearCards() { 
 		myCards.clear(); 
