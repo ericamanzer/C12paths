@@ -111,35 +111,39 @@ public class ComputerPlayer extends Player {
 
 		String p1, p2, w1, w2, r1, r2;  
 
-		p1 = soln.getPerson();
-		p2 = createdSoln.getPerson(); 
-		w1 = soln.getWeapon(); 
-		w2 = createdSoln.getWeapon(); 
-		r1 = soln.getRoom(); 
-		r2 = createdSoln.getRoom();
+		Set<Card> myCards = new HashSet<Card>(); 
+		myCards = getMyCards(); 
+		ArrayList<Card> cardsFound = new ArrayList<Card>();
+		System.out.println(myCards.size());
+		for (Card found: myCards) {
+			if (soln.getPerson() == found.getCardname()) {
+				System.out.println("1st");
+				cardsFound.add(found); 
+			}
+			if (soln.getWeapon() == found.getCardname()) {
+				System.out.println("2nd");
+				cardsFound.add(found); 
+			}
+			if (soln.getRoom() == found.getCardname()) {
+				System.out.println("3rd");
+				cardsFound.add(found); 
+			}
+			 
+		}
 
-		ArrayList<Card> possibleReturns = new ArrayList<Card>(); 
-		if (p1.equals(p2)) {
-			Card p = new Card(p1, CardType.PERSON); 
-			possibleReturns.add(p); 
-		}
-		if (w1.equals(w2)) { 
-			Card w = new Card(w1, CardType.WEAPON); 
-			possibleReturns.add(w); 
-		}
-		if (r1.equals(r2)) {
-			Card r = new Card(r1, CardType.ROOM); 
-			possibleReturns.add(r); 
-		}
-
-		if (possibleReturns.size() == 0) {
+		if (cardsFound.size() == 0) {
 			return null;
 		}
+		
+		else if (cardsFound.size() == 1) { 
+			return cardsFound.get(0); 
+		}
+		
 		else {
 			Random rand = new Random(); 
-			int possition = rand.nextInt(possibleReturns.size() + 1);
+			int possition = rand.nextInt(cardsFound.size());
 
-			return possibleReturns.get(possition); 
+			return cardsFound.get(possition); 
 		}
 
 	}
