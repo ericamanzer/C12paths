@@ -5,6 +5,7 @@ public class Card {
 	private String cardName; 
 	private CardType cardType; 
 	
+	
 	public Card(String carName, CardType cardType) {
 		super();
 		this.cardName = carName;
