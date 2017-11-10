@@ -20,8 +20,8 @@ public class GameActionTests {
 
 		board.initialize();
 	}
-	
-	@Test
+
+	//@Test
 
 	public void testCreateSuggestion()
 	{
@@ -33,7 +33,7 @@ public class GameActionTests {
 		String solutionRoom = sol.getRoom();
 		// room matches current location
 		assertEquals("Guggenheim", solutionRoom);
-		
+
 		// fill up the seen cards of a player
 		ComputerPlayer computerPlayer2 = new ComputerPlayer ("CompSci", "Blue", 14, 15);
 		for (int i = 0; i < board.possiblePeople.size(); i++)
@@ -41,8 +41,8 @@ public class GameActionTests {
 			//if ( )
 			//else
 			//{
-				//computerPlayer2.addSeen(board.possiblePeople.get(i));
-				
+			//computerPlayer2.addSeen(board.possiblePeople.get(i));
+
 			//}
 		}
 		for (int i = 0; i < board.possibleWeapons.size(); i++)
@@ -53,15 +53,15 @@ public class GameActionTests {
 		System.out.println( " Got here ");
 		Card answerWeapon = board.possibleWeapons.get(board.possibleWeapons.size() - 1);
 		computerPlayer2.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer2);
-		
+
 		Solution sol2 = computerPlayer.getCreatedSoln();
 		String solutionWeapon = sol2.getWeapon();
 		System.out.println(answerWeapon + " " + solutionWeapon);
 		assertEquals(answerWeapon, solutionWeapon);
-		
+
 	}
 
-	//@Test
+	@Test
 	public void testSelectingATarget() {
 		// One room is exactly 2 away
 		board.calcTargets(12, 16, 4);
@@ -131,7 +131,7 @@ public class GameActionTests {
 
 		ComputerPlayer computerPlayer = new ComputerPlayer(); 
 		ComputerPlayer testPlayer = new ComputerPlayer();
-		
+
 		int counter = 0; 
 		for (ComputerPlayer temp: computerPlayers) {
 			if (counter == 0) {
@@ -146,11 +146,11 @@ public class GameActionTests {
 			counter ++; 
 		}
 
-		
+
 		computerPlayer.createSuggestion(board.getCellAt(4, 0), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer); 
 
 		testPlayer.clearCards();
-		
+
 		Solution s1 = computerPlayer.getCreatedSoln(); 
 		String p1 = s1.getPerson(); 
 		Card cp1 = new Card(p1, CardType.PERSON); 
@@ -158,11 +158,11 @@ public class GameActionTests {
 		Card cw1 = new Card(w1, CardType.WEAPON);
 		String r1 = s1.getRoom(); 
 		Card cr1 = new Card(r1, CardType.ROOM);
-		
+
 		testPlayer.addCard(cp1);
 		testPlayer.addCard(cw1);
 		testPlayer.addCard(cr1);
-		
+
 		String p2 = "wrong"; 
 		String w2 = w1; 
 		String r2 = "wrong"; 
@@ -179,43 +179,78 @@ public class GameActionTests {
 		System.out.println("A: " + a);
 		System.out.println("B: " + b);
 
-		
+
 		// One matching card
 		assertTrue(a.equals(b)); 
 
 		p2 = p1; 
 		r2 = r1; 
-		
+
 		Solution s3 = new Solution(p2, w2, r2); 
-		
+
 		returnedCard = testPlayer.disproveSuggestion(s3);
 		Card testP = new Card(p2, CardType.PERSON); 
 		Card testW = new Card(w2, CardType.WEAPON); 
 		Card testR = new Card(r2, CardType.ROOM); 
-		
+
 		b = returnedCard.getCardname(); 
 		String c = testP.getCardname(); 
 		String d = testW.getCardname(); 
 		String e = testR.getCardname(); 
 		System.out.println(b + " " + c + " " + d + " " + e);
-		
+
 		// More than one matching card 
 		assertTrue(b.equals(c) || b.equals(d) || b.equals(e));
-		
-		
+
+
 		p2 = "wrong"; 
 		w2 = "wrong"; 
 		r2 = "wrong"; 
-		
+
 		Solution s4 = new Solution(p2, w2, r2); 
-		
+
 		assertNull(testPlayer.disproveSuggestion(s4));
 
-		
+
 	}
 
+	@Test
 	public void testHandleSuggestions() { 
+		//Suggestion no one can disprove returns null
 		
+		
+		Set<ComputerPlayer> computerPlayers = new HashSet<ComputerPlayer>();  
+		computerPlayers = board.getComputerPlayers(); 
+
+		ComputerPlayer computerPlayer = new ComputerPlayer(); 
+
+
+		for (ComputerPlayer temp: computerPlayers) {
+
+			computerPlayer = temp; 
+			break; 
+		}
+
+		//computerPlayer.clearCards(); 
+	 		
+		//Suggestion only accusing player can disprove returns null
+		
+		Set<Card> myCards = new HashSet<Card>(); 
+		computerPlayer.getMyCards();
+		ArrayList<Card> possibleCards = new ArrayList<Card>(); 
+		possibleCards.addAll(board.possiblePeople); 
+		possibleCards.addAll(board.possibleRooms); 
+		possibleCards.addAll(board.possibleWeapons);
+		for (Card temp: myCards) { 
+			 
+		}
+		
+		System.out.println("Mycards.size(): " + myCards.size());
+		
+		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+		//Suggestion only human can disprove, but human is accuser, returns null
+		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
+		//Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
 	}
 
 }
