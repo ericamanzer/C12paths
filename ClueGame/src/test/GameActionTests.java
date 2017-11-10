@@ -1,3 +1,9 @@
+/*
+ * 
+ * Authors: Demonna Wade and Erica Manzer 
+ * 
+ */
+
 package test;
 
 import static org.junit.Assert.*;
@@ -8,6 +14,8 @@ import org.junit.*;
 import org.junit.Test;
 import clueGame.*;
 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GameActionTests {
 	// Making the board static so that only one copy of itself
 	private static Board board;
@@ -23,7 +31,7 @@ public class GameActionTests {
 
 	}
 
-	@Test
+	//@Test
 	public void testCreateSuggestion()
 	{	
 		Card card = new Card("Keyboard", CardType.WEAPON);
@@ -49,16 +57,30 @@ public class GameActionTests {
 		assertEquals("Guggenheim", solutionRoom);
 
 		// Making sure null was returned 
+		ArrayList<Card> weapons0 = new ArrayList<Card>();
+		ArrayList<Card> people0 = new ArrayList<Card>();
+		weapons0.add(card);
+		weapons0.add(card2);
+		weapons0.add(card3);
+		weapons0.add(card4);
+		weapons0.add(card5);
+		weapons0.add(card6);
+		people0.add(card7);
+		people0.add(card8);
+		people0.add(card9);
+		people0.add(card10);
+		people0.add(card11);
+		people0.add(card12);
 		computerPlayer.clearSeenCards();
-		for ( Card seen : board.possiblePeople)
+		for ( Card seen : people0)
 		{
 			computerPlayer.addSeen(seen);
 		}
-		for ( Card seen : board.possibleWeapons)
+		for ( Card seen : weapons0)
 		{
 			computerPlayer.addSeen(seen);
 		}
-		computerPlayer.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer);
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), people0, weapons0, board.getRooms(), computerPlayer);
 		sol = computerPlayer.getCreatedSoln();
 		String solution = sol.getPerson();
 		assertNull(solution);
@@ -362,6 +384,9 @@ public class GameActionTests {
 
 	@Test
 	public void testHandleSuggestions() { 
+		
+
+	
 		//Suggestion no one can disprove returns null
 		
 		ArrayList<Card> possiblePeople = new ArrayList<Card>(); 
@@ -373,6 +398,26 @@ public class GameActionTests {
 		 
 		
 		ComputerPlayer player = new ComputerPlayer("Person", "Color", 13, 19);
+		
+		
+		Card person = new Card("CompSci", CardType.PERSON); 
+		board.addPossiblePeople(person);	
+		player.addCard(person);
+		
+		Card weapon = new Card("Keyboard", CardType.WEAPON); 
+		board.addPossibleWeapons(weapon);
+		player.addCard(weapon);
+		
+		Card room = new Card("Berthod", CardType.ROOM); 
+		String roomName = room.getCardname(); 
+		board.addPossibleRooms(roomName);
+		player.addCard(room);
+		
+		assertNotNull(board.handleSuggestion(player));
+		
+		
+		
+		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
 		  
 		board.clearPossiblePeople();
 		board.clearPossibleWeapons(); 
@@ -389,7 +434,7 @@ public class GameActionTests {
 		
 		
 		
-		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+		//Suggestion only human can disprove, but human is accuser, returns null
 
 		
 		
@@ -397,26 +442,34 @@ public class GameActionTests {
 		board.clearPossibleWeapons();
 		board.clearPossibleRooms();
 		
-		Card person = new Card("CompSci", CardType.PERSON); 
+		person = new Card("CompSci", CardType.PERSON); 
 		board.addPossiblePeople(person);	
+		player.addCard(person);
 		
-		Card weapon = new Card("Keyboard", CardType.WEAPON); 
+		weapon = new Card("Keyboard", CardType.WEAPON); 
 		board.addPossibleWeapons(weapon);
+		player.addCard(weapon);
 		
-		Card room = new Card("Berthod", CardType.ROOM); 
-		String roomName = room.getCardname(); 
+		room = new Card("Berthod", CardType.ROOM); 
+		roomName = room.getCardname(); 
 		board.addPossibleRooms(roomName);
-		
-		String personName = person.getCardname(); 
-		String weaponName = weapon.getCardname(); 
-		
+		player.addCard(room);
 		
 		
 		assertNull(board.handleSuggestion(player));
 		
-		//Suggestion only human can disprove, but human is accuser, returns null
+		
+		
 		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
 		//Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+		
+		//NOTE for reason this test is not here
+		// In class, Mark held a discussion on the methods of checking suggestions with other players.
+		// He said that we didn't have to check with the neighbor on the left.
+		// we were allowed to check with all players at once. 
+		
+		
+		
 	
 		board.clearPossiblePeople();
 		board.clearPossibleWeapons();
@@ -426,7 +479,7 @@ public class GameActionTests {
 		board.setPossibleWeapons(possibleWeapons);
 		board.setPossibleRooms(rooms);
 		
-	
+
 	
 	}
 

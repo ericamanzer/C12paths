@@ -1,3 +1,9 @@
+/*
+ * 
+ * Authors: Demonna Wade and Erica Manzer 
+ * 
+ */
+
 package clueGame;
 
 public class Solution {

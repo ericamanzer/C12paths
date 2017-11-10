@@ -1,3 +1,9 @@
+/*
+ * 
+ * Authors: Demonna Wade and Erica Manzer 
+ * 
+ */
+
 package clueGame;
 import java.util.*;
 import java.io.*;
