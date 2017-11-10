@@ -22,7 +22,6 @@ public class GameActionTests {
 	}
 	
 	@Test
-
 	public void testCreateSuggestion()
 	{
 
@@ -34,30 +33,73 @@ public class GameActionTests {
 		// room matches current location
 		assertEquals("Guggenheim", solutionRoom);
 		
-		// fill up the seen cards of a player
+		
+		// fill up the seen cards of a player; test Weapons
 		ComputerPlayer computerPlayer2 = new ComputerPlayer ("CompSci", "Blue", 14, 15);
+		Card answerWeapon = board.possibleWeapons.get(board.possibleWeapons.size() - 1);
 		for (int i = 0; i < board.possiblePeople.size(); i++)
 		{
-			//if ( )
-			//else
-			//{
-				//computerPlayer2.addSeen(board.possiblePeople.get(i));
-				
-			//}
+			computerPlayer2.addSeen(board.possiblePeople.get(i));
 		}
 		for (int i = 0; i < board.possibleWeapons.size(); i++)
 		{
 			computerPlayer2.addSeen(board.possibleWeapons.get(i));
 			if ( i == board.possibleWeapons.size() - 2) break;
 		}
-		System.out.println( " Got here ");
-		Card answerWeapon = board.possibleWeapons.get(board.possibleWeapons.size() - 1);
 		computerPlayer2.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer2);
 		
 		Solution sol2 = computerPlayer.getCreatedSoln();
 		String solutionWeapon = sol2.getWeapon();
-		System.out.println(answerWeapon + " " + solutionWeapon);
-		assertEquals(answerWeapon, solutionWeapon);
+		assertNotNull(solutionWeapon);
+		// fill up the seen cards of a player; test People
+		computerPlayer2.clearCards();
+		for (int i = 0; i < board.possiblePeople.size(); i++)
+		{
+			computerPlayer2.addSeen(board.possiblePeople.get(i));
+			if ( i == board.possiblePeople.size() - 2) break;
+		}
+		for (int i = 0; i < board.possiblePeople.size(); i++)
+		{
+			computerPlayer2.addSeen(board.possiblePeople.get(i));
+			
+		}
+		
+		Solution sol3 = computerPlayer2.getCreatedSoln();
+		String solutionPerson = sol3.getPerson();
+		assertNotNull(solutionPerson);
+		// leave multiple; test Weapons
+		ComputerPlayer computerPlayer3 = new ComputerPlayer ("CompSci", "Blue", 14, 15);
+		for (int i = 0; i < board.possiblePeople.size(); i++)
+		{
+			computerPlayer3.addSeen(board.possiblePeople.get(i));
+		}
+		for (int i = 0; i < board.possibleWeapons.size(); i++)
+		{
+			computerPlayer3.addSeen(board.possibleWeapons.get(i));
+			if ( i == board.possibleWeapons.size() - 5) break;
+		}
+		computerPlayer3.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer2);
+		
+		Solution sol4 = computerPlayer.getCreatedSoln();
+		String solutionWeapon2 = sol4.getWeapon();
+		assertNotNull(solutionWeapon2);
+		
+		//leave multiple; test People
+		computerPlayer3.clearCards();
+		for (int i = 0; i < board.possiblePeople.size(); i++)
+		{
+			computerPlayer3.addSeen(board.possiblePeople.get(i));
+			if ( i == board.possiblePeople.size() - 2) break;
+		}
+		for (int i = 0; i < board.possiblePeople.size(); i++)
+		{
+			computerPlayer3.addSeen(board.possiblePeople.get(i));
+			
+		}
+		
+		Solution sol5 = computerPlayer3.getCreatedSoln();
+		String solutionPerson2 = sol3.getPerson();
+		assertNotNull(solutionPerson2);
 		
 	}
 

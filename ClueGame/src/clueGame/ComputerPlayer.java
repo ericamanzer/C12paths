@@ -70,8 +70,12 @@ public class ComputerPlayer extends Player {
 	// Default Constructor
 	//@param BoardCell cell, ArrayList<Card> people, ArrayList
 	//@return no return values; default constructors
-	public void createSuggestion(BoardCell cell, ArrayList<Card> people, ArrayList<Card> weapons, Set<String> rooms, ComputerPlayer player) {
+	public void createSuggestion(BoardCell cell, ArrayList<Card> peopleArray, ArrayList<Card> weaponsArray, Set<String> rooms, ComputerPlayer player) {
 		//selecting the room suggestion based on the current location of the player
+		ArrayList<Card> people = new ArrayList<Card>();
+		ArrayList<Card> weapons = new ArrayList<Card>();
+		people = peopleArray;
+		weapons = weaponsArray;
 		char roomInitial = cell.getInitial();
 		String room = "";
 		for (String r : rooms)
@@ -98,17 +102,27 @@ public class ComputerPlayer extends Player {
 			weapon = weapons.get(select);
 			System.out.println(count);
 			// handle looking at seenCards and making sure to not 
-			if ( seen.contains(weapon) || seen.contains(person) )
+			if ( seen.contains(person))
 			{
 				count = count + 1;
-				continue;
-				
+				people.remove(person);
+			}
+			if ( seen.contains(weapon))
+			{
+				weapons.remove(weapon);
 			}
 			else 
 			{
 				exit = false;
 			}
-			
+			for (int i = 0; i < people.size(); i++)
+			{
+				System.out.println("People: " +  people.get(i).getCardname());
+			}
+			for (int i = 0; i < weapons.size(); i++)
+			{
+				System.out.println("Weapons " + weapons.get(i).getCardname());
+			}
 		}
 		// make the suggestion using the Solution class
 		createdSoln.setAnswerKeyPerson(person.getCardname());
