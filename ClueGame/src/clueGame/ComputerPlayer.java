@@ -111,6 +111,7 @@ public class ComputerPlayer extends Player {
 			
 			// handle looking at seenCards and making sure to not 
 			if ( seen.contains(person)) people.remove(person);
+			else exit = false;
 			if ( seen.contains(weapon)) weapons.remove(weapon);
 			else exit = false;
 
