@@ -78,28 +78,37 @@ public class ComputerPlayer extends Player {
 		{
 			if (roomInitial == r.charAt(0))
 			{
-				System.out.println( "Found ");
 				room = r;
 			}
 		}
-		Card person;
-		Card weapon;
-		while (true)
+		Card person = new Card("", CardType.PERSON);
+		Card weapon = new Card("", CardType.PERSON);
+		Set<Card> seen = new HashSet<Card>();
+		seen = player.getSeenCards();
+		int size = seen.size();
+		System.out.println(size + " = seenCards size");
+		boolean exit = true;
+		int count = 0;
+		while (exit)
 		{
 			Random rand = new Random();
 			int select = rand.nextInt(people.size());
 			person = people.get(select);
 			select = rand.nextInt(weapons.size());
 			weapon = weapons.get(select);
-
+			System.out.println(count);
 			// handle looking at seenCards and making sure to not 
-			Set<Card> seen = new HashSet<Card>();
-			seen = player.getSeenCards();
-			if ( seen.contains(weapon) || seen.contains(person))
+			if ( seen.contains(weapon) || seen.contains(person) )
 			{
+				count = count + 1;
 				continue;
+				
 			}
-			else break;
+			else 
+			{
+				exit = false;
+			}
+			
 		}
 		// make the suggestion using the Solution class
 		createdSoln.setAnswerKeyPerson(person.getCardname());
