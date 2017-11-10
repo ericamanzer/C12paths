@@ -8,7 +8,6 @@ import org.junit.*;
 import org.junit.Test;
 import clueGame.*;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GameActionTests {
 	// Making the board static so that only one copy of itself
 	private static Board board;
@@ -208,7 +207,7 @@ public class GameActionTests {
 	
 	}
 
-	//@Test
+	@Test
 	public void testSelectingATarget() {
 		// One room is exactly 2 away
 		board.calcTargets(12, 16, 4);
@@ -234,7 +233,7 @@ public class GameActionTests {
 	}
 
 
-	//@Test 
+	@Test 
 	public void testAccusation() {
 		Solution answerKey = board.getAnswerKey(); 
 		String ansP = answerKey.getPerson(); 
@@ -269,7 +268,7 @@ public class GameActionTests {
 
 	}
 
-	//@Test 
+	@Test 
 	public void testDisproveSugesstion() { 
 
 		//BoardCell testCell = new BoardCell(5, 3, 't', DoorDirection.RIGHT); 
@@ -365,7 +364,12 @@ public class GameActionTests {
 	public void testHandleSuggestions() { 
 		//Suggestion no one can disprove returns null
 		
-		
+		ArrayList<Card> possiblePeople = new ArrayList<Card>(); 
+		possiblePeople = board.possiblePeople; 
+		ArrayList<Card> possibleWeapons = new ArrayList<Card>(); 
+		possibleWeapons = board.possibleWeapons; 
+		Set<String> rooms = new HashSet<String>(); 
+		rooms = board.getRooms(); 
 		
 		
 		ComputerPlayer player = new ComputerPlayer("Person", "Color", 13, 19);
@@ -413,6 +417,17 @@ public class GameActionTests {
 		//Suggestion only human can disprove, but human is accuser, returns null
 		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
 		//Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+	
+		board.clearPossiblePeople();
+		board.clearPossibleWeapons();
+		board.clearPossibleRooms();
+		
+		board.setPossiblePeople(possiblePeople);
+		board.setPossibleWeapons(possibleWeapons);
+		board.setPossibleRooms(rooms);
+		
+	
+	
 	}
 
 }
