@@ -757,6 +757,18 @@ public class Board extends BoardCell {
 		rooms.add(room); 
 	}
 	
+	public void setPossiblePeople(ArrayList<Card> possiblePeople) { 
+		possiblePeople = this.possiblePeople; 
+	}
+	
+	public void setPossibleWeapons(ArrayList<Card> possibleWeapons) { 
+		possibleWeapons = this.possibleWeapons; 
+	}
+	
+	public void setPossibleRooms(Set<String> rooms) { 
+		rooms = this.rooms; 
+	}
+	
 }
 
 
