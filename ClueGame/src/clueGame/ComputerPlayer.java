@@ -89,45 +89,46 @@ public class ComputerPlayer extends Player {
 		Card weapon = new Card("", CardType.PERSON);
 		Set<Card> seen = new HashSet<Card>();
 		seen = player.getSeenCards();
-		int size = seen.size();
-		System.out.println(size + " = seenCards size");
 		boolean exit = true;
-		int count = 0;
 		while (exit)
 		{
 			Random rand = new Random();
-			int select = rand.nextInt(people.size());
-			person = people.get(select);
-			select = rand.nextInt(weapons.size());
-			weapon = weapons.get(select);
-			System.out.println(count);
+			if (people.size() > 0)
+			{
+				int select = rand.nextInt(people.size());
+				person = people.get(select);
+			}
+			else person = null;
+			
+			if ( weapons.size() > 0)
+			{
+				int select = rand.nextInt(weapons.size());
+				weapon = weapons.get(select);
+			}
+			else weapon = null;
+			
+			
 			// handle looking at seenCards and making sure to not 
-			if ( seen.contains(person))
+			if ( seen.contains(person)) people.remove(person);
+			if ( seen.contains(weapon)) weapons.remove(weapon);
+			else exit = false;
+
+			if ( seen.size() == 12)
 			{
-				count = count + 1;
-				people.remove(person);
-			}
-			if ( seen.contains(weapon))
-			{
-				weapons.remove(weapon);
-			}
-			else 
-			{
-				exit = false;
-			}
-			for (int i = 0; i < people.size(); i++)
-			{
-				System.out.println("People: " +  people.get(i).getCardname());
-			}
-			for (int i = 0; i < weapons.size(); i++)
-			{
-				System.out.println("Weapons " + weapons.get(i).getCardname());
+				//you can't pick a card you have already seen and there are only 12 cards total
+				createdSoln.setAnswerKeyRoom(null);
+				createdSoln.setAnswerKeyPerson(null);
+				createdSoln.setAnswerKeyWeapon(null);
 			}
 		}
 		// make the suggestion using the Solution class
-		createdSoln.setAnswerKeyPerson(person.getCardname());
-		createdSoln.setAnswerKeyWeapon(weapon.getCardname());
+		if ( person != null) createdSoln.setAnswerKeyPerson(person.getCardname());
+		else  createdSoln.setAnswerKeyPerson(null);
+		if (weapon != null ) createdSoln.setAnswerKeyWeapon(weapon.getCardname());
+		else createdSoln.setAnswerKeyWeapon(null);
 		createdSoln.setAnswerKeyRoom(room);
+		String done = " done";
+		System.out.println(done);
 	}
 
 	public Card disproveSuggestion(Solution soln) {

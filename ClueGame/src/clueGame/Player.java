@@ -116,6 +116,11 @@ public class Player {
 		seenCards.add(card); 
 	}
 	
+	public void clearSeenCards ()
+	{
+		seenCards.clear();
+	}
+	
 	public Set<Card> getSeenCards() {
 		return seenCards; 
 	}

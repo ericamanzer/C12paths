@@ -19,7 +19,7 @@ public class GameActionTests {
 		board.setPeopleConfigFile("PeopleConfig.txt");
 
 		board.initialize();
-	
+	}
 	@Test
 	public void testCreateSuggestion()
 	{
@@ -31,74 +31,104 @@ public class GameActionTests {
 		String solutionRoom = sol.getRoom();
 		// room matches current location
 		assertEquals("Guggenheim", solutionRoom);
-		
-		// fill up the seen cards of a player; test Weapons
-		ComputerPlayer computerPlayer2 = new ComputerPlayer ("CompSci", "Blue", 14, 15);
-		Card answerWeapon = board.possibleWeapons.get(board.possibleWeapons.size() - 1);
-		for (int i = 0; i < board.possiblePeople.size(); i++)
-		{
-			computerPlayer2.addSeen(board.possiblePeople.get(i));
-		}
-		for (int i = 0; i < board.possibleWeapons.size(); i++)
-		{
-			computerPlayer2.addSeen(board.possibleWeapons.get(i));
-			if ( i == board.possibleWeapons.size() - 2) break;
-		}
-		computerPlayer2.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer2);
 
-		Solution sol2 = computerPlayer.getCreatedSoln();
-		String solutionWeapon = sol2.getWeapon();
-		assertNotNull(solutionWeapon);
-		// fill up the seen cards of a player; test People
-		computerPlayer2.clearCards();
-		for (int i = 0; i < board.possiblePeople.size(); i++)
+		// Making sure null was returned 
+		computerPlayer.clearSeenCards();
+		for ( Card seen : board.possiblePeople)
 		{
-			computerPlayer2.addSeen(board.possiblePeople.get(i));
-			if ( i == board.possiblePeople.size() - 2) break;
+			computerPlayer.addSeen(seen);
 		}
-		for (int i = 0; i < board.possiblePeople.size(); i++)
+		for ( Card seen : board.possibleWeapons)
 		{
-			computerPlayer2.addSeen(board.possiblePeople.get(i));
-			
+			computerPlayer.addSeen(seen);
 		}
-		
-		Solution sol3 = computerPlayer2.getCreatedSoln();
-		String solutionPerson = sol3.getPerson();
-		assertNotNull(solutionPerson);
-		// leave multiple; test Weapons
-		ComputerPlayer computerPlayer3 = new ComputerPlayer ("CompSci", "Blue", 14, 15);
-		for (int i = 0; i < board.possiblePeople.size(); i++)
-		{
-			computerPlayer3.addSeen(board.possiblePeople.get(i));
-		}
-		for (int i = 0; i < board.possibleWeapons.size(); i++)
-		{
-			computerPlayer3.addSeen(board.possibleWeapons.get(i));
-			if ( i == board.possibleWeapons.size() - 5) break;
-		}
-		computerPlayer3.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer2);
-		
-		Solution sol4 = computerPlayer.getCreatedSoln();
-		String solutionWeapon2 = sol4.getWeapon();
-		assertNotNull(solutionWeapon2);
-		
-		//leave multiple; test People
-		computerPlayer3.clearCards();
-		for (int i = 0; i < board.possiblePeople.size(); i++)
-		{
-			computerPlayer3.addSeen(board.possiblePeople.get(i));
-			if ( i == board.possiblePeople.size() - 2) break;
-		}
-		for (int i = 0; i < board.possiblePeople.size(); i++)
-		{
-			computerPlayer3.addSeen(board.possiblePeople.get(i));
-			
-		}
-		
-		Solution sol5 = computerPlayer3.getCreatedSoln();
-		String solutionPerson2 = sol3.getPerson();
-		assertNotNull(solutionPerson2);
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), board.possiblePeople, board.possibleWeapons, board.getRooms(), computerPlayer);
+		sol = computerPlayer.getCreatedSoln();
+		String solution = sol.getPerson();
+		assertNull(solution);
 
+		// If only one people not seen, it's selected; 
+		computerPlayer.clearSeenCards();
+		ArrayList<Card> weapons = new ArrayList<Card>();
+		ArrayList<Card> people = new ArrayList<Card>();
+		Card card = new Card("Keyboard", CardType.WEAPON);
+		Card card2 = new Card ("MatLab", CardType.WEAPON);
+		Card card3 = new Card ("Chemical", CardType.WEAPON);
+		Card card4 = new Card ("Pickaxe", CardType.WEAPON);
+		Card card5 = new Card ("Rock", CardType.WEAPON);
+		Card card6 = new Card ("Exams", CardType.WEAPON);
+		Card card7 = new Card ("CompSci", CardType.PERSON);
+		Card card8 = new Card ("MechE", CardType.PERSON);
+		Card card9 = new Card ("ChemE", CardType.PERSON);
+		Card card10 = new Card ("Mining", CardType.PERSON);
+		Card card11 = new Card ("Geology", CardType.PERSON);
+		Card card12 = new Card ("Physics", CardType.PERSON);
+		computerPlayer.addSeen(card);
+		computerPlayer.addSeen(card2);
+		computerPlayer.addSeen(card3);
+		computerPlayer.addSeen(card4);
+		computerPlayer.addSeen(card5);
+		computerPlayer.addSeen(card6);
+		computerPlayer.addSeen(card7);
+		computerPlayer.addSeen(card8);
+		computerPlayer.addSeen(card9);
+		computerPlayer.addSeen(card10);
+		computerPlayer.addSeen(card11);
+		weapons.add(card);
+		weapons.add(card2);
+		weapons.add(card3);
+		weapons.add(card4);
+		weapons.add(card5);
+		weapons.add(card6);
+		people.add(card7);
+		people.add(card8);
+		people.add(card9);
+		people.add(card10);
+		people.add(card11);
+		people.add(card12);
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), people, weapons, board.getRooms(), computerPlayer);
+		sol = computerPlayer.getCreatedSoln();
+		solution = sol.getPerson();
+		System.out.println(card12.getCardname() + " " + solution);
+		assertEquals(card12.getCardname(), solution);
+		
+		System.out.println("HERE !!!!");
+		//If only one weapon not seen, it's selected
+		computerPlayer.clearSeenCards();
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		ArrayList<Card> weapons2 = new ArrayList<Card>();
+		ArrayList<Card> people2 = new ArrayList<Card>();
+		computerPlayer.addSeen(card2);
+		computerPlayer.addSeen(card3);
+		computerPlayer.addSeen(card4);
+		computerPlayer.addSeen(card5);
+		computerPlayer.addSeen(card6);
+		computerPlayer.addSeen(card7);
+		computerPlayer.addSeen(card8);
+		computerPlayer.addSeen(card9);
+		computerPlayer.addSeen(card10);
+		computerPlayer.addSeen(card11);
+		computerPlayer.addSeen(card12);
+		weapons2.add(card);
+		weapons2.add(card2);
+		weapons2.add(card3);
+		weapons2.add(card4);
+		weapons2.add(card5);
+		weapons2.add(card6);
+		people2.add(card7);
+		people2.add(card8);
+		people2.add(card9);
+		people2.add(card10);
+		people2.add(card11);
+		people2.add(card12);
+		System.out.println("Seen cards: " + computerPlayer.getSeenCards().size());
+		computerPlayer.createSuggestion(board.getCellAt(14, 15), people2, weapons2, board.getRooms(), computerPlayer);
+		sol = computerPlayer.getCreatedSoln();
+		solution = sol.getWeapon();
+		System.out.println(card.getCardname() + " " + solution);
+
+		assertEquals(card.getCardname(), solution);
 	}
 
 	@Test
@@ -257,8 +287,8 @@ public class GameActionTests {
 	@Test
 	public void testHandleSuggestions() { 
 		//Suggestion no one can disprove returns null
-		
-		
+
+
 		Set<ComputerPlayer> computerPlayers = new HashSet<ComputerPlayer>();  
 		computerPlayers = board.getComputerPlayers(); 
 
@@ -272,9 +302,9 @@ public class GameActionTests {
 		}
 
 		//computerPlayer.clearCards(); 
-	 		
+
 		//Suggestion only accusing player can disprove returns null
-		
+
 		Set<Card> myCards = new HashSet<Card>(); 
 		computerPlayer.getMyCards();
 		ArrayList<Card> possibleCards = new ArrayList<Card>(); 
@@ -282,11 +312,11 @@ public class GameActionTests {
 		possibleCards.addAll(board.possibleRooms); 
 		possibleCards.addAll(board.possibleWeapons);
 		for (Card temp: myCards) { 
-			 
+
 		}
-		
+
 		System.out.println("Mycards.size(): " + myCards.size());
-		
+
 		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
 		//Suggestion only human can disprove, but human is accuser, returns null
 		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
