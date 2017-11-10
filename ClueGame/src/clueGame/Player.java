@@ -77,6 +77,10 @@ public class Player {
 		myCards.add(card);
 	}
 	
+	public void clearCards() { 
+		myCards.clear(); 
+	}
+	
 	public String getPlayerName()
 	{
 		return this.playerName;
