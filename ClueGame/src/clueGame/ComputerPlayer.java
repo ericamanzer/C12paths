@@ -107,7 +107,7 @@ public class ComputerPlayer extends Player {
 				weapon = weapons.get(select);
 			}
 			else weapon = null;
-			
+			//Hello
 			
 			// handle looking at seenCards and making sure to not 
 			if ( seen.contains(person)) people.remove(person);
