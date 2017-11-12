@@ -13,7 +13,7 @@ import javax.swing.border.TitledBorder;
 import java.util.*;
 
 public class ControlGUI extends JPanel {
-	private JTextField name; 
+	//private JTextField name; 
 
 	public ControlGUI()
 	{
@@ -49,19 +49,16 @@ public class ControlGUI extends JPanel {
 		add(panel2); 
 		add(panel1);
 		add(panel3);
-		
-		name.setEditable(false);
-		
-		
-		
 	}
 
 	private JPanel createNamePanel() {
+		JTextField name; 
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
 		//JLabel nameLabel = new JLabel("Name");
 		name = new JTextField(20);
+		name.setEditable(false);
 		//panel.add(nameLabel);
 		panel.add(name);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn?"));
@@ -69,11 +66,13 @@ public class ControlGUI extends JPanel {
 	}
 	
 	private JPanel createGuessPanel() {
+		JTextField name; 
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
 		JLabel nameLabel = new JLabel("Guess");
 		name = new JTextField(20);
+		name.setEditable(false);
 		panel.add(nameLabel);
 		panel.add(name);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
@@ -81,11 +80,13 @@ public class ControlGUI extends JPanel {
 	}
 	
 	private JPanel createDiePanel() {
+		JTextField name; 
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
 		JLabel nameLabel = new JLabel("Roll");
 		name = new JTextField(20);
+		name.setEditable(false);
 		panel.add(nameLabel);
 		panel.add(name);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
@@ -93,11 +94,13 @@ public class ControlGUI extends JPanel {
 	}
 	
 	private JPanel createGuessResultPanel() {
+		JTextField name; 
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
 		JLabel nameLabel = new JLabel("Response");
 		name = new JTextField(20);
+		name.setEditable(false);
 		panel.add(nameLabel);
 		panel.add(name);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
