@@ -10,39 +10,107 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import java.util.*;
 
 public class ControlGUI extends JPanel {
-	private JTextField name;
+	private JTextField name; 
 
 	public ControlGUI()
 	{
 		// Create a layout with 2 rows
+		
+		ArrayList<JPanel> panels = new ArrayList<JPanel>();
+		
+		//JTextField field = new JTextField(); 
+		
 		setLayout(new GridLayout(2,0));
 		JPanel panel = createNamePanel();
+		JPanel panel1 = createGuessPanel(); 
+		JPanel panel2 = createDiePanel(); 
+		JPanel panel3 = createGuessResultPanel(); 
+		
+		panels.add(panel);
+		panels.add(panel2);
+		panels.add(panel1);  
+		panels.add(panel3); 
+		 
+		/*
+		for (int i = 0; i < panels.size(); i++) { 
+			add(panels.get(i)); 
+			name.setEditable(false);
+		}
+		*/
+		
+		
 		add(panel);
-		panel = createButtonPanel();
+		panel = createButtonPanel(); 
 		add(panel);
+		 
+		add(panel2); 
+		add(panel1);
+		add(panel3);
+		
+		name.setEditable(false);
+		
+		
+		
 	}
 
 	private JPanel createNamePanel() {
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
-		JLabel nameLabel = new JLabel("Name");
+		//JLabel nameLabel = new JLabel("Name");
+		name = new JTextField(20);
+		//panel.add(nameLabel);
+		panel.add(name);
+		panel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn?"));
+		return panel;
+	}
+	
+	private JPanel createGuessPanel() {
+		JPanel panel = new JPanel();
+		// Use a grid layout, 1 row, 2 elements (label, text)
+		panel.setLayout(new GridLayout(1,2));
+		JLabel nameLabel = new JLabel("Guess");
 		name = new JTextField(20);
 		panel.add(nameLabel);
 		panel.add(name);
-		panel.setBorder(new TitledBorder (new EtchedBorder(), "Who are you?"));
+		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+		return panel;
+	}
+	
+	private JPanel createDiePanel() {
+		JPanel panel = new JPanel();
+		// Use a grid layout, 1 row, 2 elements (label, text)
+		panel.setLayout(new GridLayout(1,2));
+		JLabel nameLabel = new JLabel("Roll");
+		name = new JTextField(20);
+		panel.add(nameLabel);
+		panel.add(name);
+		panel.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
+		return panel;
+	}
+	
+	private JPanel createGuessResultPanel() {
+		JPanel panel = new JPanel();
+		// Use a grid layout, 1 row, 2 elements (label, text)
+		panel.setLayout(new GridLayout(1,2));
+		JLabel nameLabel = new JLabel("Response");
+		name = new JTextField(20);
+		panel.add(nameLabel);
+		panel.add(name);
+		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		return panel;
 	}
 
 	private JPanel createButtonPanel() {
 		// no layout specified, so this is flow
-		JButton agree = new JButton("I agree");
-		JButton disagree = new JButton("I disagree");
+		JButton nextPlayer = new JButton("Next player");
+		JButton accusation = new JButton("Make an accusation");
 		JPanel panel = new JPanel();
-		panel.add(agree);
-		panel.add(disagree);
+		panel.add(nextPlayer);
+		panel.add(accusation); 
 		return panel;
 	}
 
