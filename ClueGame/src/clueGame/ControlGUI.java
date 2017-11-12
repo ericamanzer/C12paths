@@ -1,3 +1,9 @@
+/*
+ * 
+ * Authors: Demonna Wade and Erica Manzer 
+ * 
+ */
+
 package clueGame;
 
 import java.awt.BorderLayout;
@@ -33,13 +39,6 @@ public class ControlGUI extends JPanel {
 		panels.add(panel2);
 		panels.add(panel1);  
 		panels.add(panel3); 
-		 
-		/*
-		for (int i = 0; i < panels.size(); i++) { 
-			add(panels.get(i)); 
-			name.setEditable(false);
-		}
-		*/
 		
 		
 		add(panel);
