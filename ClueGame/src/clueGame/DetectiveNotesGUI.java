@@ -24,34 +24,25 @@ import java.util.*;
 public class DetectiveNotesGUI extends JPanel {
 	//private JTextField name; 
 
-	public DetectiveNotesGUI() {
-		// Create a layout with 2 rows
-		
-		ArrayList<JPanel> panels = new ArrayList<JPanel>();
-		
-		//JTextField field = new JTextField(); 
+	public DetectiveNotesGUI() { 
 		
 		setLayout(new GridLayout(2,0));
 		JPanel panel = people();
 		JPanel panel1 = weapons(); 
 		JPanel panel2 = rooms(); 
-		; 
-		
-		panels.add(panel);
-		panels.add(panel2);
-		panels.add(panel1);  
 		 
-		
-		
 		add(panel);
+		add(panel1);
+		add(panel2);
+		
 		panel = peopleGuess(); 
 		add(panel);
 		 
-		add(panel1);
+		
 		panel1 = weaponsGuess(); 
 		add(panel1);
 		
-		add(panel2);
+		
 		panel2 = roomsGuess(); 
 		add(panel2);
 	}
@@ -84,7 +75,7 @@ public class DetectiveNotesGUI extends JPanel {
 			panel.add(weapon); 
 			} 
 			
-			panel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
+			panel.setBorder(new TitledBorder (new EtchedBorder(), "Weapon"));
 			return panel;
 	}
 	
@@ -100,7 +91,7 @@ public class DetectiveNotesGUI extends JPanel {
 			panel.add(room); 
 			} 
 			
-			panel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
+			panel.setBorder(new TitledBorder (new EtchedBorder(), "Room"));
 			return panel;
 	}
 	
