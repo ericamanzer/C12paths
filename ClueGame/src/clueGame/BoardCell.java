@@ -7,18 +7,24 @@
  * This created some problems in IntBoard since we had been accessing them directly. 
  * I went through and corrected by calling the getters and setters in IntBoard.
  * 
- * Mona {
+ * Mona 
  * 
  */
-
-
 package clueGame;
-
+import java.awt.Point;
+import java.awt.Color;
+import java.awt.Graphics;
 public class BoardCell {
 	// three member variables to represent the row, column, and initial 
 	private int row, col;
 	private char initial;
 	private DoorDirection doorDir;
+	private Point pixel;
+	private Color color; 
+	// 22 rows, 23 cols
+	public final int MARGIN = 10;
+	private final int WIDTH = 10;
+	private final int HEIGHT = 10;
 
 	// default constructor
 	public BoardCell() {
@@ -26,6 +32,9 @@ public class BoardCell {
 		this.col = 0;
 		this.initial = 'P';
 		this.doorDir = DoorDirection.NONE;
+		this.pixel.x = this.row;
+		this.pixel.y = this.col;
+		this.color = Color.BLACK;
 	} 
 	// constructor with parameters
 	public BoardCell(int c, int r, char initial, DoorDirection doorDir) { 
@@ -33,6 +42,9 @@ public class BoardCell {
 		this.col = c; 
 		this.initial = initial;
 		this.doorDir = doorDir;
+		this.pixel.x = this.row;
+		this.pixel.y = this.col;
+		this.color = Color.BLACK;
 	}
 	
 	public boolean isWalkway() { 
@@ -53,6 +65,21 @@ public class BoardCell {
 		}
 		return false;
 	}
+	
+	public void draw ( Graphics g )
+	{
+		// TODO implement
+		// set color 
+		if (this.initial == 'P') this.color = Color.GRAY;
+		if (this.isRoom()) this.color = Color.BLUE;
+		if (this.initial == 'K') this.color = Color.GREEN;
+		
+		g.setColor(this.color);
+		g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
+		
+	}
+	
+	
 	// Getters {
 	public int getRow() 
 	{

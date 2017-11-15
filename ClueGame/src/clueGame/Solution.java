@@ -21,6 +21,7 @@ public class Solution {
 		this.weapon = weapon;
 	}
 
+	
 	public void setAnswerKeyPerson (String answerPerson)
 	{
 		this.person = answerPerson;

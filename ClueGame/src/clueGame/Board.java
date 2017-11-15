@@ -9,10 +9,16 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 import clueGame.BoardCell;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.lang.reflect.Field;
+import javax.swing.JPanel;   // library for JPanel
+import java.awt.*;    // library for Graphics 
+import javax.swing.*;
 
-public class Board extends BoardCell {
+// converted the Board class into a subclass of JPanel
+public class Board extends JPanel {
 	// Variables:
 	public static final int MAX_BOARD_SIZE = 50;
 	private int numRows;
@@ -46,7 +52,14 @@ public class Board extends BoardCell {
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
-	private Board() {}
+	private Board() 
+	{
+		JPanel panel = new JPanel();
+		JLabel name = new JLabel("Clue Game Board");
+		panel.add(name);
+		add(panel, BorderLayout.CENTER);
+		
+	}
 	public static Board getInstance() 
 	{
 		return theInstance;
@@ -129,7 +142,7 @@ public class Board extends BoardCell {
 			{
 				String line = scan.nextLine(); 
 				String[] array = line.split(",");
-				numColumns = array.length;
+				this.numColumns = array.length;
 				for (y = 0; y < numColumns; y++)
 				{
 					if (array[y].length() == 1)
@@ -153,7 +166,7 @@ public class Board extends BoardCell {
 				}
 				x++;
 			}
-			numRows = x;
+			this.numRows = x;
 		}
 		catch (FileNotFoundException e)
 		{
@@ -662,6 +675,19 @@ public class Board extends BoardCell {
 			computerPlayer.addSeen(foundCards.get(location));
 			return foundCards.get(location); 
 		}
+		
+	}
+	
+	// paintComponent method for drawing the board. It is drawn in an object-oriented manner
+	// use an object-oriented approach that has each BoardCell object draw itself.
+	
+	public void paintComponent ( Graphics g)
+	{
+		super.paintComponent(g);
+		// TODO call each BoardCell  object to draw itself
+		// 	the draw method from BoardCell class will be called
+		
+		getCellAt(0, 0).draw(g);
 		
 	}
 
