@@ -26,23 +26,20 @@ public class DetectiveNotesGUI extends JPanel {
 
 	public DetectiveNotesGUI() { 
 		
-		setLayout(new GridLayout(2,0));
+		setLayout(new GridLayout(5,5));
 		JPanel panel = people();
 		JPanel panel1 = weapons(); 
 		JPanel panel2 = rooms(); 
 		 
 		add(panel);
-		add(panel1);
-		add(panel2);
-		
 		panel = peopleGuess(); 
 		add(panel);
-		 
 		
+		add(panel1);
 		panel1 = weaponsGuess(); 
 		add(panel1);
-		
-		
+
+		add(panel2);		
 		panel2 = roomsGuess(); 
 		add(panel2);
 	}
@@ -51,7 +48,7 @@ public class DetectiveNotesGUI extends JPanel {
 		 
 		JPanel panel = new JPanel();
 		
-		panel.setLayout(new GridLayout(1,2));
+		panel.setLayout(new GridLayout(2,3));
 		
 		String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
 		for (int i = 0; i < 6; i ++) { 
@@ -67,7 +64,7 @@ public class DetectiveNotesGUI extends JPanel {
 		 
 			JPanel panel = new JPanel();
 			
-			panel.setLayout(new GridLayout(1,2));
+			panel.setLayout(new GridLayout(2,3));
 			
 			String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
 			for (int i = 0; i < 6; i ++) { 
@@ -83,7 +80,7 @@ public class DetectiveNotesGUI extends JPanel {
 		 
 			JPanel panel = new JPanel();
 			
-			panel.setLayout(new GridLayout(1,2));
+			panel.setLayout(new GridLayout(3,3));
 			
 			String[] rooms = {"Marquez", "Hill Hall", "Guggenheim", "Brown", "Randall", "Alderson", "Coolbaugh", "Elm", "Weaver"};
 			for (int i = 0; i < 9; i ++) { 
@@ -129,7 +126,7 @@ public class DetectiveNotesGUI extends JPanel {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("GUI Example");
+		frame.setTitle("Detective Notes");
 		frame.setSize(250, 150);	
 		// Create the JPanel and add it to the JFrame
 		DetectiveNotesGUI gui = new DetectiveNotesGUI();
