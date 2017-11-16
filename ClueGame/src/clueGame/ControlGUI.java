@@ -120,7 +120,7 @@ public class ControlGUI extends JPanel {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("GUI Example");
+		frame.setTitle("Control GUI");
 		frame.setSize(250, 150);	
 		// Create the JPanel and add it to the JFrame
 		ControlGUI gui = new ControlGUI();
