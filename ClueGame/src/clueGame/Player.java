@@ -14,9 +14,10 @@ public class Player {
 
 	private String playerName; 
 	private int currentRow, currentColumn, previousRow, previousColumn; 
-	private Color color; 
+	private Color colorMain; 
 	private Set<Card> myCards; 
 	private Set<Card> seenCards;
+	private String colorString;
 	
 	// handling the the previous and current BoardCell for pickLocation for ComputerPlayer 
 	private BoardCell current;
@@ -28,16 +29,18 @@ public class Player {
 	// @return color return the Java Object Color
 	public Color convertColor (String strColor) 
 	{
+		this.colorString = strColor;
 		Color color;
 		try 
 		{
 			// We can use reflection to convert the string to a color
-			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			Field field = Class.forName("java.awt.Color").getField(strColor.toLowerCase());
 			color = (Color)field.get(null);
 		}
 		catch (Exception e)
 		{
 			color = null;
+			System.out.println("ERROR");
 		}
 		return color;
 	}
@@ -51,7 +54,7 @@ public class Player {
 		this.currentRow = 0;
 		this.myCards = new HashSet<Card>();
 		this.seenCards = new HashSet<Card>();
-		this.color = Color.white;
+		this.colorMain = Color.white;
 	}
 	
 	// Player parameterized constructor
@@ -64,7 +67,7 @@ public class Player {
 		this.playerName = name;
 		this.currentRow = r;
 		this.currentColumn = c;
-		this.color = convertColor(color);
+		this.colorMain = convertColor(color);
 		this.myCards = new HashSet<Card>();
 		this.seenCards = new HashSet<Card>();
 		
@@ -140,4 +143,15 @@ public class Player {
 	public int getCurrentColumn() {
 		return currentColumn; 
 	}
+	public Color getColor()
+	{
+		System.out.println(colorMain);
+		return this.colorMain;
+	}
+	
+	public String getColorString()
+	{
+		return this.colorString;
+	}
+	
 }

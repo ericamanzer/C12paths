@@ -45,7 +45,7 @@ public class BoardCell {
 		pixel = new Point (this.row * SCALE + MARGIN, this.col * SCALE + MARGIN);
 		this.color = Color.BLACK;
 	}
-	
+
 	public boolean isWalkway() { 
 		if (initial == 'P') {
 			return true; 
@@ -64,25 +64,75 @@ public class BoardCell {
 		}
 		return false;
 	}
-	
+
 	public void draw ( Graphics g )
 	{
 		// TODO implement
 		// set color 
-		if (this.initial == 'P') this.color = Color.GRAY;
-		if (this.isRoom()) this.color = Color.BLUE;
-		if (this.initial == 'K') this.color = Color.GREEN;
-		
-		
-		
-		g.setColor(this.color);
-		g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
-		
+		if (this.initial == 'P') 
+		{
+			this.color = Color.GRAY;
+			g.setColor(this.color);
+			g.fillRect(this.pixel.x , this.pixel.y, 30, 30);
+		}
+		if (this.isRoom()) 
+		{
+			if ( isDoorway())
+			{
+				if (doorDir == DoorDirection.UP)
+				{
+					this.color = Color.WHITE;
+					g.setColor(this.color);
+					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.setColor(Color.YELLOW);
+					g.fillRect(this.pixel.x, this.pixel.y, 30, 5);
+				}
+				else if (doorDir == DoorDirection.DOWN)
+				{
+					this.color = Color.WHITE;
+					g.setColor(this.color);
+					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.setColor(Color.YELLOW);
+					g.fillRect(this.pixel.x, this.pixel.y + 25, 30, 5);
+				}
+				else if (doorDir == DoorDirection.LEFT)
+				{
+					this.color = Color.WHITE;
+					g.setColor(this.color);
+					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.setColor(Color.YELLOW);
+					g.fillRect(this.pixel.x, this.pixel.y, 5,30);
+				}
+				else if (doorDir == DoorDirection.RIGHT)
+				{
+					this.color = Color.WHITE;
+					g.setColor(this.color);
+					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.setColor(Color.YELLOW);
+					g.fillRect(this.pixel.x + 25, this.pixel.y, 5,30);
+				}
+				
+			}
+			else
+			{
+				this.color = Color.WHITE;
+				g.setColor(this.color);
+				g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+			}
+			
+			
+		}
+		if (this.initial == 'K') 
+		{
+			this.color = Color.GREEN;
+			g.setColor(this.color);
+			g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+		}
 
-		
+
 	}
-	
-	
+
+
 	// Getters {
 	public int getRow() 
 	{
@@ -113,7 +163,7 @@ public class BoardCell {
 	{
 		this.initial = initial;
 	}
-	
+
 	public DoorDirection getDoorDirection()
 	{
 		return doorDir;

@@ -26,7 +26,7 @@ public class DetectiveNotesGUI extends JPanel {
 
 	public DetectiveNotesGUI() { 
 		
-		setLayout(new GridLayout(2,0));
+		setLayout(new GridLayout(6,1));
 		JPanel panel = people();
 		JPanel panel1 = weapons(); 
 		JPanel panel2 = rooms(); 
@@ -129,7 +129,7 @@ public class DetectiveNotesGUI extends JPanel {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("GUI Example");
+		frame.setTitle("Detective Notes");
 		frame.setSize(250, 150);	
 		// Create the JPanel and add it to the JFrame
 		DetectiveNotesGUI gui = new DetectiveNotesGUI();

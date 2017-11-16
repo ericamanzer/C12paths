@@ -9,7 +9,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 import clueGame.BoardCell;
-
+import java.awt.Point;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.lang.reflect.Field;
@@ -49,6 +49,7 @@ public class Board extends JPanel {
 	public ArrayList<Card> possibleWeapons = new ArrayList<Card>(); 
 	public ArrayList<Card> possibleRooms = new ArrayList<Card>();
 	ArrayList<Player> player = new ArrayList<Player>();
+	ArrayList<Point> roomNames = new ArrayList<Point>();
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
@@ -93,6 +94,10 @@ public class Board extends JPanel {
 				String line = scan.nextLine();
 				String[] lineArray = line.split(",");
 				String letterString = lineArray[0];
+				int x = Integer.parseInt(lineArray[3]);
+				int y = Integer.parseInt(lineArray[4]);
+				Point pixel = new Point (x * 32 + 50, y * 32 + 50);
+				roomNames.add(pixel);
 				char letter = letterString.charAt(0);
 				legend.put(letter, lineArray[1]);
 				//System.out.println(lineArray[2]);
@@ -692,20 +697,54 @@ public class Board extends JPanel {
 			for ( int j = 0; j < 23; j++)
 			{
 				getCellAt(i, j).draw(g);
-				if (getCellAt(i, j).getDoorDirection() == DoorDirection.DOWN)
-				{
-					g.setColor(Color.RED);
-					g.drawLine( i *2 + 1, j * 2 + 1, (i * 2 + 1) + 10,  (j * 2 + 1)+ 2);
-					repaint();
-				}
 			}
 		}
 		
-		g.setColor(Color.RED);
-		g.drawLine(5, 5, 10, 10);
-		repaint();
-		//getCellAt(5, 5).draw(g);
+		for ( ComputerPlayer comp: computerPlayers)
+		{
+			int x = comp.getCurrentRow();
+			int y = comp.getCurrentColumn();
+			Color color = comp.getColor();
+			g.setColor(color);
+			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
+			g.fillOval(pixel.x, pixel.y, 30, 30);
+		}
 		
+		for ( HumanPlayer human: humanPlayer)
+		{
+			int x = human.getCurrentRow();
+			int y = human.getCurrentColumn();
+			Color color2 = human.getColor();
+			g.setColor(color2);
+			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
+			g.fillOval(pixel.x, pixel.y, 30, 30);
+		}
+		
+		ArrayList<String> names = new ArrayList<String>();
+		names.add("Paths");
+		names.add("Kafadar");
+		names.add("Marquez");
+		names.add("Hill Hall");
+		names.add("Guggenheim");
+		names.add("Brown");
+		names.add("Randall");
+		names.add("Alderson");
+		names.add("Coolbaugh");
+		names.add("Elm");
+		names.add("Weaver");
+		
+		for ( int i = 0; i < names.size(); i++)
+		{
+			if ( i == 0) continue;
+			Point pixel = new Point();
+			pixel = roomNames.get(i);
+			String room = names.get(i);
+			g.setColor(Color.BLACK);
+			g.setFont(new Font("Calibri", Font.PLAIN, 24));
+			g.drawString(room, pixel.x, pixel.y);
+		}
+		
+	
 		
 	}
 

@@ -25,8 +25,17 @@ public class ClueGame extends JFrame {
 
 		// paintComponent is automatically be called 1 time
 		panel = board;
-		panel.setSize(300, 300);
+		panel.setSize(500, 500);
 		add(panel, BorderLayout.CENTER);
+		JPanel control = new JPanel();
+		ControlGUI guiControl = new ControlGUI();
+		control = guiControl;
+		add(control, BorderLayout.SOUTH);
+		JPanel notes = new JPanel();
+		notes.setSize(50, 10);
+		DetectiveNotesGUI guiNotes = new DetectiveNotesGUI();
+		notes = guiNotes;
+		add(notes, BorderLayout.EAST);
 	}
 	
 	public static void main(String[] args) {	
