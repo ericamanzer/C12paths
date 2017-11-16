@@ -687,7 +687,25 @@ public class Board extends JPanel {
 		// TODO call each BoardCell  object to draw itself
 		// 	the draw method from BoardCell class will be called
 		
-		getCellAt(0, 0).draw(g);
+		for ( int i = 0; i < 22; i++)
+		{
+			for ( int j = 0; j < 23; j++)
+			{
+				getCellAt(i, j).draw(g);
+				if (getCellAt(i, j).getDoorDirection() == DoorDirection.DOWN)
+				{
+					g.setColor(Color.RED);
+					g.drawLine( i *2 + 1, j * 2 + 1, (i * 2 + 1) + 10,  (j * 2 + 1)+ 2);
+					repaint();
+				}
+			}
+		}
+		
+		g.setColor(Color.RED);
+		g.drawLine(5, 5, 10, 10);
+		repaint();
+		//getCellAt(5, 5).draw(g);
+		
 		
 	}
 

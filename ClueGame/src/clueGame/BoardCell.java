@@ -22,9 +22,10 @@ public class BoardCell {
 	private Point pixel;
 	private Color color; 
 	// 22 rows, 23 cols
-	public final int MARGIN = 10;
-	private final int WIDTH = 10;
-	private final int HEIGHT = 10;
+	public final int MARGIN = 50;
+	public final int SCALE = 32;
+	private final int WIDTH = 30;
+	private final int HEIGHT = 30;
 
 	// default constructor
 	public BoardCell() {
@@ -32,8 +33,7 @@ public class BoardCell {
 		this.col = 0;
 		this.initial = 'P';
 		this.doorDir = DoorDirection.NONE;
-		this.pixel.x = this.row;
-		this.pixel.y = this.col;
+		pixel = new Point( this.row, this.col);
 		this.color = Color.BLACK;
 	} 
 	// constructor with parameters
@@ -42,8 +42,7 @@ public class BoardCell {
 		this.col = c; 
 		this.initial = initial;
 		this.doorDir = doorDir;
-		this.pixel.x = this.row;
-		this.pixel.y = this.col;
+		pixel = new Point (this.row * SCALE + MARGIN, this.col * SCALE + MARGIN);
 		this.color = Color.BLACK;
 	}
 	
@@ -74,8 +73,12 @@ public class BoardCell {
 		if (this.isRoom()) this.color = Color.BLUE;
 		if (this.initial == 'K') this.color = Color.GREEN;
 		
+		
+		
 		g.setColor(this.color);
-		g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
+		g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+		
+
 		
 	}
 	

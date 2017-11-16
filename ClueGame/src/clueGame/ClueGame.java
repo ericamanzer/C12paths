@@ -22,13 +22,18 @@ public class ClueGame extends JFrame {
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.BLACK);
+
 		// paintComponent is automatically be called 1 time
-		add(board, BorderLayout.CENTER);
+		panel = board;
+		panel.setSize(300, 300);
+		add(panel, BorderLayout.CENTER);
 	}
 	
 	public static void main(String[] args) {	
 		JFrame frame = new ClueGame();
+		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
+		
 	}
 
 }
