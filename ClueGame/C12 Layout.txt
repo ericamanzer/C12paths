@@ -1,11 +1,11 @@
-P,Paths,Other
-K,Kafadar,Other
-M,Marquez,Card
-H,Hill Hall,Card
-G,Guggenheim,Card
-B,Brown,Card
-R,Randall,Card
-A,Alderson,Card
-C,Coolbaugh,Card
-E,Elm,Card
-W,Weaver,Card
+P,Paths,Other,0,0
+K,Kafadar,Other,9,7
+M,Marquez,Card,1,8
+H,Hill Hall,Card,20,1
+G,Guggenheim,Card,13,17
+B,Brown,Card,19,15
+R,Randall,Card,0,18
+A,Alderson,Card,5,1
+C,Coolbaugh,Card,14,1
+E,Elm,Card,6,17
+W,Weaver,Card,0,1
