@@ -97,7 +97,7 @@ public class DetectiveNotesGUI extends JPanel {
 
 
 	private JPanel peopleGuess() {
-		String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"}; 
+		String[] people = {" ", "CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"}; 
 		JComboBox peopleList = new JComboBox(people); 
 		JPanel panel = new JPanel();
 		panel.add(peopleList);
@@ -106,7 +106,7 @@ public class DetectiveNotesGUI extends JPanel {
 	}
 	
 	private JPanel weaponsGuess() { 
-		String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"}; 
+		String[] weapons = {" ", "Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"}; 
 		JComboBox weaponsList = new JComboBox(weapons); 
 		JPanel panel = new JPanel();
 		panel.add(weaponsList);
@@ -115,7 +115,7 @@ public class DetectiveNotesGUI extends JPanel {
 	}
 	
 	private JPanel roomsGuess() { 
-		String[] rooms = {"Marquez", "Hill Hall", "Guggenheim", "Brown", "Randall", "Alderson", "Coolbaugh", "Elm", "Weaver"}; 
+		String[] rooms = {" ", "Marquez", "Hill Hall", "Guggenheim", "Brown", "Randall", "Alderson", "Coolbaugh", "Elm", "Weaver"}; 
 		JComboBox roomsList = new JComboBox(rooms); 
 		JPanel panel = new JPanel();
 		panel.add(roomsList);
