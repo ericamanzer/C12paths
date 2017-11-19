@@ -38,6 +38,11 @@ public class ClueGame extends JFrame {
 		DetectiveNotesGUI guiNotes = new DetectiveNotesGUI();
 		notes = guiNotes;
 		add(notes, BorderLayout.EAST);
+		CardDisplay guiCard = new CardDisplay(board); 
+		JPanel cards = new JPanel(); 
+		cards = guiCard; 
+		cards.setSize(10,5);
+		add(cards, BorderLayout.WEST);
 	}
 	
 	public static void main(String[] args) {	
