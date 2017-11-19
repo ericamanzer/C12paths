@@ -25,7 +25,7 @@ public class DetectiveNotesGUI extends JPanel {
 	//private JTextField name; 
 
 	public DetectiveNotesGUI() { 
-		
+		setBorder(new TitledBorder (new EtchedBorder(), "Detective Notes"));
 		setLayout(new GridLayout(6,1));
 		JPanel panel = people();
 		JPanel panel1 = weapons(); 
@@ -42,6 +42,8 @@ public class DetectiveNotesGUI extends JPanel {
 		add(panel2);		
 		panel2 = roomsGuess(); 
 		add(panel2);
+		
+		
 	}
 
 	private JPanel people() {
