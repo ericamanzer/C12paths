@@ -2,6 +2,8 @@ package clueGame;
 import javax.swing.JFrame;   //need for creating JFrame
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.util.*; 
 import java.awt.*;
 
 public class ClueGame extends JFrame {
@@ -32,16 +34,28 @@ public class ClueGame extends JFrame {
 		control = guiControl;
 		add(control, BorderLayout.SOUTH);
 		JPanel notes = new JPanel();
-		notes.setSize(50, 10);
+		notes.setSize(50, 5);
 		DetectiveNotesGUI guiNotes = new DetectiveNotesGUI();
 		notes = guiNotes;
 		add(notes, BorderLayout.EAST);
 	}
 	
 	public static void main(String[] args) {	
+		
 		JFrame frame = new ClueGame();
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
+		Set<HumanPlayer>  humanPlayer = new HashSet<HumanPlayer>();
+		humanPlayer = board.getHumanPlayer();
+		String humanName = "";
+		for (HumanPlayer human: humanPlayer)
+		{
+			humanName = human.getPlayerName();
+			
+		}
+		// CompSci is the human player 
+		String message = "You are " + humanName + ", press Next Player to begin play";
+		JOptionPane.showMessageDialog(frame, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 
