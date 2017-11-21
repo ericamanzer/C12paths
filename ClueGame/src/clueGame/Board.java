@@ -16,6 +16,7 @@ import java.lang.reflect.Field;
 import javax.swing.JPanel;   // library for JPanel
 import java.awt.*;    // library for Graphics 
 import javax.swing.*;
+import java.util.Random; 
 
 // converted the Board class into a subclass of JPanel
 public class Board extends JPanel {
@@ -747,6 +748,33 @@ public class Board extends JPanel {
 	
 		
 	}
+	
+	public int rollDie() { 
+		Random rand = new Random(); 
+		int dieRoll = rand.nextInt(6) + 1; 
+		return dieRoll; 
+	}
+	
+	
+	
+	public void updateComputerPosition(int col, int row, int pathlength, ComputerPlayer computerPlayer) { 
+		ArrayList<BoardCell> possibleTargets = new ArrayList<BoardCell>(); 
+		calcTargets(col, row, pathlength); 
+		for (BoardCell temp: targets) { 
+			possibleTargets.add(temp); 
+		}
+		
+		Random rand = new Random(); 
+		int location = rand.nextInt(possibleTargets.size()); 
+		
+		int c = possibleTargets.get(location).getCol(); 
+		int r = possibleTargets.get(location).getRow(); 
+		
+		computerPlayer.updatePosition(c, r);
+		
+	}
+	
+	
 
 	// Getter for computerPlayers 
 	// @param no parameter 

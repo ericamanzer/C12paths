@@ -30,7 +30,8 @@ public class ClueGame extends JFrame {
 		panel.setSize(500, 500);
 		add(panel, BorderLayout.CENTER);
 		JPanel control = new JPanel();
-		ControlGUI guiControl = new ControlGUI();
+		int dieRoll = board.rollDie(); 
+		ControlGUI guiControl = new ControlGUI(dieRoll);
 		control = guiControl;
 		add(control, BorderLayout.SOUTH);
 		JPanel notes = new JPanel();

@@ -21,8 +21,12 @@ import java.util.*;
 public class ControlGUI extends JPanel {
 	//private JTextField name; 
 
-	public ControlGUI()
+	public static int dieRoll; 
+	
+	public ControlGUI(int roll)
 	{
+		dieRoll = roll; 
+		
 		// Create a layout with 2 rows
 		
 		ArrayList<JPanel> panels = new ArrayList<JPanel>();
@@ -69,7 +73,7 @@ public class ControlGUI extends JPanel {
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
-		JLabel nameLabel = new JLabel("Guess");
+		JLabel nameLabel = new JLabel("Guess");   
 		name = new JTextField(20);
 		name.setEditable(false);
 		panel.add(nameLabel);
@@ -83,8 +87,9 @@ public class ControlGUI extends JPanel {
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
-		JLabel nameLabel = new JLabel("Roll");
-		name = new JTextField(20);
+		JLabel nameLabel = new JLabel("Roll"); 
+		String die = String.valueOf(dieRoll);
+		name = new JTextField(die);
 		name.setEditable(false);
 		panel.add(nameLabel);
 		panel.add(name);
@@ -123,7 +128,7 @@ public class ControlGUI extends JPanel {
 		frame.setTitle("Control GUI");
 		frame.setSize(250, 150);	
 		// Create the JPanel and add it to the JFrame
-		ControlGUI gui = new ControlGUI();
+		ControlGUI gui = new ControlGUI(dieRoll);
 		frame.add(gui, BorderLayout.CENTER);
 		// Now let's view it
 		frame.setVisible(true);

@@ -31,7 +31,7 @@ public class GameActionTests {
 
 	}
 
-	//@Test
+	@Test
 	public void testCreateSuggestion()
 	{	
 		Card card = new Card("Keyboard", CardType.WEAPON);

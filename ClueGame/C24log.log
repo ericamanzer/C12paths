@@ -1,0 +1,1232 @@
+commit d207d4bfd4054e3adaa58efe62d2650d80e24e5b
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 19 14:54:21 2017 -0700
+
+    Finished CardDisplay.java
+
+commit d650368e194b8c7fd70700b1be53d04983b522f1
+Merge: 7eb9c94 f829c90
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 19 14:19:15 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 7eb9c94105cbf88ca1427f5c2c04583cd38d4164
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 19 14:18:57 2017 -0700
+
+    Created CardDisplay.java
+
+commit f829c90dc132f03595f942214c44cc9b6befc3ee
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 19 14:18:34 2017 -0700
+
+    Worked on the JOptionPane. That function is working
+
+commit c9d0f37f51ce2e289cbdaad224f15b945f553dc0
+Author: Erica Manzer <emanzer@mymail.mines.edu>
+Date:   Fri Nov 17 17:03:10 2017 -0700
+
+    Fixed small issue with DetectiveNotesGUI.java
+
+commit 35462502a6c28a6386f79bf1dbe281cc208b3a5a
+Author: Mona W <dwade@mines.edu>
+Date:   Wed Nov 15 20:26:18 2017 -0700
+
+    Made changes to config files
+
+commit 0907d44f5ecfbff7504a12936d72977f196d1e03
+Merge: bd4ee55 4c32e24
+Author: Mona W <dwade@mines.edu>
+Date:   Wed Nov 15 20:22:22 2017 -0700
+
+    Fixing merge
+
+commit bd4ee55e68fc5aa9fbde5ffbefd875f4190f19ee
+Author: Mona W <dwade@mines.edu>
+Date:   Wed Nov 15 20:21:06 2017 -0700
+
+    Partners finished the game board gui with the notes and control guis
+
+commit 4c32e245d36ca6090b885c4cef46d247c49bac52
+Merge: da30ea5 7691ea5
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Wed Nov 15 18:36:23 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit da30ea5011476df4f0e243ed38c96c7a00acada8
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Wed Nov 15 18:35:40 2017 -0700
+
+    Fixed format issues for DetectiveNotesGUI.java
+
+commit 7691ea57d0ffbf8b174b52c0e8865bccddfd5e72
+Author: Mona W <dwade@mines.edu>
+Date:   Wed Nov 15 18:35:31 2017 -0700
+
+     Got the board to print but things are going wrong
+
+commit dbe470a19419d82f7800721ac042a78b80622d11
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Wed Nov 15 14:41:09 2017 -0700
+
+    Fixed small issues with DetectiveNotesGUI.java
+
+commit 2a8beee92ac64697bdb6322ac0f1fa38a5710a14
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Wed Nov 15 11:21:28 2017 -0700
+
+    Created DetectiveNotesGUI.java with check and combo boxes. Needs formating work but mostly functional
+
+commit a377f9fc5b7b4eb8f65871ac4d74ba760a4e08a4
+Author: Mona W <dwade@mines.edu>
+Date:   Wed Nov 15 01:51:04 2017 -0700
+
+    Started on creating the board. Emailed TA and Professor because something in not working in the draw method
+
+commit f047ce3eb51aa420b07c09852ac917ca3b59013b
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 12 13:54:38 2017 -0700
+
+    Finished C21 Clue Control GUI
+
+commit c8c480803fde0c824724e4c5dcc479215a95577e
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 12 13:47:12 2017 -0700
+
+    made name.setEditable false
+
+commit 4f4767f9fd9c79ca24af9832562124d907db0efb
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 12 13:43:35 2017 -0700
+
+    Worked on ControlGUI.java
+
+commit 471691e2fe1826ae5c973cdbbf0f0a2510ca9f60
+Merge: d318c50 c1cef9c
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 12 12:56:40 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit d318c505fd00967fc488888425a92373aa80ec87
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 12 12:56:05 2017 -0700
+
+    Started with the GUI for the Control GUI
+
+commit c1cef9c8253f3b77aa2276c6c32b58875f4336ab
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 12 12:52:25 2017 -0700
+
+    Accessing repo
+
+commit 00235f6f91a45b7249344d64004517b3edf0fd1a
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 10 16:22:46 2017 -0700
+
+    Finished testing. All tests pass
+
+commit 32823f176e5c229b967c67812a31b032af836ff9
+Merge: d002d1f 7ec073b
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 10 15:38:56 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit d002d1f4104470bf55db5c28fcfafa625c2a89a3
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 10 15:38:48 2017 -0700
+
+    Fixing merge errors
+
+commit 7ec073b43356c4179046de8b67828435665a50b7
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 15:37:36 2017 -0700
+
+    Merging
+
+commit 705b9139a512a6d793d24a1169f3489daae4153b
+Merge: 5b839bf 980df3a
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 15:30:35 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 5b839bf93b6f82b8f72c37dafb356d48974a2215
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 15:26:17 2017 -0700
+
+     createSugesstion test are passing, Finally
+
+commit 980df3a76a12fb6b23efce98664d0c7023d58b02
+Merge: 47d7fb1 e4dee9c
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 10 15:15:30 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 47d7fb1e3cd3d3c0729d6b857a73208c894f855b
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 10 15:15:20 2017 -0700
+
+    Fixed test ordre problem
+
+commit e4dee9c0b94017e75494e5be57b10cd6556ac4c7
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 15:14:50 2017 -0700
+
+    3/4 createSuggestion test passing
+
+commit a534875faf06f30c5acc6ed2fe200df61ef169b7
+Merge: 73df2f5 616f72d
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 14:57:32 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 73df2f513a9a24581389f463a4889f26c3e65aba
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 14:57:28 2017 -0700
+
+    Merging
+
+commit 616f72daeb5cfe603eeeeebb1cf286f7bc12e96c
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 10 14:55:27 2017 -0700
+
+    Two tests pass for testHandlingSuggestion()
+
+commit b35fd68e1a928bb925403dd2b720d74fe76059cc
+Merge: a9ca9ea 10f299d
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 14:26:30 2017 -0700
+
+    Fixing merge
+
+commit a9ca9ea5b8296ebb216498af67710c936105e0ce
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 10 14:10:05 2017 -0700
+
+    Made progress on the createSugestion. More test are passing
+
+commit 10f299d65de637c8e365c21660a41247d59e2634
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 10 13:34:19 2017 -0700
+
+    Worked on testHandleSuggestion()
+
+commit c699164381a9e0df94d40be1410343ae32dd5e71
+Merge: 605a50c 78a8dfa
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 20:40:35 2017 -0700
+
+    Fixing merge
+
+commit 605a50c784fe49fd27ff2a48ded1973be9c75072
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 20:38:43 2017 -0700
+
+    tring to finish createSuggestionTest. Sometimes the test are green and sometimes they are not
+
+commit 78a8dfa8eb8f7f74d7945bfc7d0c62098c658e83
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 20:38:27 2017 -0700
+
+    Added to testHandleSuggestion()
+
+commit 1513369db1f8d9ac9dec82976572c7c657877328
+Merge: 8cfadd8 d1a7d1d
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 19:23:13 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 8cfadd83c494221b6d8eec1c62bf844767d7b7f2
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 19:23:01 2017 -0700
+
+    Created testHandleSuggestions()
+
+commit d1a7d1d6b699f20a4d10eee9bfabb872599aca9d
+Merge: 63ec5d9 1f43a96
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 19:21:43 2017 -0700
+
+    Fixing merge errors
+
+commit 1f43a96b31b6684bc758ae7402e7aa8a4a0ea75d
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 19:17:11 2017 -0700
+
+    All testDisproveSugesstion()
+
+commit 63ec5d9984f0635f0d08a54c4d69306d009ae33c
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 19:16:47 2017 -0700
+
+    Working on passing the test for createSuggestion because it is failing
+
+commit da4fa8597220b11f14b0b24113f18044bad0ce4d
+Merge: aeff1c5 92b0aed
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 16:18:05 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit aeff1c57a6df32180895051f91a297fa11323136
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 16:17:51 2017 -0700
+
+    Changed testDisproveSuggestion()
+
+commit 92b0aed467b0f4ed3b2f39353ae3684a89941fcb
+Merge: 01b970e 3169d0a
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 15:55:56 2017 -0700
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 01b970eddb3c65f6c29a18bf47d1d82838df9a5d
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 15:55:31 2017 -0700
+
+     createSuggestion is handling seenCards
+
+commit 3169d0a8a4686e8693129362f2e65f79f8cdc853
+Merge: d7c843d d3d4773
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 15:46:01 2017 -0700
+
+    Fixed merge errors
+
+commit d7c843da54971d74b7274abf3eea340f8e21b16e
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 15:43:33 2017 -0700
+
+    Worked on tests and small changes to solution.java
+
+commit d3d4773b454142b0410ae3831ec79e24e7e135b7
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 15:43:16 2017 -0700
+
+     Fixed NullPointer problems and changing the createSuggestionTest
+
+commit 0af5e7cc1568739803d8135669dff53243ca60db
+Merge: 9b81d92 746889e
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 15:05:20 2017 -0700
+
+    Started the createSuggestionsTest
+
+commit 9b81d92f01520597e34c11d9356a492889e1a408
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 15:01:36 2017 -0700
+
+    Created testCreateSuggestion()
+
+commit 746889e414637783ab6961f8072a2dfa54f4e0d4
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 9 14:59:05 2017 -0700
+
+    Created more getters and started work on testDisproveSuggestion()
+
+commit ecdc5cc743208ffe986b798f399f3535a76927bf
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 11:58:31 2017 -0700
+
+    Finished handleSuggestion() -Erica
+
+commit 1d6d4e2cee713dfb2ee54faf0e9b4c83e688a671
+Merge: 25c9e52 f8600ab
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 11:29:52 2017 -0700
+
+    Fixed createdSoln error -Erica
+
+commit 25c9e52a46959e04b08759ac349822cc9bffe875
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Nov 9 11:21:10 2017 -0700
+
+    Finished disproveSugesstion() -Erica
+
+commit f8600abef8509d08164d142774bf66f7f0160322
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Thu Nov 9 11:20:50 2017 -0700
+
+    Added a possible solution for create suggestion
+
+commit 31febef7a1c9cc977be19ef06123e3c01249cbdb
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Tue Nov 7 15:18:22 2017 -0700
+
+    Created skeletons of functions and worded on handleSuggestions()
+
+commit efe0cbd5ca320f5252886c4cceaa106f59f55d31
+Merge: 35c8919 1197bf1
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 19:26:15 2017 -0700
+
+    Changing the GameActionsTest in git because there were errors
+
+commit 35c89194fe51ee51f5a97edfc987b6124aa8df11
+Merge: d6c9789 fd90018
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 19:24:46 2017 -0700
+
+    Trying to merge
+
+commit 1197bf18672d8d27a6ee5de61fb6fd767770dcad
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 5 19:24:45 2017 -0700
+
+    Fixing merge problems (again)
+
+commit fd90018be440569c57881d2fe3e8898c884256cc
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 5 19:23:29 2017 -0700
+
+    Fixing merge problems
+
+commit d6c9789f94f85139baa6c93e497eae71c3f7a82e
+Merge: be0413c 9b6ba86
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 19:21:22 2017 -0700
+
+    Fixing errors
+
+commit be0413cbe256a50e02b60d237494075ab3a5d898
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 19:18:59 2017 -0700
+
+    Finished the beginning of testSelectingATarget
+
+commit 9b6ba862c6897e460aac1029df3f8bfb4540e5fb
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 5 19:14:04 2017 -0700
+
+    Created and completed checkAccusation() and tests. All tests pass.
+
+commit e18a612198e930dac15f8a5f95d1131fba647ae8
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 18:25:05 2017 -0700
+
+    Making changes to files. Fixing things
+
+commit a9614529c8e1ba978df7b7f696a69a9d8dee9340
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 18:03:40 2017 -0700
+
+    Starting to look at the pickLocation
+
+commit 0cbc10515ea0ba0d8af25bbeb544d3586c288a17
+Merge: b45057a a3f25a5
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 17:37:31 2017 -0700
+
+    Fixing merge problems
+
+commit b45057ad3d318248fb9a87c719580c5a3efeb726
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Nov 5 17:34:13 2017 -0700
+
+    Started GameActionTests
+
+commit a3f25a5e520f59df5bdda6b7a5fd295732ce9dfe
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 5 17:33:05 2017 -0700
+
+    Created selectTargets()
+
+commit 0ad2efdc09b662749c5a23975038d629d23b3404
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Nov 5 16:17:14 2017 -0700
+
+    Accessing repo
+
+commit 6deae040fc07d7bccbce29e8852cd4c2864d8a52
+Merge: bc01e93 92d00fa
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 20:18:28 2017 -0600
+
+    All tests pass!
+
+commit 92d00fa039a75c8d71213592e4bc012efbf8463d
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Fri Nov 3 19:36:10 2017 -0600
+
+    Getting old. Trying to finish
+
+commit bc01e93be14e1a1df293722605d844aea5b33a7b
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 19:34:10 2017 -0600
+
+    Accessing repo
+
+commit fcf9f0394169f787e9fd81fa0d4ff294446bfe73
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Fri Nov 3 19:03:11 2017 -0600
+
+    Trying to make progress
+
+commit 26592886f8fbc980be7a50aff49d20a2b332b3ed
+Merge: ada36c8 44a3e41
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 18:32:26 2017 -0600
+
+    Fixing merge issue
+
+commit ada36c84e0bf30dee94f6186c02d442b5af4a40e
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 18:30:04 2017 -0600
+
+    Fixing mering
+
+commit 44a3e4101b7730e06ab9924f883edff92bd52a3e
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 18:24:02 2017 -0600
+
+    Created and completed dealDeck()
+
+commit 6cf0b4da5ba2dbc7ab4e8f105907607b7958b0cc
+Merge: fae3c12 23e621a
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 17:00:07 2017 -0600
+
+    Fixing merge errors
+
+commit fae3c12cc7a1c7063a6b7a6e1121df2581d64fce
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 16:57:21 2017 -0600
+
+    Accessing repo
+
+commit 23e621a92baf1e67cdaf300b7b7ded9abc662b8f
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 16:52:48 2017 -0600
+
+    Adding the updated version of HumanPlayer and ComputerPlayer
+
+commit b81a0ce1470d87fad5e03d0bac8015ad61c0163d
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 16:43:18 2017 -0600
+
+    adding the log that was created to keeps track of the functional, failing test
+
+commit 371e54c2d2be80eed609f4ac57793fd8bc24e9db
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 15:49:21 2017 -0600
+
+    Finished making the test for loadingPeopleTest, completingDeckTest, and testDealCardsOut. All of the test are failing.
+
+commit 7d823c0ef03b3e6300b76849b616dd07e90075db
+Merge: 711f89c 1b604eb
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 15:25:27 2017 -0600
+
+    Fixed merge error
+
+commit 711f89c40b934728dd7e90e4340bd07cf0992f53
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 15:23:25 2017 -0600
+
+    Combined tests and lables functions in board.java
+
+commit 1b604eb924f4fc6bf468b7bfd2a3b7b973a0defd
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 15:22:55 2017 -0600
+
+    adding Java Doc Comments, default and parameterized constructors
+
+commit d8ceb43163c348f961b0d161c70260f13370fc5a
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 14:50:15 2017 -0600
+
+    Adding the PlayerTest2 that has the completingDeckTest
+
+commit 173dbdf8b1abfebcaead33c6caa4a03bd3273056
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Nov 3 14:35:07 2017 -0600
+
+    Forgot to add a board object. It has been fixed so the test can run
+
+commit 0e98695e2be896c132d9141d551ec27a6cb4ab0b
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 14:20:39 2017 -0600
+
+    Created tests for PlayerTest and getters for Board.java
+
+commit fa8bfa34a9ca4a3ea6f01a1a413a1005306d4355
+Merge: 0c17a99 b48d443
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 13:27:43 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 0c17a99cdc05f68e1c02dc16b0aab98684131fbd
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Nov 3 13:26:49 2017 -0600
+
+    Created test file and modified loadRoomConfig()
+
+commit b48d443c46504548529f6daa94c75108ac2bab5c
+Merge: b1fc6d8 ffb5010
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Thu Nov 2 15:43:43 2017 -0600
+
+    fixing merge errors
+
+commit b1fc6d8f1d1418fe8bfc535064944891cf872822
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Thu Nov 2 15:19:34 2017 -0600
+
+    trying to make the color function provided work
+
+commit ffb50101c9f5d655700d4d212e022d0e2c0576d9
+Merge: 0e64641 faa7b70
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 2 15:19:24 2017 -0600
+
+    Loading weapons from file
+
+commit 0e646412a3f908aea096b774f2f8f83ba4f7d13e
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Nov 2 14:58:23 2017 -0600
+
+    Updated txt files
+
+commit faa7b707d7731869283bf469ea9c14328a35cb17
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Thu Nov 2 14:57:34 2017 -0600
+
+    Adding the variable used to read files
+
+commit 72789373ba083534eb815e85d7d67d2cd3462224
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Thu Nov 2 14:43:10 2017 -0600
+
+    adding the peopleConfigFile and weaponsConfigFile setters.
+
+commit 6df2e83e12a687e46573b0dde710259ff8209a23
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Tue Oct 31 15:13:11 2017 -0600
+
+    Created excel file to show starting locations of players
+
+commit 67652f27cb170e61fe40e9ef835c9012f6f74a06
+Merge: e826c36 5543b69
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 31 14:48:19 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit e826c36ae1b93d33830a27ef1c60506647b7d368
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 31 14:48:11 2017 -0600
+
+    Created PeopleConfig.txt and WeaponsConfig.txt
+
+commit 5543b69da88677d3495d25759b464c91c47240fb
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Tue Oct 31 14:45:46 2017 -0600
+
+    Made minnor corrections
+
+commit cf5cfb5cd3e662f1a6eb31a3f84a4635dc67616f
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Tue Oct 31 14:27:38 2017 -0600
+
+    Created skeleton for classes for C19 part 1
+
+commit 87b5e3b2103bf95152e89c418ae06395996b8b94
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Mon Oct 30 18:42:23 2017 -0600
+
+    Edited the Refactoring.txt for submission.
+
+commit 138b4cbe0df66b20b17bfbb5a213125ed4879a23
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Mon Oct 30 18:34:53 2017 -0600
+
+    Organized BoardCell.class a little better by refering the variables that belonged to that
+    class using "this." I thought that it would make it cleaner and easier to understand for
+    other coders.
+
+commit cba882bc7a8a88be8fd54f50f2441c3646e18f1e
+Author: Erica Manzer <emanzer@mymail.mines.edu>
+Date:   Mon Oct 30 10:53:20 2017 -0600
+
+    Removed unessary system.outs and comments to make code easier to read.
+
+commit 4c179e9dc64b6a184ddece51bd0eb7786ed10bfb
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Sun Oct 29 19:53:32 2017 -0600
+
+    Also made the changes for the working algorithm to the general Board.class and the Board_CR.class.
+
+commit 4aa1eb1950cd50c5b4a487384e32d36e7852538f
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Sun Oct 29 19:50:09 2017 -0600
+
+    I have the calcTargests and find algorithm working as desired. All of CR test are passinggit status
+
+commit 8b1bbbf3c9bd333d2c6a4bde05b68bd25c59bf33
+Merge: 93e9e56 ac4a5a8
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Sun Oct 29 19:26:37 2017 -0600
+
+    Had to edit the .gitignore file because there was merge conflicts
+
+commit 93e9e5685ef4c649668573ab6b137c60b1a521f6
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Sun Oct 29 19:25:02 2017 -0600
+
+    adding a git ignore file because something was changed in it
+
+commit ac4a5a8c19c93ab451b4f70336f47f0ad6f60202
+Author: Erica Manzer <emanzer@mymail.mines.edu>
+Date:   Sun Oct 29 13:39:27 2017 -0600
+
+    Updated find() using a continue statement to make code cleaner
+
+commit 214a1bfa35a7dff13ad80d569cdd12dc98db9207
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Sat Oct 28 14:32:47 2017 -0600
+
+    Cleaned up the system.print statemtent by commenting out the test that were run.
+
+commit ef7257ecaffbc4377fbb268d6242176c49296f94
+Merge: c7dab75 c0b18cb
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Sat Oct 28 14:23:33 2017 -0600
+
+    Having problems commiting so that I can pull
+
+commit c7dab75767563cb2eb05bf352d1318b485ec5949
+Author: Demonna Wade <dwade@minese.edu>
+Date:   Sat Oct 28 14:19:30 2017 -0600
+
+    Trying to pull from repo
+
+commit c0b18cbd2cdbf3bba825346623b96720263c6b0a
+Author: Erica Manzer <emanzer@mymail.mines.edu>
+Date:   Fri Oct 27 13:09:53 2017 -0600
+
+    Changed LoadBoardConfig() to prevent input error
+
+commit 13c69675fdcfaced59fe6895c9c46bb138bf4ae5
+Merge: 17bdb15 f1d920c
+Author: Demonna Wade <dwade@mines.edu>
+Date:   Fri Oct 27 11:11:22 2017 -0600
+
+    Adding files
+
+commit 17bdb1567710abd04c1bb03b5e0897f445c09047
+Author: elisoncrum <30413278+elisoncrum@users.noreply.github.com>
+Date:   Fri Oct 27 10:08:28 2017 -0600
+
+    Rename 6_dillon.py to CQ_Problem6.py
+    
+    Name Change
+
+commit c6f3becc5df4c1710c993ac5671e0dface5c0658
+Author: elisoncrum <30413278+elisoncrum@users.noreply.github.com>
+Date:   Fri Oct 27 10:07:55 2017 -0600
+
+    Add files via upload
+    
+    Code Quest Problem 6 Saving
+
+commit 84639771123eec0b863faa1448223624c8734e1c
+Author: Dillon Pietsch <MrJustPeachy@users.noreply.github.com>
+Date:   Fri Oct 27 08:06:21 2017 -0600
+
+    Create README.md
+
+commit f1d920c82d33e0eae4fb2e20eea6bde7a8ea057a
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Tue Oct 24 11:10:29 2017 -0600
+
+    Removed testing outputs
+
+commit 648678a063c083cbfb40379dce8eacf20cdb61df
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 24 10:45:28 2017 -0600
+
+    Finished the ClueBoard
+
+commit fb1abd8955a2e559dfc194e93c543a271b3dfb55
+Merge: c7ca489 de402e0
+Author: Mona W <dwade@mines.edu>
+Date:   Mon Oct 23 23:26:42 2017 -0600
+
+    pulling from repo for updated files
+
+commit c7ca489ecce68dfd79fd4cc631a62aa85f2b58aa
+Author: Mona W <dwade@mines.edu>
+Date:   Mon Oct 23 23:21:52 2017 -0600
+
+    Working on making CR test pass
+
+commit de402e02e43cb01cb9b3c6f9fd410e4074205ec5
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Mon Oct 23 11:45:11 2017 -0600
+
+    Added more tests and updated excel diagram of the board
+
+commit b83f70046f939ed660d96edd13a503cd15a2e269
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 22 16:41:28 2017 -0600
+
+    Added more tests for ClueGame
+
+commit 927ce43d64ff5bcd723d37941c936d8d70e76399
+Merge: 96ce7af 4a4d730
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 22 14:05:38 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 96ce7af8104403f235dc612600b13698a83b31fa
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 22 14:05:22 2017 -0600
+
+    Added tests to oardAdjTargetsTests.java
+
+commit 4a4d730b77a78e89fcbc78cf6d2658fb28c54b0f
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 22 14:02:30 2017 -0600
+
+    made changes to Board.java. Need to add getters. Also finished the @BeforeClass tag need for JUnit testing
+
+commit bfa1925b00d3d5df75714e4d9bb7847cc84ce67b
+Merge: f7702d7 b640e5a
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 22 13:30:20 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit f7702d7d9a60513f13fd4cee0c9bb5b7648c4b9a
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 22 13:30:10 2017 -0600
+
+    Adding C12 layout.xlsx
+
+commit b640e5ac0bdbe9a35b252eb75d8042b310c36614
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 22 13:26:10 2017 -0600
+
+    Preparing to make test cases
+
+commit 799934ce7a78e857544d64e8d28654a8afb1bae2
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 22 13:14:03 2017 -0600
+
+    Adding the Files need for BoardAdjTargetsTest
+
+commit c48bc56c3f7964f47dc1c6030a3475818b6fee3f
+Merge: 899f7c0 6a22273
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Oct 12 17:00:37 2017 -0600
+
+    Fixing merging
+
+commit 899f7c0124f174524b90030f3fde57897d11124e
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Oct 12 16:58:29 2017 -0600
+
+    Adding testing file
+
+commit 31ab327346151f23657781aaba69ade5c748a185
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Oct 12 16:57:00 2017 -0600
+
+    adding the exeption test file
+
+commit 6a222733f5a369ad0ac14241185eaee944a1c748
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Oct 12 15:20:38 2017 -0600
+
+    Worked on exception handling
+
+commit ca15c107b6377e356046d2c735bc141bf01a23d4
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Oct 12 14:22:36 2017 -0600
+
+    Commiting changes because these test work. I made a little bit of style
+    changes but nothing significant.
+
+commit cc0ef6a4d252ad021244e8856dabc0fa8f28035f
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 10 14:59:48 2017 -0600
+
+    Adding comments to the finishing project
+
+commit e66f25cbbfbab5ba4959b86cc546c6d33cf5cf2a
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 10 14:05:17 2017 -0600
+
+    Finished the project. Also added the test file describing the test
+
+commit 78b58182146380f76807a198c5ac876ee0d5e143
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 10 08:23:04 2017 -0600
+
+    Adding the changes I made to the ClueGame to match the requirements for Assignment: ClueGame Paths I
+
+commit a7d890f8bcc6fe42bfa0e7be5e82c50c6ef97ffd
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Mon Oct 9 14:18:51 2017 -0600
+
+    Added method to DoorDirection
+
+commit 9830a332238b1ae9c007f20e005f9caaafdd733e
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Mon Oct 9 14:05:37 2017 -0600
+
+    Work on the classes in prep for the tests
+
+commit f248e5a262fb755f0117335f5f248bff9a58fa32
+Merge: 8c538d9 ebaf72c
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 8 16:02:46 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 8c538d9d200aebd7c9e0337aec34d3c354a1fc42
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 8 16:02:35 2017 -0600
+
+    started Borad.java
+
+commit ebaf72c747021b8038bab1b74695f582dccaca32
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 8 16:02:13 2017 -0600
+
+    Added functions to BoardCell.java
+
+commit f257a91099f550dec817d61e160f4883fce5c0fe
+Merge: 8d16d21 0ff518b
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 8 15:24:42 2017 -0600
+
+    Began C13 Clue Board Part 1
+
+commit 0ff518beabc900b4a9fef76cb74f616148fed624
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 8 15:16:46 2017 -0600
+
+    Finished the testTargets
+
+commit 8d16d21e47c8b066853685204433d37f57464286
+Merge: c288111 ca2c39a
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 8 14:22:50 2017 -0600
+
+    Fixed merge errors
+
+commit c28811176b4d286a6d127f339572ce7230490e71
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 8 14:19:42 2017 -0600
+
+    No change
+
+commit ca2c39a6073b70c234c44453ca38b31ad4e7464d
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 8 14:16:27 2017 -0600
+
+    Fixed the testAdjacency test. Working on the testTargerts test.
+
+commit 5ccf06e69e3754a380401194463758d4be993b68
+Merge: f046a98 3895267
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 8 12:44:31 2017 -0600
+
+    Fixing Merge errors
+
+commit f046a98d383004c040dac3faad4475551772101c
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Oct 8 12:40:53 2017 -0600
+
+    Trying to solve the HashSet errors
+
+commit 3895267372dcf0eddc38101d69a6d8e8713dae15
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Sun Oct 8 12:40:03 2017 -0600
+
+    Updating small changes
+
+commit 5e1241732b73088523f8a045efbb91831c408789
+Merge: 56eabaa e8d85a6
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 19:17:38 2017 -0600
+
+    Fixing merging
+
+commit 56eabaab481dbb01dbb8fbf32481a534e1c6fe19
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 19:15:40 2017 -0600
+
+    Made some changes
+
+commit e8d85a643d9c5d2c7b5fd4d881355a381a81df16
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 19:12:38 2017 -0600
+
+    Work on correcting code to past tests
+
+commit cf1d19088fd0b89402f3734c5407e73bc2be4dfa
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 18:32:45 2017 -0600
+
+    Added more test
+
+commit 468fd66c5be28a428d63fbe5354c6890003ba304
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 18:25:51 2017 -0600
+
+    Changed return value on getters
+
+commit 0fedc274ba49ee2991ed7241e85f4c7050da4874
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 18:21:52 2017 -0600
+
+    Added more test
+
+commit 868d912f2297dbe6c0a1298e85473e9c993fe277
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 18:16:39 2017 -0600
+
+    Added the Java Unit test
+
+commit 116fe7ee6dd0446eae351f14d773db97d5a39e05
+Merge: eada750 50c9dd0
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 18:08:54 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit eada7500616cca6ac1b51985fa457a5c99a187cd
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 18:04:38 2017 -0600
+
+    ClueGame/src/test/IntBoardTest.java
+
+commit 50c9dd04c9c31a304d84c6b288c286dc236fea33
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 17:56:49 2017 -0600
+
+    Added constructor with parameter for BoardCell and added getter to IntBoard
+
+commit 455bccb17d193970e882d8fa11eaf4d33742f2b4
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 17:38:02 2017 -0600
+
+    Adding IntBoardTest.java
+
+commit e555e2c46ca95cdaffd947b576c486aafc17d335
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 17:18:17 2017 -0600
+
+    Finished IntBoard.java edits
+
+commit e23b1ff9441c1f45376487ed85df1a531f5a2a57
+Merge: f66129c 28cb3ea
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 16:55:36 2017 -0600
+
+    Fixing merge errors
+
+commit f66129ca681c46c63948f7da14cea7f9e91e1f13
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 16:51:16 2017 -0600
+
+    Continued work on findAllTargets()
+
+commit 28cb3eaa4f1ee674b23a97a3f55896f169104ff0
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 16:49:23 2017 -0600
+
+    added getters
+
+commit b7b6d415948582b2b26d0a88dd81bb3d20f51e22
+Merge: 77c8690 17aa8e9
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 16:35:03 2017 -0600
+
+    fixing merge errors
+
+commit 77c8690a9738a1767a6e9e993fb4517063643067
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 16:33:10 2017 -0600
+
+    Making changes again and solving merge problems
+
+commit 17aa8e9d4782656d13221e450bf144433239508f
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 16:30:17 2017 -0600
+
+    Fixed findAllTargets() and calcTargets()
+
+commit b2766c0a0f5daef671837da9f84de1e1e114e652
+Merge: e31a637 2d829e0
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 15:29:42 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 2d829e0b00629c7d122b00f7ba66aa15dbca77ad
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 15:28:21 2017 -0600
+
+    Added some changes to the code.
+
+commit e31a63733a04dcd7305832f7c0cf50173132ea97
+Merge: eaf359f 9ef5e68
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 10:54:42 2017 -0600
+
+    Nothing
+
+commit eaf359f0dcca294e1191a3e77b729310c705b09c
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Fri Oct 6 10:51:13 2017 -0600
+
+    Corrected typo
+
+commit 9ef5e6895ef307037922f50ff946c465adc5feb8
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 10:47:22 2017 -0600
+
+    Added more objects required for the IntBoard. Also initialized them in
+    the constructor.
+
+commit 8ce30d5f605120ba3c141482b572cb30c9829672
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Oct 6 09:58:27 2017 -0600
+
+    Made changes to the IntBoard.java file. I have added in the data
+    structure containing board cells.
+
+commit 8dee40826bcd83e2520647a984959d074bb236b9
+Merge: 9f53685 6622b64
+Author: Mona W <dwade@mines.edu>
+Date:   Thu Oct 5 14:52:13 2017 -0600
+
+    Merge branch 'master' of https://github.com/ericamanzer/C12paths
+
+commit 6622b64a6b7300462037fe1f737d408a47be4031
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Oct 5 14:41:39 2017 -0600
+
+    Began creating classes
+
+commit ff3c2b62dceb94db60df6e150e15dfae43df3d85
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Thu Oct 5 14:22:36 2017 -0600
+
+    Started C12paths project
+
+commit 9f5368511512bbfbe6fb26ab06eec5adebadb29b
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 3 16:14:26 2017 -0600
+
+    Made some other changes to another color. I don't know what happened.
+
+commit f97c3c6528cd093f56acac62ffb12a5f16ea8998
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Tue Oct 3 16:11:24 2017 -0600
+
+    Changed line 33
+
+commit 650abe7cb4c0d79a34b5014578732e07cfee3c5e
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 3 16:09:30 2017 -0600
+
+    Made changes to the color of something
+
+commit 29febaec36aa2eac71d4e84c1f0a39e99e1bbaae
+Author: Erica Manzer <emanzer@mines.edu>
+Date:   Tue Oct 3 16:02:25 2017 -0600
+
+    Made changes
+
+commit 7c06da3db105e3e517dcb819c9454e9addd78b8f
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Oct 3 15:34:24 2017 -0600
+
+    Adding past projects including today's homework: DrawPlay
+
+commit e4319c1eacd12314cc25da38cd4dd845c87a1f5b
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Sep 29 11:54:21 2017 -0600
+
+    adding git log
+
+commit 15b2dfee966da1445a4ee76a76e19f117a1f1178
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Sep 29 11:49:16 2017 -0600
+
+    editing author to the ScoreTracker.java
+
+commit aa15d0bc8c1356e0cb94fe6cfc2f6c8a5e710212
+Merge: b4f1e67 7852f11
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Sep 29 11:47:19 2017 -0600
+
+    Merge branch 'master' of https://github.com/monawade0507/CSCI306
+
+commit b4f1e67b830c11b13d1544287810142503b0524f
+Author: Mona W <dwade@mines.edu>
+Date:   Fri Sep 29 11:47:02 2017 -0600
+
+    adding files/projects as of Sept. 29
+
+commit 7852f114572a29c5e4a62dbcce9aa380b0202c1f
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Wed Sep 20 17:54:19 2017 -0600
+
+    LevelGame.xml
+
+commit 64b9aa3c94b5cf2f0dded987ccedf08ac9369b01
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Wed Sep 20 17:49:21 2017 -0600
+
+    LevelGame.xml
+
+commit 17d664e36d126c8ce25549f966c63e8d18e14dee
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Wed Sep 20 16:12:52 2017 -0600
+
+    LevelGame.xml
+
+commit f4abeab7cd1224f8e9193a409abc2823a1713197
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Sep 17 11:23:45 2017 -0600
+
+    Adding latest project: Stove
+
+commit e80dc78ad0c313e0e9b69fa109c68f403531ff17
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Sep 12 14:16:40 2017 -0600
+
+    Changing README test file for practice
+
+commit 88f5d0eeb67dc20a5ba0667fb2773996aa0ea50b
+Author: Mona W <dwade@mines.edu>
+Date:   Tue Sep 12 14:14:49 2017 -0600
+
+    Adding Stove Porject to Repository
+
+commit db752ca3056233d2096eba038d8a9f5e9c15f571
+Author: Mona W <dwade@mines.edu>
+Date:   Sun Sep 10 15:07:17 2017 -0600
+
+    changed README file for testing
+
+commit 5c8eb047a30fc6405fe318011025eeecd25a24eb
+Author: monawade0507 <31660498+monawade0507@users.noreply.github.com>
+Date:   Sun Sep 10 14:55:03 2017 -0600
+
+    Initial commit
