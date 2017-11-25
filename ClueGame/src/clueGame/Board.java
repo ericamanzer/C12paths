@@ -13,8 +13,9 @@ import java.awt.Point;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.lang.reflect.Field;
-import javax.swing.JPanel;   // library for JPanel
 import java.awt.*;    // library for Graphics 
+
+// library for JPanel
 import javax.swing.*;
 import java.util.Random; 
 
@@ -132,7 +133,7 @@ public class Board extends JPanel {
 		{
 			scan.close();
 		}
-		System.out.println("Set<String> room size: " + rooms.size());
+		// System.out.println("Set<String> room size: " + rooms.size());
 	}
 
 
@@ -210,11 +211,15 @@ public class Board extends JPanel {
 				{
 					HumanPlayer human = new HumanPlayer(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Integer.parseInt(lineArray[3]));
 					humanPlayer.add(human);
+					Player player = new Player(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Integer.parseInt(lineArray[3]));
+					this.player.add(player);
 				}
 				else
 				{
 					ComputerPlayer computer = new ComputerPlayer(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Integer.parseInt(lineArray[3]));
 					computerPlayers.add(computer);
+					Player player = new Player(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Integer.parseInt(lineArray[3]));
+					this.player.add(player);
 				}
 				count ++;
 
@@ -497,9 +502,7 @@ public class Board extends JPanel {
 			System.out.println("This key does not exist in the adjMatrix");
 		}
 	}
-
-
-
+	
 	//NOTE: Getters {
 	public Map<Character, String> getLegend()
 	{
@@ -745,6 +748,10 @@ public class Board extends JPanel {
 			g.drawString(room, pixel.x, pixel.y);
 		}
 		
+		for ( BoardCell cell: targets)
+		{
+			cell.drawTargets(g);
+		}
 	
 		
 	}
@@ -754,8 +761,6 @@ public class Board extends JPanel {
 		int dieRoll = rand.nextInt(6) + 1; 
 		return dieRoll; 
 	}
-	
-	
 	
 	public void updateComputerPosition(int col, int row, int pathlength, ComputerPlayer computerPlayer) { 
 		ArrayList<BoardCell> possibleTargets = new ArrayList<BoardCell>(); 
@@ -772,6 +777,29 @@ public class Board extends JPanel {
 		
 		computerPlayer.updatePosition(c, r);
 		
+	}	
+	
+	public boolean playPlayer(Player player, int pathLength) 
+	{
+		// TODO would "play" through the steps for each player
+		if (player.getPlayerName() == "CompSci") // the human player will always be CompSci
+		{
+			// TODO the human player needs to call calcTargets with its current location
+			// NOTE to call calcTargets, you need: row, col, dice roll ( which is equal to the path length )
+			int row = player.getCurrentRow();
+			int col = player.getCurrentColumn();
+			calcTargets(row, col, pathLength); 
+			// NOTE calcTargets will populate the targets set with all the targets found
+			// TODO highlight all available targets on the board then repaint
+			//repaint();
+			// NOTE the cells should have been re-drawn by repaint() because targets has elements
+			
+			
+		}
+		
+		// needs to return true or false because it should be matching suggestions from each player
+		// 	to the solution
+		return true;
 	}
 	
 	
@@ -793,6 +821,12 @@ public class Board extends JPanel {
 	// Getter for weapons 
 	// @param no parameter 
 	// @return weapons a set of Strings that represent each of the weapons possible 
+	public ArrayList<Player> getPlayersList()
+	{
+		System.out.println("test Player: " + player.get(0).getName());
+		System.out.println( "Player arrayList size: " + player.size());
+		return player;
+	}
 	public Set<String> getWeapons() {
 		return weapons;
 	}
@@ -886,6 +920,7 @@ public class Board extends JPanel {
 		rooms = this.rooms; 
 	}
 	
+
 }
 
 

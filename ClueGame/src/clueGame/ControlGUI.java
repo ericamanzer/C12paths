@@ -8,7 +8,7 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
+import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,10 +22,12 @@ public class ControlGUI extends JPanel {
 	//private JTextField name; 
 
 	public static int dieRoll; 
+	private Player current;
 	
-	public ControlGUI(int roll)
+	public ControlGUI(int roll, Player current)
 	{
 		dieRoll = roll; 
+		this.current = current;
 		
 		// Create a layout with 2 rows
 		
@@ -46,8 +48,8 @@ public class ControlGUI extends JPanel {
 		
 		
 		add(panel);
-		panel = createButtonPanel(); 
-		add(panel);
+		//panel = createButtonPanel(); 
+		//add(panel);
 		 
 		add(panel2); 
 		add(panel1);
@@ -60,7 +62,7 @@ public class ControlGUI extends JPanel {
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
 		//JLabel nameLabel = new JLabel("Name");
-		name = new JTextField(20);
+		name = new JTextField(this.current.getPlayerName());
 		name.setEditable(false);
 		//panel.add(nameLabel);
 		panel.add(name);
@@ -110,17 +112,36 @@ public class ControlGUI extends JPanel {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		return panel;
 	}
-
+	/*
 	private JPanel createButtonPanel() {
-		// no layout specified, so this is flow
+		
 		JButton nextPlayer = new JButton("Next player");
+		// nextPlayer needs to be a listener
+		nextPlayer.addActionListener(new ButtonListener());
 		JButton accusation = new JButton("Make an accusation");
 		JPanel panel = new JPanel();
 		panel.add(nextPlayer);
 		panel.add(accusation); 
 		return panel;
 	}
-
+	
+	private class ButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			// will play the next player in the game
+			
+			// needs to check that a target is selected
+			
+			// needs to make sure the selected target is valid
+			
+			// testing 
+			System.out.println( "Next player was clicked");
+		}
+	}
+	*/
+	
+	// main function made for testing purposes
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new JFrame();
@@ -128,8 +149,8 @@ public class ControlGUI extends JPanel {
 		frame.setTitle("Control GUI");
 		frame.setSize(250, 150);	
 		// Create the JPanel and add it to the JFrame
-		ControlGUI gui = new ControlGUI(dieRoll);
-		frame.add(gui, BorderLayout.CENTER);
+		//ControlGUI gui = new ControlGUI(dieRoll);
+		//frame.add(gui, BorderLayout.CENTER);
 		// Now let's view it
 		frame.setVisible(true);
 	}

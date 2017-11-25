@@ -9,8 +9,9 @@ import java.util.*;
 import java.io.*;
 import java.awt.Color;
 import java.lang.reflect.Field;
+import javax.swing.*;
 
-public class Player {
+public class Player extends JPanel {
 
 	private String playerName; 
 	private int currentRow, currentColumn, previousRow, previousColumn; 
@@ -154,4 +155,8 @@ public class Player {
 		return this.colorString;
 	}
 	
+	public void updatePlayerName(String playerName)
+	{
+		this.playerName = playerName;
+	}
 }

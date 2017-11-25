@@ -131,7 +131,13 @@ public class BoardCell {
 
 
 	}
-
+	
+	public void drawTargets( Graphics g)
+	{
+		this.color = Color.CYAN;
+		g.setColor(this.color);
+		g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+	}
 
 	// Getters {
 	public int getRow() 
