@@ -73,7 +73,7 @@ public class BoardCell {
 		{
 			this.color = Color.GRAY;
 			g.setColor(this.color);
-			g.fillRect(this.pixel.x , this.pixel.y, 30, 30);
+			g.fillRect(this.pixel.x , this.pixel.y, WIDTH, HEIGHT);
 		}
 		if (this.isRoom()) 
 		{
@@ -83,33 +83,33 @@ public class BoardCell {
 				{
 					this.color = Color.WHITE;
 					g.setColor(this.color);
-					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 					g.setColor(Color.YELLOW);
-					g.fillRect(this.pixel.x, this.pixel.y, 30, 5);
+					g.fillRect(this.pixel.x, this.pixel.y, WIDTH, 5);
 				}
 				else if (doorDir == DoorDirection.DOWN)
 				{
 					this.color = Color.WHITE;
 					g.setColor(this.color);
-					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 					g.setColor(Color.YELLOW);
-					g.fillRect(this.pixel.x, this.pixel.y + 25, 30, 5);
+					g.fillRect(this.pixel.x, this.pixel.y + 25, WIDTH, 5);
 				}
 				else if (doorDir == DoorDirection.LEFT)
 				{
 					this.color = Color.WHITE;
 					g.setColor(this.color);
-					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 					g.setColor(Color.YELLOW);
-					g.fillRect(this.pixel.x, this.pixel.y, 5,30);
+					g.fillRect(this.pixel.x, this.pixel.y, 5,HEIGHT);
 				}
 				else if (doorDir == DoorDirection.RIGHT)
 				{
 					this.color = Color.WHITE;
 					g.setColor(this.color);
-					g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+					g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 					g.setColor(Color.YELLOW);
-					g.fillRect(this.pixel.x + 25, this.pixel.y, 5,30);
+					g.fillRect(this.pixel.x + 25, this.pixel.y, 5,HEIGHT);
 				}
 				
 			}
@@ -117,7 +117,7 @@ public class BoardCell {
 			{
 				this.color = Color.WHITE;
 				g.setColor(this.color);
-				g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+				g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 			}
 			
 			
@@ -126,7 +126,7 @@ public class BoardCell {
 		{
 			this.color = Color.GREEN;
 			g.setColor(this.color);
-			g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+			g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 		}
 
 
@@ -136,7 +136,7 @@ public class BoardCell {
 	{
 		this.color = Color.CYAN;
 		g.setColor(this.color);
-		g.fillRect(this.pixel.x, this.pixel.y, 30, 30);
+		g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 	}
 
 	// Getters {

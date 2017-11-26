@@ -14,7 +14,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.lang.reflect.Field;
 import java.awt.*;    // library for Graphics 
-
+import java.awt.event.*;
 // library for JPanel
 import javax.swing.*;
 import java.util.Random; 
@@ -53,6 +53,21 @@ public class Board extends JPanel {
 	ArrayList<Player> player = new ArrayList<Player>();
 	ArrayList<Point> roomNames = new ArrayList<Point>();
 	private JPanel panel;
+	private Point pixelSelected;
+	
+	// TODO Adding the mouse listener
+	private class PointListener implements MouseListener
+	{
+		// empty definitions for unused event methods
+		public void mousePressed (MouseEvent event) 
+		{
+			pixelSelected = event.getPoint();
+		}
+		public void mouseClicked (MouseEvent event) {}
+		public void mouseReleased (MouseEvent event) {}
+		public void mouseEntered (MouseEvent event) {}
+		public void mouseExited (MouseEvent event) {}
+	}
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
@@ -62,7 +77,7 @@ public class Board extends JPanel {
 		JLabel name = new JLabel("Clue Game Board");
 		panel.add(name);
 		add(panel, BorderLayout.CENTER);
-		
+		addMouseListener(new PointListener()); // adds the listener (aka PointListener) to the panel
 	}
 	public static Board getInstance() 
 	{
@@ -712,7 +727,7 @@ public class Board extends JPanel {
 			Color color = comp.getColor();
 			g.setColor(color);
 			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
-			g.fillOval(pixel.x, pixel.y, 30, 30);
+			g.fillOval(pixel.x, pixel.y, 15, 15);
 		}
 		
 		for ( HumanPlayer human: humanPlayer)
@@ -722,7 +737,7 @@ public class Board extends JPanel {
 			Color color2 = human.getColor();
 			g.setColor(color2);
 			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
-			g.fillOval(pixel.x, pixel.y, 30, 30);
+			g.fillOval(pixel.x, pixel.y, 15, 15);
 		}
 		
 		ArrayList<String> names = new ArrayList<String>();
@@ -745,7 +760,7 @@ public class Board extends JPanel {
 			pixel = roomNames.get(i);
 			String room = names.get(i);
 			g.setColor(Color.BLACK);
-			g.setFont(new Font("Calibri", Font.PLAIN, 24));
+			g.setFont(new Font("Calibri", Font.PLAIN, 18));
 			g.drawString(room, pixel.x, pixel.y);
 		}
 		
@@ -780,7 +795,7 @@ public class Board extends JPanel {
 		
 	}	
 	
-	public boolean playPlayer(Player player, int pathLength) 
+	public int playPlayer(Player player, int pathLength) 
 	{
 		System.out.println("Board Targets size: " + targets.size());
 		System.out.println("The current player on the board: " + player.getPlayerName());
@@ -798,13 +813,25 @@ public class Board extends JPanel {
 			// TODO highlight all available targets on the board then repaint
 			repaint();
 			// NOTE the cells should have been re-drawn by repaint() because targets has elements
+			if ( targets.contains(board[pixelSelected.y][pixelSelected.x]))
+			{
+				// TODO need to update the position of the current/human player
+				// TODO return 0 because nothing went wrong
+			}
+			else
+			{
+				System.out.println("Human selected: [" + pixelSelected.y + "][" + pixelSelected.x +"]");
+				// return 1 because the user did not click an available, highlighted target
+				return 1;
+			}
+			
 			
 			
 		}
 		
 		// needs to return true or false because it should be matching suggestions from each player
 		// 	to the solution
-		return true;
+		return 0;
 	}
 	
 	

@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ClueGame extends JFrame {
-	private final static int HEIGHT = 500;
+	private final static int HEIGHT = 1000;
 	private final static int WIDTH = 1000;
 	private static Board board;
 	JPanel panel;
@@ -23,7 +23,8 @@ public class ClueGame extends JFrame {
 	private ArrayList<Player> playersList = new ArrayList<Player>();
 	private Player currentPlayer;
 	int dieRoll = 0;
-	
+	private static JFrame frame;
+
 	public ClueGame()
 	{
 		board = Board.getInstance();
@@ -34,7 +35,7 @@ public class ClueGame extends JFrame {
 		playersList = board.getPlayersList();
 		if ( playerCount != -1) this.currentPlayer = playersList.get(playerCount);
 		else { this.currentPlayer = new Player("", "", 0, 0); }
-		
+
 		setTitle("Clue Game");
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,12 +45,12 @@ public class ClueGame extends JFrame {
 		panel = board;
 		panel.setSize(400, 400);
 		add(panel, BorderLayout.CENTER);
-		
+
 		control = new JPanel();
 		ControlGUI guiControl = new ControlGUI(dieRoll, this.currentPlayer);
 		control = guiControl;
-		
-		
+
+
 		// TODO adding the actionListener buttons
 		JButton nextPlayer = new JButton("Next player");
 		// nextPlayer needs to be a listener
@@ -58,7 +59,7 @@ public class ClueGame extends JFrame {
 		control.add(nextPlayer);
 		control.add(accusation);
 		add(control, BorderLayout.SOUTH);
-		
+
 		JPanel notes = new JPanel();
 		notes.setSize(50, 5);
 		DetectiveNotesGUI guiNotes = new DetectiveNotesGUI();
@@ -69,26 +70,19 @@ public class ClueGame extends JFrame {
 		cards = guiCard; 
 		cards.setSize(10,5);
 		add(cards, BorderLayout.WEST);
-		
-		
+
+
 	}
-	
+
 	private class ButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			// will play the next player in the game
 			setNextPlayer();
-			// needs to check that a target is selected
-			
-			// needs to make sure the selected target is valid
-			
-			// testing 
-			System.out.println( "Next player was clicked");
-			
 		}
 	}
-	
+
 	public void setNextPlayer()
 	{
 		if (playerCount != 5) playerCount ++;
@@ -99,11 +93,11 @@ public class ClueGame extends JFrame {
 		if (playerCount == -1) playerCount = 0;
 		this.currentPlayer = playersList.get(playerCount);
 		this.dieRoll = board.rollDie();
-		
+
 		playGame();
-		
+
 	}
-	
+
 	public void playGame()
 	{
 		// NOTE updating the ControlGUI
@@ -117,18 +111,26 @@ public class ClueGame extends JFrame {
 		add(control, BorderLayout.SOUTH);
 		control.revalidate();
 
-		
-		// TODO get the player that is supposed to be playing 
-		board.playPlayer(this.currentPlayer, this.dieRoll);
-		Set<BoardCell> targetsFound = new HashSet<BoardCell>();
-		targetsFound = board.update().getTargets();
-		System.out.println("Size of targets: " + targetsFound.size());
+		int state = -1;
+		while (true)
+		{
+			// TODO get the player that is supposed to be playing 
+			state = board.playPlayer(this.currentPlayer, this.dieRoll);
+			// if state = 0: { player clicked a choice that was available, player location was updated }
+			// if state = 1: { player clicked a choice that was not available }
+			if ( state == 0) break;
+			if ( state == 1) 
+			{
+				JOptionPane.showMessageDialog(frame, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+
 	}
-	
-	
+
+
 	public static void main(String[] args) {	
 		ClueGame clueObject = new ClueGame();
-		JFrame frame = clueObject;
+		frame = clueObject;
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
 		Set<HumanPlayer>  humanPlayer = new HashSet<HumanPlayer>();
