@@ -800,7 +800,7 @@ public class Board extends JPanel {
 		player.updatePosition(c, r);
 
 	}	
-
+  
 	public int playPlayer(Player player, int pathLength) 
 	{
 		System.out.println("Board Targets size: " + targets.size());
