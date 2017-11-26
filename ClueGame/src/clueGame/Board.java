@@ -53,15 +53,19 @@ public class Board extends JPanel {
 	ArrayList<Player> player = new ArrayList<Player>();
 	ArrayList<Point> roomNames = new ArrayList<Point>();
 	private JPanel panel;
-	private Point pixelSelected;
-	
+	private ArrayList<Point> pixelSelected = new ArrayList<Point>();
+	private Point selected;
+	 private JLabel statusLabel;
 	// TODO Adding the mouse listener
 	private class PointListener implements MouseListener
 	{
 		// empty definitions for unused event methods
 		public void mousePressed (MouseEvent event) 
 		{
-			pixelSelected = event.getPoint();
+			pixelSelected.add(event.getPoint());
+			//selected = event.getPoint();
+			statusLabel.setText("Mouse Clicked: ("+event.getX()+", "+event.getY() +")");
+			repaint();
 		}
 		public void mouseClicked (MouseEvent event) {}
 		public void mouseReleased (MouseEvent event) {}
@@ -77,6 +81,7 @@ public class Board extends JPanel {
 		JLabel name = new JLabel("Clue Game Board");
 		panel.add(name);
 		add(panel, BorderLayout.CENTER);
+		setPreferredSize(new Dimension(400, 400));
 		addMouseListener(new PointListener()); // adds the listener (aka PointListener) to the panel
 	}
 	public static Board getInstance() 
@@ -207,7 +212,7 @@ public class Board extends JPanel {
 		{
 			scan.close();
 		}
-		
+
 	}
 
 	public void loadPeopleConfig()
@@ -518,7 +523,7 @@ public class Board extends JPanel {
 			System.out.println("This key does not exist in the adjMatrix");
 		}
 	}
-	
+
 	//NOTE: Getters {
 	public Map<Character, String> getLegend()
 	{
@@ -558,12 +563,12 @@ public class Board extends JPanel {
 
 	public void dealDeck() { 
 
-		
+
 		possibleCards.clear(); 
 		possiblePeople.clear();
 		possibleWeapons.clear(); 
 		possibleRooms.clear(); 		
-		
+
 		// Loads the deck and temporary ArrayLists with every card read into program 
 		for (Card temp: peoplePile) {
 			deck.add(temp); 
@@ -674,11 +679,11 @@ public class Board extends JPanel {
 
 		int row = computerPlayer.getCurrentRow(); 
 		int col = computerPlayer.getCurrentColumn();
-		
+
 		computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms, computerPlayer); 
-		
+
 		ArrayList<Card> foundCards = new ArrayList<Card>(); 
-		
+
 		for(ComputerPlayer tempPlayer: computerPlayers) {
 			if (tempPlayer == computerPlayer) {
 				continue;  
@@ -700,26 +705,27 @@ public class Board extends JPanel {
 			computerPlayer.addSeen(foundCards.get(location));
 			return foundCards.get(location); 
 		}
-		
+
 	}
-	
+
 	// paintComponent method for drawing the board. It is drawn in an object-oriented manner
 	// use an object-oriented approach that has each BoardCell object draw itself.
-	
+
 	public void paintComponent ( Graphics g)
 	{
 		super.paintComponent(g);
 		// TODO call each BoardCell  object to draw itself
 		// 	the draw method from BoardCell class will be called
-		
+
 		for ( int i = 0; i < 22; i++)
 		{
 			for ( int j = 0; j < 23; j++)
 			{
 				getCellAt(i, j).draw(g);
+				addMouseListener(new PointListener()); // adds the listener (aka PointListener) to the panel
 			}
 		}
-		
+
 		for ( ComputerPlayer comp: computerPlayers)
 		{
 			int x = comp.getCurrentRow();
@@ -727,9 +733,9 @@ public class Board extends JPanel {
 			Color color = comp.getColor();
 			g.setColor(color);
 			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
-			g.fillOval(pixel.x, pixel.y, 15, 15);
+			g.fillOval(pixel.x, pixel.y, 30, 30);
 		}
-		
+
 		for ( HumanPlayer human: humanPlayer)
 		{
 			int x = human.getCurrentRow();
@@ -737,9 +743,9 @@ public class Board extends JPanel {
 			Color color2 = human.getColor();
 			g.setColor(color2);
 			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
-			g.fillOval(pixel.x, pixel.y, 15, 15);
+			g.fillOval(pixel.x, pixel.y, 30, 30);
 		}
-		
+
 		ArrayList<String> names = new ArrayList<String>();
 		names.add("Paths");
 		names.add("Kafadar");
@@ -752,7 +758,7 @@ public class Board extends JPanel {
 		names.add("Coolbaugh");
 		names.add("Elm");
 		names.add("Weaver");
-		
+
 		for ( int i = 0; i < names.size(); i++)
 		{
 			if ( i == 0) continue;
@@ -763,43 +769,44 @@ public class Board extends JPanel {
 			g.setFont(new Font("Calibri", Font.PLAIN, 18));
 			g.drawString(room, pixel.x, pixel.y);
 		}
-		
+
 		for ( BoardCell cell: targets)
 		{
 			cell.drawTargets(g);
 		}
-	
-		
+
+
 	}
-	
+
 	public int rollDie() { 
 		Random rand = new Random(); 
 		int dieRoll = rand.nextInt(6) + 1; 
 		return dieRoll; 
 	}
-	
+
 	public void updateComputerPosition(int col, int row, int pathlength, ComputerPlayer computerPlayer) { 
 		ArrayList<BoardCell> possibleTargets = new ArrayList<BoardCell>(); 
 		calcTargets(col, row, pathlength); 
 		for (BoardCell temp: targets) { 
 			possibleTargets.add(temp); 
 		}
-		
+
 		Random rand = new Random(); 
 		int location = rand.nextInt(possibleTargets.size()); 
-		
+
 		int c = possibleTargets.get(location).getCol(); 
 		int r = possibleTargets.get(location).getRow(); 
-		
+
 		computerPlayer.updatePosition(c, r);
-		
+
 	}	
-	
+
 	public int playPlayer(Player player, int pathLength) 
 	{
 		System.out.println("Board Targets size: " + targets.size());
 		System.out.println("The current player on the board: " + player.getPlayerName());
 		// TODO would "play" through the steps for each player
+		
 		if (player.getPlayerName().equals("CompSci")) // the human player will always be CompSci
 		{
 			System.out.println("GOT HERE");
@@ -813,28 +820,43 @@ public class Board extends JPanel {
 			// TODO highlight all available targets on the board then repaint
 			repaint();
 			// NOTE the cells should have been re-drawn by repaint() because targets has elements
-			if ( targets.contains(board[pixelSelected.y][pixelSelected.x]))
+			boolean targetSelected = false;
+			for ( int i = 5; i < pixelSelected.size(); i++)
 			{
-				// TODO need to update the position of the current/human player
-				// TODO return 0 because nothing went wrong
+				Point point = pixelSelected.get(i);
+				for (BoardCell cell: targets)
+				{
+					 if (containsClick(point.x, point.y, cell.getRow(), cell.getRow())) targetSelected = true; 
+				}
+				/*
+				if ( targets.contains(board[point.y][point.x]))
+				{
+					targetSelected = true;
+					// TODO need to update the position of the current/human player
+				}
+				*/
 			}
-			else
-			{
-				System.out.println("Human selected: [" + pixelSelected.y + "][" + pixelSelected.x +"]");
-				// return 1 because the user did not click an available, highlighted target
-				return 1;
-			}
-			
-			
+			if (targetSelected) return 0; // NOTE returned 0 b/c a target was selected correctly
+			if (!targetSelected) return 1;  // NOTE returned 1 b/c a target was not selected
+		}
+		else  // this is for moving the computer Player
+		{
 			
 		}
 		
-		// needs to return true or false because it should be matching suggestions from each player
-		// 	to the solution
 		return 0;
 	}
-	
-	
+
+	public boolean containsClick( int mouseX, int mouseY, int targetX, int targetY)
+	{
+		Rectangle rect = new Rectangle( targetX, targetY, 30, 30);
+		if ( rect.contains(new Point(mouseX, mouseY)))
+		{
+			return true;
+		}
+		return false;
+	}
+
 
 	// Getter for computerPlayers 
 	// @param no parameter 
@@ -915,50 +937,50 @@ public class Board extends JPanel {
 	public Solution getAnswerKey() {
 		return answerKey; 
 	}
-	
+
 	public void clearPossiblePeople() { 
 		possiblePeople.clear();
 	} 
-	
+
 	public void addPossiblePeople(Card card) { 
 		possiblePeople.add(card); 
 	}
-	
+
 	public void clearPossibleWeapons() { 
 		possibleWeapons.clear();
 	}
-	
+
 	public void addPossibleWeapons(Card card) { 
 		possibleWeapons.add(card); 
 	}
-	
+
 	public void clearPossibleRooms() { 
 		rooms.clear();
 	}
-	
+
 	public void addPossibleRooms(String room) { 
 		rooms.add(room); 
 	}
-	
+
 	public void setPossiblePeople(ArrayList<Card> possiblePeople) { 
 		possiblePeople = this.possiblePeople; 
 	}
-	
+
 	public void setPossibleWeapons(ArrayList<Card> possibleWeapons) { 
 		possibleWeapons = this.possibleWeapons; 
 	}
-	
+
 	public void setPossibleRooms(Set<String> rooms) { 
 		rooms = this.rooms; 
 	}
-	
 
-	
+
+
 	public Board update()
 	{
 		return this.theInstance;
 	}
-	
+
 }
 
 
