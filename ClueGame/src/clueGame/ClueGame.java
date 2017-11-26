@@ -34,8 +34,6 @@ public class ClueGame extends JFrame {
 		playersList = board.getPlayersList();
 		if ( playerCount != -1) this.currentPlayer = playersList.get(playerCount);
 		else { this.currentPlayer = new Player("", "", 0, 0); }
-		System.out.println(" playersList size: " + this.playersList.size());
-		System.out.println("current player " + this.currentPlayer.getPlayerName());
 		
 		setTitle("Clue Game");
 		setSize(WIDTH, HEIGHT);
@@ -46,6 +44,7 @@ public class ClueGame extends JFrame {
 		panel = board;
 		panel.setSize(400, 400);
 		add(panel, BorderLayout.CENTER);
+		
 		control = new JPanel();
 		ControlGUI guiControl = new ControlGUI(dieRoll, this.currentPlayer);
 		control = guiControl;
@@ -101,6 +100,12 @@ public class ClueGame extends JFrame {
 		this.currentPlayer = playersList.get(playerCount);
 		this.dieRoll = board.rollDie();
 		
+		playGame();
+		
+	}
+	
+	public void playGame()
+	{
 		// NOTE updating the ControlGUI
 		control.removeAll();
 		control = new ControlGUI(dieRoll, this.currentPlayer);
@@ -111,14 +116,13 @@ public class ClueGame extends JFrame {
 		control.add(accusation);
 		add(control, BorderLayout.SOUTH);
 		control.revalidate();
+
 		
-		playGame();
-	}
-	
-	public void playGame()
-	{
 		// TODO get the player that is supposed to be playing 
 		board.playPlayer(this.currentPlayer, this.dieRoll);
+		Set<BoardCell> targetsFound = new HashSet<BoardCell>();
+		targetsFound = board.update().getTargets();
+		System.out.println("Size of targets: " + targetsFound.size());
 	}
 	
 	
@@ -133,7 +137,6 @@ public class ClueGame extends JFrame {
 		for (HumanPlayer human: humanPlayer)
 		{
 			humanName = human.getPlayerName();
-			
 		}
 		// CompSci is the human player 
 		String message = "You are " + humanName + ", press Next Player to begin play";

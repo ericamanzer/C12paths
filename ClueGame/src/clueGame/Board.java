@@ -52,12 +52,13 @@ public class Board extends JPanel {
 	public ArrayList<Card> possibleRooms = new ArrayList<Card>();
 	ArrayList<Player> player = new ArrayList<Player>();
 	ArrayList<Point> roomNames = new ArrayList<Point>();
+	private JPanel panel;
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
 	private Board() 
 	{
-		JPanel panel = new JPanel();
+		this.panel = new JPanel();
 		JLabel name = new JLabel("Clue Game Board");
 		panel.add(name);
 		add(panel, BorderLayout.CENTER);
@@ -781,17 +782,21 @@ public class Board extends JPanel {
 	
 	public boolean playPlayer(Player player, int pathLength) 
 	{
+		System.out.println("Board Targets size: " + targets.size());
+		System.out.println("The current player on the board: " + player.getPlayerName());
 		// TODO would "play" through the steps for each player
-		if (player.getPlayerName() == "CompSci") // the human player will always be CompSci
+		if (player.getPlayerName().equals("CompSci")) // the human player will always be CompSci
 		{
+			System.out.println("GOT HERE");
 			// TODO the human player needs to call calcTargets with its current location
 			// NOTE to call calcTargets, you need: row, col, dice roll ( which is equal to the path length )
 			int row = player.getCurrentRow();
 			int col = player.getCurrentColumn();
-			calcTargets(row, col, pathLength); 
+			System.out.println("Location [" + row + "][" + col +"]");
+			calcTargets(col, row, pathLength); 
 			// NOTE calcTargets will populate the targets set with all the targets found
 			// TODO highlight all available targets on the board then repaint
-			//repaint();
+			repaint();
 			// NOTE the cells should have been re-drawn by repaint() because targets has elements
 			
 			
@@ -921,6 +926,12 @@ public class Board extends JPanel {
 	}
 	
 
+	
+	public Board update()
+	{
+		return this.theInstance;
+	}
+	
 }
 
 
