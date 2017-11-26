@@ -784,7 +784,7 @@ public class Board extends JPanel {
 		return dieRoll; 
 	}
 
-	public void updateComputerPosition(int col, int row, int pathlength, ComputerPlayer computerPlayer) { 
+	public void updateComputerPosition(int col, int row, int pathlength, Player player) { 
 		ArrayList<BoardCell> possibleTargets = new ArrayList<BoardCell>(); 
 		calcTargets(col, row, pathlength); 
 		for (BoardCell temp: targets) { 
@@ -797,7 +797,7 @@ public class Board extends JPanel {
 		int c = possibleTargets.get(location).getCol(); 
 		int r = possibleTargets.get(location).getRow(); 
 
-		computerPlayer.updatePosition(c, r);
+		player.updatePosition(c, r);
 
 	}	
 
@@ -842,6 +842,11 @@ public class Board extends JPanel {
 		else  // this is for moving the computer Player
 		{
 			
+			int row = player.getCurrentRow(); 
+			int col = player.getCurrentColumn(); 
+			 
+			
+			updateComputerPosition(col, row, pathLength, player);
 		}
 		
 		return 0;

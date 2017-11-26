@@ -118,10 +118,11 @@ public class ClueGame extends JFrame {
 			state = board.playPlayer(this.currentPlayer, this.dieRoll);
 			// if state = 0: { player clicked a choice that was available, player location was updated }
 			// if state = 1: { player clicked a choice that was not available }
-			if ( state == 0) break;
+			if ( state == 0); //break;
 			if ( state == 1) 
 			{
 				JOptionPane.showMessageDialog(frame, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
+				break; 
 			}
 		}
 
