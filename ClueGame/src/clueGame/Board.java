@@ -54,6 +54,8 @@ public class Board extends JPanel implements MouseListener {
 	ArrayList<Point> roomNames = new ArrayList<Point>();
 	private JPanel panel;
 	
+	boolean gameFinished = false; 
+	
 	// NOTE: Game logic variables 
 	private boolean doneWithHuman = false;
 	private Player currentPlayerInGame;
@@ -665,6 +667,8 @@ public class Board extends JPanel implements MouseListener {
 			return false; 
 		}
 
+		gameFinished = true; 
+		
 		// If no differences exist then returns true 
 		return true;
 	}
@@ -1029,7 +1033,6 @@ public class Board extends JPanel implements MouseListener {
 		Player emptyPlayer = new Player();
 		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGame = emptyPlayer;
 		else { this.currentPlayerInGame = this.gamePlayers.get(this.currentPlayerInGameCount); }
-		
 		return this.currentPlayerInGame;
 		
 	}
