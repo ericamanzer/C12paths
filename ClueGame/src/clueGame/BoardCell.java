@@ -193,11 +193,12 @@ public DoorDirection getDoorDirection()
 	return doorDir;
 }
 
+// NOTE: Keep this because I think this is how it is supposed to be done!
 public boolean containsClick(int mouseX, int mouseY)
 {
 	System.out.println("Click Location: [" + mouseX + "][" + mouseY + "]");
 	System.out.println("Rectangle made: starting location: [" + + pixel.x + "][" + pixel.y + "]");
-	Rectangle rect = new Rectangle(pixel.x, pixel.y, 0, 0);
+	Rectangle rect = new Rectangle(pixel.x, pixel.y, WIDTH, HEIGHT);
 	if (rect.contains(new Point(mouseX, mouseY)))
 	{
 		System.out.println("Click was found to be in a cell: BoardCell class");

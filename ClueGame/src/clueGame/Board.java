@@ -53,9 +53,14 @@ public class Board extends JPanel implements MouseListener {
 	ArrayList<Player> player = new ArrayList<Player>();
 	ArrayList<Point> roomNames = new ArrayList<Point>();
 	private JPanel panel;
-	boolean doneWithHuman = false;
+	
+	// NOTE: Game logic variables 
+	private boolean doneWithHuman = false;
+	private Player currentPlayerInGame;
+	private int currentPlayerInGameCount = -1;
 	private int state = -1;
 	private BoardCell selectedBox;
+	private ArrayList<Player> gamePlayers = new ArrayList<Player>();
 	/*
 	// TODO Adding the mouse listener
 	private class PointListener implements MouseListener
@@ -636,11 +641,7 @@ public class Board extends JPanel implements MouseListener {
 
 
 	/*
-	public void selectAnswer() { 
-
-	}
-
-
+	public void selectAnswer() {}
 	 */ 
 
 
@@ -712,14 +713,15 @@ public class Board extends JPanel implements MouseListener {
 
 	}
 
-	// paintComponent method for drawing the board. It is drawn in an object-oriented manner
-	// use an object-oriented approach that has each BoardCell object draw itself.
+	
 
 	public void paintComponent ( Graphics g)
 	{
+		// paintComponent method for drawing the board. It is drawn in an object-oriented manner
+		// use an object-oriented approach that has each BoardCell object draw itself.
 		super.paintComponent(g);
-		// TODO call each BoardCell  object to draw itself
-		// 	the draw method from BoardCell class will be called
+		// NOTE: call each BoardCell object to draw itself.
+		// the draw method from BoardCell class will be called
 		for ( int i = 0; i < 22; i++)
 		{
 			for ( int j = 0; j < 23; j++)
@@ -727,8 +729,7 @@ public class Board extends JPanel implements MouseListener {
 				getCellAt(i, j).draw(g);
 			}
 		}
-
-
+		//NOTE: drawing the computer players
 		for ( ComputerPlayer comp: computerPlayers)
 		{
 			int x = comp.getCurrentRow();
@@ -738,7 +739,7 @@ public class Board extends JPanel implements MouseListener {
 			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
 			g.fillOval(pixel.x, pixel.y, 30, 30);
 		}
-
+		//NOTE: draw the human player
 		for ( HumanPlayer human: humanPlayer)
 		{
 			int x = human.getCurrentRow();
@@ -748,7 +749,7 @@ public class Board extends JPanel implements MouseListener {
 			Point pixel = new Point( x * 32 + 50, y * 32 + 50);
 			g.fillOval(pixel.x, pixel.y, 30, 30);
 		}
-
+		//NOTE: drawing the rooms 
 		ArrayList<String> names = new ArrayList<String>();
 		names.add("Paths");
 		names.add("Kafadar");
@@ -772,12 +773,13 @@ public class Board extends JPanel implements MouseListener {
 			g.setFont(new Font("Calibri", Font.PLAIN, 18));
 			g.drawString(room, pixel.x, pixel.y);
 		}
-
+		// NOTE: drawing the targets found on the board. There are highlighted in CYAN
 		for ( BoardCell cell: targets)
 		{
 			cell.drawTargets(g);
 		}
-
+		// NOTE: when the human player is done with selecting a location, repaint the targeted cells 
+		// back to path color
 		if (doneWithHuman)
 		{
 			for ( BoardCell cell: targets)
@@ -789,98 +791,51 @@ public class Board extends JPanel implements MouseListener {
 	}
 
 	public int rollDie() { 
+		// NOTE: random dice roll used to the pathLength in calcTargets
 		Random rand = new Random(); 
 		int dieRoll = rand.nextInt(6) + 1; 
 		return dieRoll; 
 	}
-
+	// TODO: check to make sure if working as desired
 	public void updateComputerPosition(int col, int row, int pathlength, Player player) { 
 		ArrayList<BoardCell> possibleTargets = new ArrayList<BoardCell>(); 
+		// NOTE: calcTargets with refresh and populate the targets HashSet
 		calcTargets(col, row, pathlength); 
-		System.out.println("Targets found for the computer: " + targets.size());
-		for (BoardCell temp: targets) { 
+		System.out.println("Targets found for the computer: " + targets.size()); // TESTING
+		for (BoardCell temp: targets) {
+			// NOTE: populating the temp arrayList for "dumb" AI
 			possibleTargets.add(temp); 
 		}
-
+		// NOTE: getting a random location for "dumb" AI
 		Random rand = new Random(); 
 		int location = rand.nextInt(possibleTargets.size()); 
-
 		int c = possibleTargets.get(location).getCol(); 
 		int r = possibleTargets.get(location).getRow(); 
-
-		// need to update the original set that holds the computer players
+		// NOTE: need to update the original set that holds the computer players
 		for ( ComputerPlayer computer: computerPlayers)
 		{
-			if ( computer.getName() == computer.getName())
+			// NOTE: ONLY change the player that is passed in
+			if (computer.getName() == computer.getName())
 			{
-				// update computer player with the player changed location
+				// NOTE: update the "original" computer player with the player's changed location
 				computer.updatePosition(c, r);
 			}
-			else
-			{
-				int rowLoc = computer.getCurrentRow();
-				int colLoc = computer.getCurrentColumn();
-				computer.updatePosition(colLoc, rowLoc);
-			}
 		}
-
-		player.updatePosition(c, r);
-
-
+		player.updatePosition(c, r);  // NOTE: probably unnecessary 
 	}	
-	
+	// TODO: check to make sure if working as desired 
 	public void updateHumanPosition(int col, int row, int pathlength, Player player) 
 	{ 	
-		// need to update the original set that holds the computer players
+		// NOTE: need to update the original set that holds the human player
 		for ( HumanPlayer human: humanPlayer)
 		{
-			if ( human.getName() == human.getName())
+			if (human.getName() == human.getName())
 			{
-				// update computer player with the player changed location
+				// NOTE: update the "original" human player with the player's changed location
 				human.updatePosition(col, row);
 			}
 		}
 	}	
-
-	public int playPlayer(Player player, int pathLength) 
-	{
-		// TODO would "play" through the steps for each player
-
-		if (player.getPlayerName().equals("CompSci")) // the human player will always be CompSci
-		{
-			System.out.println(" Human player is now playing ");
-			doneWithHuman = false;
-			// TODO the human player needs to call calcTargets with its current location
-			// NOTE to call calcTargets, you need: row, col, dice roll ( which is equal to the path length )
-			int row = player.getCurrentRow();
-			int col = player.getCurrentColumn();
-			calcTargets(col, row, pathLength); 
-			System.out.println("Size of targets for human: " + targets.size());
-			// NOTE calcTargets will populate the targets set with all the targets found
-			// TODO highlight all available targets on the board then repaint
-			repaint();
-			// NOTE the cells should have been re-drawn by repaint() because targets has elements
-			
-			// checking the state to see if it is 0 or -2 
-			if (updatedState() == 0) 
-			{
-				updateHumanPosition(col, row, pathLength, player);
-				doneWithHuman = true;
-				repaint();
-				return updatedState();
-			}
-
-		}
-		else  // this is for moving the computer Player
-		{
-			int row = player.getCurrentRow(); 
-			int col = player.getCurrentColumn(); 
-			updateComputerPosition(col, row, pathLength, player);
-			return 0;
-		}
-		
-		return updatedState();
-	}
 
 	public boolean containsClick( int mouseX, int mouseY, int targetX, int targetY)
 	{
@@ -891,7 +846,6 @@ public class Board extends JPanel implements MouseListener {
 		}
 		return false;
 	}
-
 
 	// Getter for computerPlayers 
 	// @param no parameter 
@@ -1016,6 +970,7 @@ public class Board extends JPanel implements MouseListener {
 		return this.theInstance;
 	}
 
+// TODO: this is the implementation of the MouseListener class that is required
 	public void mousePressed (MouseEvent event) {}
 	public void mouseClicked (MouseEvent event) 
 	{
@@ -1034,35 +989,50 @@ public class Board extends JPanel implements MouseListener {
 				}
 			}
 		}
-		// checking to see if the clicked BoardCell was apart of the Set targets
+		// NOTE: checking to see if the clicked BoardCell was part of the targets HashSet
 		if (whichBox != null)
 		{
-			//TODO check if it is in the target Set
-			// if whichBox is in the target, set state = 0
 			if ( targets.contains(whichBox)) 
 			{
 				selectedBox = whichBox; 
-				state = 0;
 			}
-			// else, set state = -2
-			else { state = -2; }
 		}
 		else
 		{
-			// if the box selected is not a box, change the state to -2
 			System.out.println("Box selected was not a box");
-			state = -2;
 		}
 	}
 	public void mouseReleased (MouseEvent event) {}
 	public void mouseEntered (MouseEvent event) {}
 	public void mouseExited (MouseEvent event) {}
 
-	public int updatedState ()
+	
+	// NOTE: Game Play Logic Methods
+	
+	public void nextPlayerButtonMethod()
 	{
-		this.state = state;
-		return this.state;
+		// this method will be called when the "Next Player" button is clicked on
+		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGameCount = 0;
+		if (this.currentPlayerInGameCount == 5) this.currentPlayerInGameCount = 0;
+		else { this.currentPlayerInGameCount ++; }
 	}
+	public void buildGamePlayers()
+	{
+		for (HumanPlayer human: humanPlayer)
+		{ this.gamePlayers.add(human); }
+		for (ComputerPlayer computer: computerPlayers)
+		{ this.gamePlayers.add(computer); }
+	}
+	public Player whoIsTheCurrentPLayer()
+	{
+		// NOTE: Empty player was made to return when game first starts
+		Player emptyPlayer = new Player();
+		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGame = emptyPlayer;
+		else { this.currentPlayerInGame = this.gamePlayers.get(this.currentPlayerInGameCount); }
+		return this.currentPlayerInGame;
+		System.out.println("The current game player: " + this.currentPlayerInGame.getPlayerName());
+	}
+	
 }
 
 

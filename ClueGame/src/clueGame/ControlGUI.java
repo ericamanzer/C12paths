@@ -20,49 +20,49 @@ import java.util.*;
 
 public class ControlGUI extends JPanel {
 	//private JTextField name; 
-
-	public static int dieRoll; 
-	private Player current;
+	public int dieRoll; 
+	// TODO need to be able call methods in Board class
+	private Board board;
+	private JPanel nextPlayerAndAccusation;
+	private JPanel currentPlayerAndDieRoll;
 	
-	public ControlGUI(int roll, Player current)
+	public ControlGUI()
 	{
-		dieRoll = roll; 
-		this.current = current;
 		
-		// Create a layout with 2 rows
-		
-		ArrayList<JPanel> panels = new ArrayList<JPanel>();
+		// TODO need to call Board method for current dice roll value 
+		dieRoll = 0; // FIXME
+		board = Board.getInstance();
+		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
+		board.setWeaponsConfigFile("WeaponsConfig.txt");
+		board.setPeopleConfigFile("PeopleConfig.txt");
+		board.initialize();
+		board.buildGamePlayers();
 		
 		//JTextField field = new JTextField(); 
-		
 		setLayout(new GridLayout(2,0));
-		JPanel panel = createNamePanel();
+		this.currentPlayerAndDieRoll = createNamePanel();
 		JPanel panel1 = createGuessPanel(); 
 		JPanel panel2 = createDiePanel(); 
 		JPanel panel3 = createGuessResultPanel(); 
 		
-		panels.add(panel);
-		panels.add(panel2);
-		panels.add(panel1);  
-		panels.add(panel3); 
+		this.nextPlayerAndAccusation = createButtonPanel(); 
 		
-		
-		add(panel);
-		//panel = createButtonPanel(); 
-		//add(panel);
-		 
+		add(this.currentPlayerAndDieRoll);
+		add(nextPlayerAndAccusation);
 		add(panel2); 
 		add(panel1);
 		add(panel3);
+			
 	}
 
-	private JPanel createNamePanel() {
+	public JPanel createNamePanel() {
 		JTextField name; 
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
 		//JLabel nameLabel = new JLabel("Name");
-		name = new JTextField(this.current.getPlayerName());
+		// TODO call a Board method to get the current player
+		name = new JTextField(board.whoIsTheCurrentPLayer().getPlayerName()); // FIXME
 		name.setEditable(false);
 		//panel.add(nameLabel);
 		panel.add(name);
@@ -112,12 +112,13 @@ public class ControlGUI extends JPanel {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		return panel;
 	}
-	/*
+	// NOTE: When button is pressed , it calls the appropriate methods
+	// in the Board class for processing. 
 	private JPanel createButtonPanel() {
-		
 		JButton nextPlayer = new JButton("Next player");
-		// nextPlayer needs to be a listener
-		nextPlayer.addActionListener(new ButtonListener());
+		// NOTE: nextPlayer needs to be a listener
+		nextPlayer.addActionListener(new NextPlayerButtonListener());
+		// TODO accusation need to addActionListener
 		JButton accusation = new JButton("Make an accusation");
 		JPanel panel = new JPanel();
 		panel.add(nextPlayer);
@@ -125,23 +126,33 @@ public class ControlGUI extends JPanel {
 		return panel;
 	}
 	
-	private class ButtonListener implements ActionListener
+	// NOTE: need a method to update the createDiePanel and createNamePanel
+	
+	public void refreshDieAndNamePanel()
+	{
+		System.out.println("Refreshing the name panel ");  //TESTING 
+		this.currentPlayerAndDieRoll.removeAll();
+		this.currentPlayerAndDieRoll = this.createNamePanel();
+		this.currentPlayerAndDieRoll.revalidate();
+		this.currentPlayerAndDieRoll.repaint();
+	}
+	
+	// NOTE: class implements ActionListener which is required for the
+	// nextPlayer button
+	private class NextPlayerButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			// will play the next player in the game
-			
-			// needs to check that a target is selected
-			
-			// needs to make sure the selected target is valid
-			
-			// testing 
-			System.out.println( "Next player was clicked");
+			System.out.println( "Next player was clicked"); // TESTING
+			// TODO call appropriate methods in the Board Class for processing 
+			board.nextPlayerButtonMethod();
+			// TODO need to refresh the createDiePanel and createNamePanel
+			refreshDieAndNamePanel();
 		}
 	}
-	*/
 	
-	// main function made for testing purposes
+	
+	// TODO function made for TESTING purposes
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new JFrame();
@@ -149,8 +160,8 @@ public class ControlGUI extends JPanel {
 		frame.setTitle("Control GUI");
 		frame.setSize(250, 150);	
 		// Create the JPanel and add it to the JFrame
-		//ControlGUI gui = new ControlGUI(dieRoll);
-		//frame.add(gui, BorderLayout.CENTER);
+		ControlGUI gui = new ControlGUI();
+		frame.add(gui, BorderLayout.CENTER);
 		// Now let's view it
 		frame.setVisible(true);
 	}
