@@ -25,6 +25,7 @@ public class ControlGUI extends JPanel {
 	private Board board;
 	private JPanel nextPlayerAndAccusation;
 	private JPanel currentPlayerAndDieRoll;
+	private JTextField currentName; 
 	
 	public ControlGUI()
 	{
@@ -37,6 +38,7 @@ public class ControlGUI extends JPanel {
 		board.setPeopleConfigFile("PeopleConfig.txt");
 		board.initialize();
 		board.buildGamePlayers();
+		currentName = new JTextField(board.whoIsTheCurrentPLayer().getPlayerName());
 		
 		//JTextField field = new JTextField(); 
 		setLayout(new GridLayout(2,0));
@@ -63,9 +65,10 @@ public class ControlGUI extends JPanel {
 		//JLabel nameLabel = new JLabel("Name");
 		// TODO call a Board method to get the current player
 		name = new JTextField(board.whoIsTheCurrentPLayer().getPlayerName()); // FIXME
-		name.setEditable(false);
+		currentName.setEditable(false);
 		//panel.add(nameLabel);
-		panel.add(name);
+		//panel.add(name);
+		panel.add(currentName);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn?"));
 		return panel;
 	}
@@ -131,10 +134,9 @@ public class ControlGUI extends JPanel {
 	public void refreshDieAndNamePanel()
 	{
 		System.out.println("Refreshing the name panel ");  //TESTING 
-		this.currentPlayerAndDieRoll.removeAll();
-		this.currentPlayerAndDieRoll = this.createNamePanel();
-		this.currentPlayerAndDieRoll.revalidate();
-		this.currentPlayerAndDieRoll.repaint();
+		this.currentName.setText(board.whoIsTheCurrentPLayer().getPlayerName());  
+		this.currentName.setEditable(false);
+		//this.currentPlayerAndDieRoll.repaint();
 	}
 	
 	// NOTE: class implements ActionListener which is required for the

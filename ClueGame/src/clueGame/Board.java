@@ -1013,7 +1013,7 @@ public class Board extends JPanel implements MouseListener {
 	{
 		// this method will be called when the "Next Player" button is clicked on
 		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGameCount = 0;
-		if (this.currentPlayerInGameCount == 5) this.currentPlayerInGameCount = 0;
+		else if (this.currentPlayerInGameCount == 5) this.currentPlayerInGameCount = 0;
 		else { this.currentPlayerInGameCount ++; }
 	}
 	public void buildGamePlayers()
@@ -1029,8 +1029,19 @@ public class Board extends JPanel implements MouseListener {
 		Player emptyPlayer = new Player();
 		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGame = emptyPlayer;
 		else { this.currentPlayerInGame = this.gamePlayers.get(this.currentPlayerInGameCount); }
+		
 		return this.currentPlayerInGame;
-		System.out.println("The current game player: " + this.currentPlayerInGame.getPlayerName());
+		
+	}
+	
+	public void GamePlay()
+	{
+		while (true)
+		{
+			System.out.println("The current game player: " + this.currentPlayerInGame.getPlayerName());
+			System.out.println("Current Player Count " + this.currentPlayerInGameCount);
+			
+		}
 	}
 	
 }
