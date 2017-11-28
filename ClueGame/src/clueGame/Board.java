@@ -53,16 +53,18 @@ public class Board extends JPanel implements MouseListener {
 	ArrayList<Player> player = new ArrayList<Player>();
 	ArrayList<Point> roomNames = new ArrayList<Point>();
 	private JPanel panel;
-	
+
 	boolean gameFinished = false; 
-	
+
 	// NOTE: Game logic variables 
 	private boolean doneWithHuman = false;
+	private boolean doneWithComputer = false;
 	private Player currentPlayerInGame;
 	private int currentPlayerInGameCount = -1;
 	private int state = -1;
 	private BoardCell selectedBox;
 	private ArrayList<Player> gamePlayers = new ArrayList<Player>();
+	private int dieRollValue = -1;
 	/*
 	// TODO Adding the mouse listener
 	private class PointListener implements MouseListener
@@ -81,7 +83,7 @@ public class Board extends JPanel implements MouseListener {
 		public void mouseEntered (MouseEvent event) {}
 		public void mouseExited (MouseEvent event) {}
 	}
-	*/
+	 */
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
@@ -668,7 +670,7 @@ public class Board extends JPanel implements MouseListener {
 		}
 
 		gameFinished = true; 
-		
+
 		// If no differences exist then returns true 
 		return true;
 	}
@@ -717,7 +719,7 @@ public class Board extends JPanel implements MouseListener {
 
 	}
 
-	
+
 
 	public void paintComponent ( Graphics g)
 	{
@@ -778,9 +780,12 @@ public class Board extends JPanel implements MouseListener {
 			g.drawString(room, pixel.x, pixel.y);
 		}
 		// NOTE: drawing the targets found on the board. There are highlighted in CYAN
-		for ( BoardCell cell: targets)
+		if ( this.currentPlayerInGame.getPlayerName().equals("CompSci") && targets.size() > 0)
 		{
-			cell.drawTargets(g);
+			for ( BoardCell cell: targets)
+			{
+				cell.drawTargets(g);
+			}
 		}
 		// NOTE: when the human player is done with selecting a location, repaint the targeted cells 
 		// back to path color
@@ -789,6 +794,36 @@ public class Board extends JPanel implements MouseListener {
 			for ( BoardCell cell: targets)
 			{
 				cell.reDrawTargets(g);
+			}
+		}
+		
+		if (this.currentPlayerInGame.getPlayerName().equals("CompSci") && doneWithHuman)
+		{
+			for ( HumanPlayer human: humanPlayer)
+			{
+				int x = human.getCurrentRow();
+				int y = human.getCurrentColumn();
+				Color color2 = human.getColor();
+				g.setColor(color2);
+				Point pixel = new Point( x * 32 + 50, y * 32 + 50);
+				g.fillOval(pixel.x, pixel.y, 30, 30);
+			}
+		}
+		
+		if (( 	this.currentPlayerInGame.getPlayerName().equals("MechE")  	|| 
+				this.currentPlayerInGame.getPlayerName().equals("ChemE") 	|| 
+				this.currentPlayerInGame.getPlayerName().equals("Mining")	|| 
+				this.currentPlayerInGame.getPlayerName().equals("Geology")	||
+				this.currentPlayerInGame.getPlayerName().equals("Physics") ) && this.doneWithComputer)
+		{
+			for ( ComputerPlayer comp: computerPlayers)
+			{
+				int x = comp.getCurrentRow();
+				int y = comp.getCurrentColumn();
+				Color color = comp.getColor();
+				g.setColor(color);
+				Point pixel = new Point( x * 32 + 50, y * 32 + 50);
+				g.fillOval(pixel.x, pixel.y, 30, 30);
 			}
 		}
 
@@ -823,6 +858,9 @@ public class Board extends JPanel implements MouseListener {
 			{
 				// NOTE: update the "original" computer player with the player's changed location
 				computer.updatePosition(c, r);
+				this.doneWithComputer = true;
+				revalidate();
+				repaint(); 
 			}
 		}
 		player.updatePosition(c, r);  // NOTE: probably unnecessary 
@@ -831,12 +869,15 @@ public class Board extends JPanel implements MouseListener {
 	public void updateHumanPosition(int col, int row, int pathlength, Player player) 
 	{ 	
 		// NOTE: need to update the original set that holds the human player
-		for ( HumanPlayer human: humanPlayer)
+		for (HumanPlayer human: humanPlayer)
 		{
-			if (human.getName() == human.getName())
+			if (human.getName() == player.getName())
 			{
 				// NOTE: update the "original" human player with the player's changed location
 				human.updatePosition(col, row);
+				this.doneWithHuman = true;	
+				revalidate();
+				repaint();
 			}
 		}
 	}	
@@ -974,11 +1015,10 @@ public class Board extends JPanel implements MouseListener {
 		return this.theInstance;
 	}
 
-// TODO: this is the implementation of the MouseListener class that is required
+	// TODO: this is the implementation of the MouseListener class that is required
 	public void mousePressed (MouseEvent event) {}
 	public void mouseClicked (MouseEvent event) 
 	{
-		System.out.println("Something was clicked on ");
 		BoardCell whichBox = null;
 		// FIXME
 		for ( int i = 0; i < 22; i++)
@@ -987,10 +1027,10 @@ public class Board extends JPanel implements MouseListener {
 			{
 				if (getCellAt(i, j).containsClick(event.getX(), event.getY()))
 				{
-					System.out.println("A board cell was clicked on");
 					whichBox = getCellAt(i, j);
 					break;
 				}
+				
 			}
 		}
 		// NOTE: checking to see if the clicked BoardCell was part of the targets HashSet
@@ -999,6 +1039,13 @@ public class Board extends JPanel implements MouseListener {
 			if ( targets.contains(whichBox)) 
 			{
 				selectedBox = whichBox; 
+				GamePlay();
+				return;
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
+				GamePlay();
 			}
 		}
 		else
@@ -1010,15 +1057,17 @@ public class Board extends JPanel implements MouseListener {
 	public void mouseEntered (MouseEvent event) {}
 	public void mouseExited (MouseEvent event) {}
 
-	
+
 	// NOTE: Game Play Logic Methods
-	
+
 	public void nextPlayerButtonMethod()
 	{
 		// this method will be called when the "Next Player" button is clicked on
 		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGameCount = 0;
 		else if (this.currentPlayerInGameCount == 5) this.currentPlayerInGameCount = 0;
 		else { this.currentPlayerInGameCount ++; }
+
+		this.dieRollValue = rollDie();
 	}
 	public void buildGamePlayers()
 	{
@@ -1034,19 +1083,46 @@ public class Board extends JPanel implements MouseListener {
 		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGame = emptyPlayer;
 		else { this.currentPlayerInGame = this.gamePlayers.get(this.currentPlayerInGameCount); }
 		return this.currentPlayerInGame;
-		
+
 	}
-	
+	public int currentDieRollValue()
+	{ return this.dieRollValue; }
+
 	public void GamePlay()
 	{
 		while (true)
 		{
-			System.out.println("The current game player: " + this.currentPlayerInGame.getPlayerName());
-			System.out.println("Current Player Count " + this.currentPlayerInGameCount);
-			
+			if (this.currentPlayerInGame.getPlayerName().equals("CompSci"))
+			{
+				this.doneWithHuman = false;
+				System.out.println("HUMAN");
+				int row = this.currentPlayerInGame.getCurrentRow();
+				int col = this.currentPlayerInGame.getCurrentColumn();
+				System.out.println("Location [" + row + "][" + col +"]");
+				calcTargets(col, row, this.dieRollValue);
+				repaint();
+				this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
+				repaint();
+				System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
+				break;
+			}
+			if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
+					this.currentPlayerInGame.getPlayerName().equals("ChemE") 	|| 
+					this.currentPlayerInGame.getPlayerName().equals("Mining")	|| 
+					this.currentPlayerInGame.getPlayerName().equals("Geology")	||
+					this.currentPlayerInGame.getPlayerName().equals("Physics"))
+			{
+				this.doneWithComputer = false;
+				System.out.println("COMPUTER");
+				int row = this.currentPlayerInGame.getCurrentRow(); 
+				int col = this.currentPlayerInGame.getCurrentColumn(); 
+				updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
+				break;
+			}
+			System.out.println("GAME PLAYING");
 		}
 	}
-	
+
 }
 
 

@@ -26,6 +26,7 @@ public class ControlGUI extends JPanel {
 	private JPanel nextPlayerAndAccusation;
 	private JPanel currentPlayerAndDieRoll;
 	private JTextField currentName; 
+	private JTextField currentDie; 
 	
 	public ControlGUI()
 	{
@@ -39,6 +40,7 @@ public class ControlGUI extends JPanel {
 		board.initialize();
 		board.buildGamePlayers();
 		currentName = new JTextField(board.whoIsTheCurrentPLayer().getPlayerName());
+		currentDie = new JTextField(String.valueOf(board.currentDieRollValue()));
 		
 		//JTextField field = new JTextField(); 
 		setLayout(new GridLayout(2,0));
@@ -95,9 +97,11 @@ public class ControlGUI extends JPanel {
 		JLabel nameLabel = new JLabel("Roll"); 
 		String die = String.valueOf(dieRoll);
 		name = new JTextField(die);
+		this.currentDie.setEditable(false);
 		name.setEditable(false);
 		panel.add(nameLabel);
-		panel.add(name);
+		//panel.add(name);
+		panel.add(this.currentDie);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
 		return panel;
 	}
@@ -133,9 +137,9 @@ public class ControlGUI extends JPanel {
 	
 	public void refreshDieAndNamePanel()
 	{
-		System.out.println("Refreshing the name panel ");  //TESTING 
 		this.currentName.setText(board.whoIsTheCurrentPLayer().getPlayerName());  
 		this.currentName.setEditable(false);
+		this.currentDie.setText(String.valueOf(board.currentDieRollValue()));
 		//this.currentPlayerAndDieRoll.repaint();
 	}
 	
@@ -145,7 +149,6 @@ public class ControlGUI extends JPanel {
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println( "Next player was clicked"); // TESTING
 			// TODO call appropriate methods in the Board Class for processing 
 			board.nextPlayerButtonMethod();
 			// TODO need to refresh the createDiePanel and createNamePanel

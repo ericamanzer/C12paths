@@ -55,6 +55,10 @@ public class ClueGame extends JFrame {
 		add(cards, BorderLayout.WEST);
 	}
 
+
+	public JFrame returnClueBoardFrame()
+	{ return this.frame; } 
+	
 	public static void main(String[] args) {	
 		ClueGame clueObject = new ClueGame();
 		frame = clueObject;
