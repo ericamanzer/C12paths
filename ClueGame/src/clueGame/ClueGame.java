@@ -100,6 +100,7 @@ public class ClueGame extends JFrame {
 
 	public void playGame()
 	{
+		int state = -1;
 		// NOTE updating the ControlGUI
 		control.removeAll();
 		control = new ControlGUI(dieRoll, this.currentPlayer);
@@ -111,20 +112,16 @@ public class ClueGame extends JFrame {
 		add(control, BorderLayout.SOUTH);
 		control.revalidate();
 
-		int state = -1;
-		while (true)
+		
+		// TODO get the player that is supposed to be playing 
+		state = board.playPlayer(this.currentPlayer, this.dieRoll);
+		// if state = 0: { player clicked a choice that was available, player location was updated }
+		// if state = 1: { player clicked a choice that was not available }
+		if (state == -2) 
 		{
-			// TODO get the player that is supposed to be playing 
-			state = board.playPlayer(this.currentPlayer, this.dieRoll);
-			// if state = 0: { player clicked a choice that was available, player location was updated }
-			// if state = 1: { player clicked a choice that was not available }
-			if ( state == 0); //break;
-			if ( state == 1) 
-			{
-				JOptionPane.showMessageDialog(frame, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
-				break; 
-			}
+			JOptionPane.showMessageDialog(frame, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
 		}
+
 
 	}
 

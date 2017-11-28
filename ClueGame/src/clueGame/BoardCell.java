@@ -12,6 +12,7 @@
  */
 package clueGame;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Color;
 import java.awt.Graphics;
 public class BoardCell {
@@ -111,7 +112,7 @@ public class BoardCell {
 					g.setColor(Color.YELLOW);
 					g.fillRect(this.pixel.x + 25, this.pixel.y, 5,HEIGHT);
 				}
-				
+
 			}
 			else
 			{
@@ -119,8 +120,8 @@ public class BoardCell {
 				g.setColor(this.color);
 				g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 			}
-			
-			
+
+
 		}
 		if (this.initial == 'K') 
 		{
@@ -131,7 +132,7 @@ public class BoardCell {
 
 
 	}
-	
+
 	public void drawTargets( Graphics g)
 	{
 		this.color = Color.CYAN;
@@ -139,40 +140,72 @@ public class BoardCell {
 		g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
 	}
 
-	// Getters {
-	public int getRow() 
+	public void reDrawTargets ( Graphics g)
 	{
-		return this.row;
+		if ( isDoorway())
+		{		
+			this.color = Color.WHITE;
+			g.setColor(this.color);
+			g.fillRect(this.pixel.x, this.pixel.y, WIDTH, HEIGHT);
+		}
+		if (this.initial == 'P') 
+		{
+			this.color = Color.GRAY;
+			g.setColor(this.color);
+			g.fillRect(this.pixel.x , this.pixel.y, WIDTH, HEIGHT);
+		}
 	}
 
-	public void setRow(int row) 
-	{
-		this.row = row;
-	}
 
-	public int getCol() 
-	{
-		return this.col;
-	}
+// Getters {
+public int getRow() 
+{
+	return this.row;
+}
 
-	public void setCol(int col) 
-	{
-		this.col = col;
-	}
+public void setRow(int row) 
+{
+	this.row = row;
+}
 
-	public char getInitial() 
-	{
-		return this.initial;
-	}
+public int getCol() 
+{
+	return this.col;
+}
 
-	public void setInitial(char initial) 
-	{
-		this.initial = initial;
-	}
+public void setCol(int col) 
+{
+	this.col = col;
+}
 
-	public DoorDirection getDoorDirection()
-	{
-		return doorDir;
-	}
+public char getInitial() 
+{
+	return this.initial;
+}
 
+public void setInitial(char initial) 
+{
+	this.initial = initial;
+}
+
+public DoorDirection getDoorDirection()
+{
+	return doorDir;
+}
+
+public boolean containsClick(int mouseX, int mouseY)
+{
+	System.out.println("Click Location: [" + mouseX + "][" + mouseY + "]");
+	System.out.println("Rectangle made: starting location: [" + + pixel.x + "][" + pixel.y + "]");
+	Rectangle rect = new Rectangle(pixel.x, pixel.y, 0, 0);
+	if (rect.contains(new Point(mouseX, mouseY)))
+	{
+		System.out.println("Click was found to be in a cell: BoardCell class");
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 }
