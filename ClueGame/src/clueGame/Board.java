@@ -1035,6 +1035,7 @@ public class Board extends JPanel implements MouseListener {
 				if (getCellAt(i, j).containsClick(event.getX(), event.getY()))
 				{
 					whichBox = getCellAt(i, j);
+					
 					break;
 				}
 
@@ -1075,7 +1076,7 @@ public class Board extends JPanel implements MouseListener {
 		else { this.currentPlayerInGameCount ++; }
 
 		this.dieRollValue = rollDie();
-		GamePlay();
+		
 	}
 	public void buildGamePlayers()
 	{
@@ -1100,9 +1101,7 @@ public class Board extends JPanel implements MouseListener {
 	{
 
 		System.out.println("Current Player: " + currentPlayerInGame.getPlayerName());
-
-		gamePause = true; 
-
+		gamePause = true;
 		if (this.currentPlayerInGame.getPlayerName().equals("CompSci"))
 		{
 			this.doneWithHuman = false;
@@ -1114,7 +1113,7 @@ public class Board extends JPanel implements MouseListener {
 			repaint();
 			//this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
 			repaint();
-			System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
+			//System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
 			while (gamePause) { 
 				gamePause = this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
 				repaint();
