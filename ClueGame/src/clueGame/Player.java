@@ -146,7 +146,7 @@ public class Player extends JPanel {
 	}
 	public Color getColor()
 	{
-		System.out.println(colorMain);
+		//System.out.println(colorMain);
 		return this.colorMain;
 	}
 	
