@@ -1115,10 +1115,12 @@ public class Board extends JPanel implements MouseListener {
 			//this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
 			repaint();
 			System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
-			while (gamePause) { 
-				gamePause = this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
-				repaint();
-			}  
+
+			gamePause = this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
+			repaint();
+
+
+			
 			//break;
 		}
 		if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
@@ -1133,11 +1135,10 @@ public class Board extends JPanel implements MouseListener {
 			int col = this.currentPlayerInGame.getCurrentColumn(); 
 			//updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
 			repaint();
-			while (gamePause) {
-				gamePause = updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
-				repaint();
 
-			}
+			gamePause = updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
+			repaint();
+
 			//break;
 		}
 		System.out.println("GAME PLAYING");
