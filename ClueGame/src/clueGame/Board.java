@@ -57,7 +57,7 @@ public class Board extends JPanel implements MouseListener {
 	boolean gameFinished = false; 
 
 	// NOTE: Game logic variables 
-	private boolean doneWithHuman = false;
+	public boolean doneWithHuman = false;
 	private boolean doneWithComputer = false;
 	private Player currentPlayerInGame;
 	private int currentPlayerInGameCount = -1;
@@ -91,6 +91,8 @@ public class Board extends JPanel implements MouseListener {
 	private static Board theInstance = new Board();
 	private Board() 
 	{
+		Player emptyPlayer = new Player();
+		this.currentPlayerInGame = emptyPlayer;
 		this.panel = new JPanel();
 		JLabel name = new JLabel("Clue Game Board");
 		panel.add(name);
@@ -856,7 +858,7 @@ public class Board extends JPanel implements MouseListener {
 		for ( ComputerPlayer computer: computerPlayers)
 		{
 			// NOTE: ONLY change the player that is passed in
-			if (computer.getName() == computer.getName())
+			if (player.getPlayerName().equals(computer.getPlayerName()))
 			{
 				// NOTE: update the "original" computer player with the player's changed location
 				computer.updatePosition(c, r);
@@ -1035,7 +1037,6 @@ public class Board extends JPanel implements MouseListener {
 				if (getCellAt(i, j).containsClick(event.getX(), event.getY()))
 				{
 					whichBox = getCellAt(i, j);
-					
 					break;
 				}
 
@@ -1054,10 +1055,12 @@ public class Board extends JPanel implements MouseListener {
 			{
 				JOptionPane.showMessageDialog(null, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
 				GamePlay();
+				return;
 			}
 		}
 		else
 		{
+			JOptionPane.showMessageDialog(null, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Box selected was not a box");
 		}
 	}
@@ -1074,8 +1077,13 @@ public class Board extends JPanel implements MouseListener {
 		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGameCount = 0;
 		else if (this.currentPlayerInGameCount == 5) this.currentPlayerInGameCount = 0;
 		else { this.currentPlayerInGameCount ++; }
+		// NOTE: updating the current player 
+		Player emptyPlayer = new Player();
+		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGame = emptyPlayer;
+		else { this.currentPlayerInGame = this.gamePlayers.get(this.currentPlayerInGameCount); }
 
 		this.dieRollValue = rollDie();
+		
 		
 	}
 	public void buildGamePlayers()
@@ -1084,13 +1092,14 @@ public class Board extends JPanel implements MouseListener {
 		{ this.gamePlayers.add(human); }
 		for (ComputerPlayer computer: computerPlayers)
 		{ this.gamePlayers.add(computer); }
+		
+		for (Player computer: this.gamePlayers)
+		{ System.out.println(computer.getPlayerName()); }
+	
 	}
 	public Player whoIsTheCurrentPLayer()
 	{
 		// NOTE: Empty player was made to return when game first starts
-		Player emptyPlayer = new Player();
-		if (this.currentPlayerInGameCount == -1) this.currentPlayerInGame = emptyPlayer;
-		else { this.currentPlayerInGame = this.gamePlayers.get(this.currentPlayerInGameCount); }
 		return this.currentPlayerInGame;
 
 	}
@@ -1112,11 +1121,12 @@ public class Board extends JPanel implements MouseListener {
 			calcTargets(col, row, this.dieRollValue);
 			repaint();
 			//this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
-			repaint();
+			//repaint();
 
 			System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
 
-			gamePause = this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame); //ERROR
+			
+			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
 
 			//break;
@@ -1129,12 +1139,14 @@ public class Board extends JPanel implements MouseListener {
 		{
 			this.doneWithComputer = false;
 			System.out.println("COMPUTER");
+			
 			int row = this.currentPlayerInGame.getCurrentRow(); 
 			int col = this.currentPlayerInGame.getCurrentColumn(); 
+			System.out.println("Location [" + row + "][" + col +"]");
 			//updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
 			repaint();
-
 			gamePause = updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
+			System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
 			repaint();
 
 			//break;

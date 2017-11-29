@@ -27,10 +27,10 @@ public class ControlGUI extends JPanel {
 	private JPanel currentPlayerAndDieRoll;
 	private JTextField currentName; 
 	private JTextField currentDie; 
-	
+
 	public ControlGUI()
 	{
-		
+
 		// TODO need to call Board method for current dice roll value 
 		dieRoll = 0; // FIXME
 		board = Board.getInstance();
@@ -41,22 +41,22 @@ public class ControlGUI extends JPanel {
 		board.buildGamePlayers();
 		currentName = new JTextField(board.whoIsTheCurrentPLayer().getPlayerName());
 		currentDie = new JTextField(String.valueOf(board.currentDieRollValue()));
-		
+
 		//JTextField field = new JTextField(); 
 		setLayout(new GridLayout(2,0));
 		this.currentPlayerAndDieRoll = createNamePanel();
 		JPanel panel1 = createGuessPanel(); 
 		JPanel panel2 = createDiePanel(); 
 		JPanel panel3 = createGuessResultPanel(); 
-		
+
 		this.nextPlayerAndAccusation = createButtonPanel(); 
-		
+
 		add(this.currentPlayerAndDieRoll);
 		add(nextPlayerAndAccusation);
 		add(panel2); 
 		add(panel1);
 		add(panel3);
-			
+
 	}
 
 	public JPanel createNamePanel() {
@@ -74,7 +74,7 @@ public class ControlGUI extends JPanel {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn?"));
 		return panel;
 	}
-	
+
 	private JPanel createGuessPanel() {
 		JTextField name; 
 		JPanel panel = new JPanel();
@@ -88,7 +88,7 @@ public class ControlGUI extends JPanel {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		return panel;
 	}
-	
+
 	private JPanel createDiePanel() {
 		JTextField name; 
 		JPanel panel = new JPanel();
@@ -105,7 +105,7 @@ public class ControlGUI extends JPanel {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
 		return panel;
 	}
-	
+
 	private JPanel createGuessResultPanel() {
 		JTextField name; 
 		JPanel panel = new JPanel();
@@ -132,9 +132,9 @@ public class ControlGUI extends JPanel {
 		panel.add(accusation); 
 		return panel;
 	}
-	
+
 	// NOTE: need a method to update the createDiePanel and createNamePanel
-	
+
 	public void refreshDieAndNamePanel()
 	{
 		this.currentName.setText(board.whoIsTheCurrentPLayer().getPlayerName());  
@@ -142,21 +142,25 @@ public class ControlGUI extends JPanel {
 		this.currentDie.setText(String.valueOf(board.currentDieRollValue()));
 		//this.currentPlayerAndDieRoll.repaint();
 	}
-	
+
 	// NOTE: class implements ActionListener which is required for the
 	// nextPlayer button
 	private class NextPlayerButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			// TODO call appropriate methods in the Board Class for processing 
-			board.nextPlayerButtonMethod();
-			// TODO need to refresh the createDiePanel and createNamePanel
-			refreshDieAndNamePanel();
+			if (board.doneWithHuman)
+			{
+				// TODO call appropriate methods in the Board Class for processing 
+				board.nextPlayerButtonMethod();
+				// TODO need to refresh the createDiePanel and createNamePanel
+				refreshDieAndNamePanel();
+				board.GamePlay();
+			}
 		}
 	}
-	
-	
+
+
 	// TODO function made for TESTING purposes
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
