@@ -73,7 +73,7 @@ public class ClueGame extends JFrame {
 		// NOTE: CompSci is the human player 
 		String message = "You are " + humanName + ", press Next Player to begin play";
 		JOptionPane.showMessageDialog(frame, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
-		board.doneWithHuman = true;
+		
 		 
 	}
 
