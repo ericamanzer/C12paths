@@ -11,6 +11,12 @@ import java.lang.*;
 import clueGame.BoardCell;
 import java.awt.Point;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder; 
+import javax.swing.*;
 import java.awt.Color;
 import java.lang.reflect.Field;
 import java.awt.*;    // library for Graphics 
@@ -1141,10 +1147,43 @@ public class Board extends JPanel implements MouseListener {
 			repaint();
 
 			System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
+			 
+
 
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
 
+			if (true /*FIXME: boardCell is room/doorway*/) { 
+				
+				// Call suggestion in new window
+				
+				
+				/*
+				JTextField p = new JTextField(5);
+				JTextField w = new JTextField(5);
+				JTextField r = new JTextField(5);
+
+				JPanel myPanel = new JPanel();
+				JTextBox person = new JTextBox(); 
+				myPanel.add(new JLabel("Person:"));
+				myPanel.add(p);
+				myPanel.add(Box.createHorizontalStrut(15)); 
+				myPanel.add(new JLabel("Weapon:"));
+				myPanel.add(w);
+				myPanel.add(Box.createHorizontalStrut(15)); 
+				myPanel.add(new JLabel("Room:"));
+				myPanel.add(r);
+
+				int result = JOptionPane.showConfirmDialog(null, myPanel, "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
+				if (result == JOptionPane.OK_OPTION) {
+					System.out.println("Person: " + p.getText());
+					System.out.println("Weapon: " + w.getText());
+					System.out.println("Room should be filled in already");
+				}
+				*/
+			}		
+			
+			
 			//break;
 		}
 		if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
