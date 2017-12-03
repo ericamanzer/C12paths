@@ -24,7 +24,7 @@ import java.util.*;
 public class Suggestion extends JPanel {
 
 	public Suggestion() { 
-		setBorder(new TitledBorder (new EtchedBorder(), "Detective Notes"));
+		setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
 		setLayout(new GridLayout(4,1));
 		JPanel panel = peopleGuess();
 		JPanel panel1 = weaponsGuess();

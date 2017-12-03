@@ -24,7 +24,7 @@ import java.util.*;
 public class Accusation extends JPanel {
 
 	public Accusation() { 
-		setBorder(new TitledBorder (new EtchedBorder(), "Detective Notes"));
+		setBorder(new TitledBorder (new EtchedBorder(), "Accusation"));
 		setLayout(new GridLayout(3,1));
 		JPanel panel = peopleGuess();
 		JPanel panel1 = weaponsGuess();
