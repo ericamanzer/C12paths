@@ -58,6 +58,7 @@ public class Board extends JPanel implements MouseListener {
 	ArrayList<Player> player = new ArrayList<Player>();
 	ArrayList<Point> roomNames = new ArrayList<Point>();
 	private JPanel panel;
+	static JFrame suggestAccuseFrame; 
 
 	boolean gameFinished = false; 
 
@@ -1080,7 +1081,7 @@ public class Board extends JPanel implements MouseListener {
 			if (this.currentPlayerInGameCount == -1) this.currentPlayerInGame = emptyPlayer;
 			else { this.currentPlayerInGame = this.gamePlayers.get(this.currentPlayerInGameCount); }
 
-			this.dieRollValue = rollDie();
+			this.dieRollValue = rollDie(); 
 		}
 	}
 
@@ -1126,14 +1127,14 @@ public class Board extends JPanel implements MouseListener {
 
 				// Call suggestion in new window
 
-
-				/*
+				/*	
+				
 				JTextField p = new JTextField(5);
 				JTextField w = new JTextField(5);
 				JTextField r = new JTextField(5);
 
 				JPanel myPanel = new JPanel();
-				JTextBox person = new JTextBox(); 
+				//JTextBox person = new JTextBox(); 
 				myPanel.add(new JLabel("Person:"));
 				myPanel.add(p);
 				myPanel.add(Box.createHorizontalStrut(15)); 
@@ -1143,14 +1144,29 @@ public class Board extends JPanel implements MouseListener {
 				myPanel.add(new JLabel("Room:"));
 				myPanel.add(r);
 
-				int result = JOptionPane.showConfirmDialog(null, myPanel, "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
+				
+
+				
 				if (result == JOptionPane.OK_OPTION) {
 					System.out.println("Person: " + p.getText());
 					System.out.println("Weapon: " + w.getText());
 					System.out.println("Room should be filled in already");
 				}
 				 */
-			}
+}
+				Suggestion suggest = new Suggestion();
+				suggestAccuseFrame.add(suggest);
+				suggestAccuseFrame.setSize(500, 500);
+				suggestAccuseFrame.setVisible(true);
+				
+				JPanel suggestionWindow = new JPanel();
+				suggestionWindow = suggest;
+				JOptionPane.showMessageDialog(null, suggest, "Please Enter X and Y Values" , JOptionPane.OK_CANCEL_OPTION);
+
+				//int result = JOptionPane.showMessageDialog(suggest, myPanel, "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
+
+
+			
 		}
 		if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
 				this.currentPlayerInGame.getPlayerName().equals("ChemE") 	|| 
