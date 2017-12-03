@@ -676,7 +676,7 @@ public class Board extends JPanel implements MouseListener {
 
 		// createSuggestions saves the generated suggestion in ComputerPlayer's creadSoln (which is of type Solution)
 		computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms, computerPlayer); 
-		this.currentGuess = (computerPlayer.getCreatedSoln().getPerson() + ", " + computerPlayer.getCreatedSoln().getRoom() + ", " + computerPlayer.getCreatedSoln().getWeapon()) ;
+		this.currentGuess = (computerPlayer.getPlayerName() + ": " + computerPlayer.getCreatedSoln().getPerson() + ", " + computerPlayer.getCreatedSoln().getRoom() + ", " + computerPlayer.getCreatedSoln().getWeapon()) ;
 		ArrayList<Card> foundCards = new ArrayList<Card>(); 
 
 		for(ComputerPlayer tempPlayer: computerPlayers) {
@@ -698,11 +698,14 @@ public class Board extends JPanel implements MouseListener {
 			// store the suggestion that was found to be the next accusation. 
 			computerPlayer.setAccusation(computerPlayer.getCreatedSoln());
 			this.compSuggestionDisproved = false;
+			this.currentResults = "no new clue";
 			return null;
 		}
 		else { 
 			computerPlayer.addSeen(foundCards.get(location));
 			this.compSuggestionDisproved = true;
+			System.out.println("Found other cards that disprove the suggestion");
+			this.currentResults = foundCards.get(location).getCardname();
 			return foundCards.get(location); 
 		}
 
@@ -1185,15 +1188,12 @@ public class Board extends JPanel implements MouseListener {
 						// public Card handleSuggestion(ComputerPlayer computerPlayer);
 						returnCardAnswer = handleSuggestion(computer);
 						// TODO: if returnCardAnswer = null , then that means that the suggestion was not disproved. You need to update the ControlPanel with the results. 
-						if ( returnCardAnswer == null) { this.currentResults = "no new clue"; }
-						else { this.currentResults = returnCardAnswer.getCardname(); } 
 						// making sure room, weapon, and person of computer.accusation is set to something before being able to make an accusation.
 						this.compReadyMakeAccusation = computer.isAccusationReady();
 					}
 				}
-
-
 			}
+			else { this.currentResults = ""; this.currentGuess = ""; }
 
 			repaint();
 			this.updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
