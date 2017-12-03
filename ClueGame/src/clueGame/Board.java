@@ -22,8 +22,7 @@ import java.lang.reflect.Field;
 import java.awt.*;    // library for Graphics 
 import java.awt.event.*;
 // library for JPanel
-import javax.swing.*;
-import java.util.Random; 
+import javax.swing.*; 
 
 // converted the Board class into a subclass of JPanel
 public class Board extends JPanel implements MouseListener {
@@ -68,32 +67,15 @@ public class Board extends JPanel implements MouseListener {
 	private boolean doneWithComputer = false;
 	private Player currentPlayerInGame;
 	public int currentPlayerInGameCount = -1;
-	private int state = -1;
 	private BoardCell selectedBox;
 	private ArrayList<Player> gamePlayers = new ArrayList<Player>();
 	private int dieRollValue = -1;
-	private boolean gamePause = true; 
-	public int enterForLoop = 0; 
+	private boolean compReadyMakeAccusation = false;
+	private boolean compSuggestionDisproved = true;
+	private String currentGuess = "";
+	private String currentResults = "no new clue";
 
-	/*
-	// TODO Adding the mouse listener
-	private class PointListener implements MouseListener
-	{
-		// empty definitions for unused event methods
-		public void mousePressed (MouseEvent event) {}
-		public void mouseClicked (MouseEvent event) 
-		{
-			pixelSelected.add(event.getPoint());
-			pixel = event.getPoint();
-			System.out.println("Mouse Clicked: ("+event.getX()+", "+event.getY() +")");
-			repaint();
-			return; 
-		}
-		public void mouseReleased (MouseEvent event) {}
-		public void mouseEntered (MouseEvent event) {}
-		public void mouseExited (MouseEvent event) {}
-	}
-	 */
+
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
@@ -689,22 +671,12 @@ public class Board extends JPanel implements MouseListener {
 
 	public Card handleSuggestion(ComputerPlayer computerPlayer) {
 
-		ArrayList<Card> possibleSuggestions = new ArrayList<Card>(); 
-
-		for(ComputerPlayer tempPlayer: computerPlayers) {
-			if (tempPlayer == computerPlayer) {
-				continue;  
-			}
-			for(Card tempCard: tempPlayer.getMyCards()) {
-				possibleSuggestions.add(tempCard); 
-			}
-		}
-
 		int row = computerPlayer.getCurrentRow(); 
 		int col = computerPlayer.getCurrentColumn();
 
+		// createSuggestions saves the generated suggestion in ComputerPlayer's creadSoln (which is of type Solution)
 		computerPlayer.createSuggestion(board[col][row], possiblePeople, possibleWeapons, rooms, computerPlayer); 
-
+		this.currentGuess = (computerPlayer.getCreatedSoln().getPerson() + ", " + computerPlayer.getCreatedSoln().getRoom() + ", " + computerPlayer.getCreatedSoln().getWeapon()) ;
 		ArrayList<Card> foundCards = new ArrayList<Card>(); 
 
 		for(ComputerPlayer tempPlayer: computerPlayers) {
@@ -712,20 +684,25 @@ public class Board extends JPanel implements MouseListener {
 				continue;  
 			}
 			else { 
+				// if a card is found by another player, the card is added to the ArrayList of cards
 				Card temp = tempPlayer.disproveSuggestion(computerPlayer.createdSoln); 
 				foundCards.add(temp); 
 			}
 		}
 
-
+		// selecting a random number for selecting a found Card
 		Random rand = new Random(); 
 		int location = rand.nextInt(foundCards.size()); 
 
-		if (foundCards.size() == 0) {
+		if (foundCards.size() == 0) { /* if the size of FoundCards = 0, that means not cards were found to disprove the suggestion */
+			// store the suggestion that was found to be the next accusation. 
+			computerPlayer.setAccusation(computerPlayer.getCreatedSoln());
+			this.compSuggestionDisproved = false;
 			return null;
 		}
 		else { 
 			computerPlayer.addSeen(foundCards.get(location));
+			this.compSuggestionDisproved = true;
 			return foundCards.get(location); 
 		}
 
@@ -880,7 +857,7 @@ public class Board extends JPanel implements MouseListener {
 	// TODO: check to make sure if working as desired 
 	public boolean updateHumanPosition(int col, int row, int pathlength, Player player) 
 	{ 	
-		System.out.println(this.enterForLoop);
+
 		System.out.println("Col: " + col);
 		System.out.println("Row: " + row);
 		System.out.println("pathlength: " + pathlength);
@@ -895,7 +872,7 @@ public class Board extends JPanel implements MouseListener {
 				this.doneWithHuman = true;	
 				revalidate();
 				repaint();
-				this.enterForLoop++;
+
 			}
 		}
 
@@ -985,7 +962,6 @@ public class Board extends JPanel implements MouseListener {
 		return peoplePile;
 	}
 
-
 	// Getter for getAnswerKey() 
 	// @param no parameter 
 	// @return answerKey 
@@ -1029,8 +1005,6 @@ public class Board extends JPanel implements MouseListener {
 		rooms = this.rooms; 
 	}
 
-
-
 	public Board update()
 	{
 		return this.theInstance;
@@ -1040,49 +1014,52 @@ public class Board extends JPanel implements MouseListener {
 	public void mousePressed (MouseEvent event) {}
 	public void mouseClicked (MouseEvent event) 
 	{
-		BoardCell whichBox = null;
-		//selectedBox = null;
-		// FIXME
-		for ( int i = 0; i < 22; i++)
+		if ( this.targetSelected == false )
 		{
-			for ( int j = 0; j < 23; j++)
+			BoardCell whichBox = null;
+			//selectedBox = null;
+			// FIXME
+			for ( int i = 0; i < 22; i++)
 			{
-				if (getCellAt(i, j).containsClick(event.getX(), event.getY()))
+				for ( int j = 0; j < 23; j++)
 				{
-					whichBox = getCellAt(i, j);
-					repaint();
-					break;
-				}
+					if (getCellAt(i, j).containsClick(event.getX(), event.getY()))
+					{
+						whichBox = getCellAt(i, j);
+						repaint();
+						break;
+					}
 
+				}
 			}
-		}
-		// NOTE: checking to see if the clicked BoardCell was part of the targets HashSet
-		if (whichBox != null)
-		{
-			if ( targets.contains(whichBox)) 
+			// NOTE: checking to see if the clicked BoardCell was part of the targets HashSet
+			if (whichBox != null)
 			{
-				selectedBox = whichBox;
-				repaint();
-				GamePlay();
-				this.targetSelected = true; 
-				return;
+				if ( targets.contains(whichBox)) 
+				{
+					selectedBox = whichBox;
+					repaint();
+					GamePlay();
+					this.targetSelected = true; 
+					return;
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
+					repaint();
+					GamePlay();
+					return;
+				}
 			}
 			else
 			{
 				JOptionPane.showMessageDialog(null, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
+				System.out.println("Box selected was not a box");
 				repaint();
-				GamePlay();
-				return;
 			}
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(null, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
-			System.out.println("Box selected was not a box");
+			revalidate();
 			repaint();
 		}
-		revalidate();
-		repaint();
 	}
 	public void mouseReleased (MouseEvent event) {}
 	public void mouseEntered (MouseEvent event) {}
@@ -1090,7 +1067,6 @@ public class Board extends JPanel implements MouseListener {
 
 
 	// NOTE: Game Play Logic Methods
-
 	public void nextPlayerButtonMethod()
 	{
 		if (this.targetSelected)
@@ -1106,58 +1082,51 @@ public class Board extends JPanel implements MouseListener {
 
 			this.dieRollValue = rollDie();
 		}
-
-
 	}
+
 	public void buildGamePlayers()
 	{
 		for (HumanPlayer human: humanPlayer)
 		{ this.gamePlayers.add(human); }
 		for (ComputerPlayer computer: computerPlayers)
 		{ this.gamePlayers.add(computer); }
-
 		for (Player computer: this.gamePlayers)
 		{ System.out.println(computer.getPlayerName()); }
-
 	}
+
 	public Player whoIsTheCurrentPLayer()
-	{
-		// NOTE: Empty player was made to return when game first starts
-		return this.currentPlayerInGame;
+	{ return this.currentPlayerInGame; /* NOTE: Empty player was made to return when game first starts */  }
 
-	}
 	public int currentDieRollValue()
 	{ return this.dieRollValue; }
+
+	public String whatIsTheCurrentGuess()
+	{ return this.currentGuess; }
+
+	public String whatIsTheCurrentResult()
+	{ return this.currentResults; }
 
 	public void GamePlay()
 	{
 
 		System.out.println("Current Player: " + currentPlayerInGame.getPlayerName());
-		gamePause = true;
 		if (this.currentPlayerInGame.getPlayerName().equals("CompSci"))
 		{
 
 			this.doneWithHuman = false;
 			this.targetSelected = false; 
-			System.out.println("HUMAN");
 			int row = this.currentPlayerInGame.getCurrentRow();
 			int col = this.currentPlayerInGame.getCurrentColumn();
-			System.out.println("Location [" + row + "][" + col +"]");
 			calcTargets(col, row, this.dieRollValue);
 			repaint();
-
-			System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
-			 
-
-
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
 
 			if (true /*FIXME: boardCell is room/doorway*/) { 
-				
+
 				// Call suggestion in new window
-				
-				
+
+
 				/*
 				JTextField p = new JTextField(5);
 				JTextField w = new JTextField(5);
@@ -1180,11 +1149,8 @@ public class Board extends JPanel implements MouseListener {
 					System.out.println("Weapon: " + w.getText());
 					System.out.println("Room should be filled in already");
 				}
-				*/
-			}		
-			
-			
-			//break;
+				 */
+			}
 		}
 		if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
 				this.currentPlayerInGame.getPlayerName().equals("ChemE") 	|| 
@@ -1193,20 +1159,46 @@ public class Board extends JPanel implements MouseListener {
 				this.currentPlayerInGame.getPlayerName().equals("Physics"))
 		{
 			this.doneWithComputer = false;
-			System.out.println("COMPUTER");
-
 			int row = this.currentPlayerInGame.getCurrentRow(); 
-			int col = this.currentPlayerInGame.getCurrentColumn(); 
-			System.out.println("Location [" + row + "][" + col +"]");
-			//updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
-			repaint();
-			gamePause = updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
-			System.out.println("New Location [" + this.currentPlayerInGame.getCurrentRow() + "][" + this.currentPlayerInGame.getCurrentColumn() +"]");
-			repaint();
+			int col = this.currentPlayerInGame.getCurrentColumn();
+			Card returnCardAnswer = new Card(); /* = generated Card created when handleSuggestion is called */
 
-			//break;
+			// TODO
+			if (this.compReadyMakeAccusation && !this.compSuggestionDisproved)
+			{
+				// make an accusation, the accusation will be the previous suggestion 
+			}
+			// suggestions can only be made when a player is in a room
+			if (getCellAt(col, row).isDoorway())
+			{
+				System.out.println("Computer's Room location: " + getCellAt(row, col).getInitial());
+				// In the ComputerPlayer class, creatSuggestion exists: 
+				// 	- public void createSuggestion(BoardCell cell, ArrayList<Card> peopleArray, ArrayList<Card> weaponsArray, Set<String> rooms , ComputerPlayer player); 
+				// need a ComputerPlayer object to call public Solution getCreatedSoln(); and createSuggestion( ... ); 
+				// 	- Should manipulate the original set of ComputerPlayers!
+				// All of the players except this.currentPlayerInGame need to call disproveSuggestion
+				//  - Board class' handleSuggestion will run all of the above functionalities 
+				for (ComputerPlayer computer : computerPlayers)
+				{
+					if (computer.getPlayerName() == this.currentPlayerInGame.getPlayerName()) /* find the computer that matches this.currentPlayerInGame */
+					{
+						// public Card handleSuggestion(ComputerPlayer computerPlayer);
+						returnCardAnswer = handleSuggestion(computer);
+						// TODO: if returnCardAnswer = null , then that means that the suggestion was not disproved. You need to update the ControlPanel with the results. 
+						if ( returnCardAnswer == null) { this.currentResults = "no new clue"; }
+						else { this.currentResults = returnCardAnswer.getCardname(); } 
+						// making sure room, weapon, and person of computer.accusation is set to something before being able to make an accusation.
+						this.compReadyMakeAccusation = computer.isAccusationReady();
+					}
+				}
+
+
+			}
+
+			repaint();
+			this.updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
+			repaint();
 		}
-		System.out.println("GAME PLAYING");
 	}
 
 

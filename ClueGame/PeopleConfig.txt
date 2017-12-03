@@ -1,6 +1,6 @@
-CompSci,Cyan,22,10
+CompSci,Black,22,10
 MechE,Red,11,0
 ChemE,Green,4,21
 Mining,MAGENTA,3,0
-Geology,White,0,13
+Geology,Pink,0,13
 Physics,Orange,17,21

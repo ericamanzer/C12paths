@@ -11,6 +11,12 @@ public class Card {
 	private String cardName; 
 	private CardType cardType; 
 	
+	public Card()
+	{
+		this.cardName = "";
+		this.cardType = CardType.PERSON;
+	}
+	
 	
 	public Card(String carName, CardType cardType) {
 		super();

@@ -11,6 +11,7 @@ import java.io.*;
 public class ComputerPlayer extends Player {
 
 	Solution createdSoln = new Solution(); 
+	private Solution accusation = new Solution();
 
 	//Parameterized Constructor
 	//@param name computer's name
@@ -180,8 +181,22 @@ public class ComputerPlayer extends Player {
 
 	}
 
+	public void setAccusation(Solution nextAccusation)
+	{
+		this.accusation.setAnswerKeyPerson(nextAccusation.getPerson());
+		this.accusation.setAnswerKeyRoom(nextAccusation.getRoom());
+		this.accusation.setAnswerKeyWeapon(nextAccusation.getWeapon());
+	}
+
+	
 	public Solution getCreatedSoln() { 
 		return createdSoln; 
+	}
+	
+	public boolean isAccusationReady()
+	{
+		if( accusation.getRoom() != "" && accusation.getPerson() != "" && accusation.getWeapon() != "") { return true; }
+		return false;
 	}
 
 	

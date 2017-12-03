@@ -27,6 +27,8 @@ public class ControlGUI extends JPanel {
 	private JPanel currentPlayerAndDieRoll;
 	private JTextField currentName; 
 	private JTextField currentDie; 
+	private JTextField currentGuess;
+	private JTextField currentResult;
 
 	public ControlGUI()
 	{
@@ -41,6 +43,8 @@ public class ControlGUI extends JPanel {
 		board.buildGamePlayers();
 		currentName = new JTextField(board.whoIsTheCurrentPLayer().getPlayerName());
 		currentDie = new JTextField(String.valueOf(board.currentDieRollValue()));
+		currentGuess = new JTextField(board.whatIsTheCurrentGuess());
+		currentResult = new JTextField(board.whatIsTheCurrentResult());
 
 		//JTextField field = new JTextField(); 
 		setLayout(new GridLayout(2,0));
@@ -84,7 +88,9 @@ public class ControlGUI extends JPanel {
 		name = new JTextField(20);
 		name.setEditable(false);
 		panel.add(nameLabel);
-		panel.add(name);
+		currentGuess.setEnabled(false);
+		//panel.add(name);
+		panel.add(currentGuess);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		return panel;
 	}
@@ -115,7 +121,9 @@ public class ControlGUI extends JPanel {
 		name = new JTextField(20);
 		name.setEditable(false);
 		panel.add(nameLabel);
-		panel.add(name);
+		//panel.add(name);
+		currentResult.setEnabled(false);
+		panel.add(currentResult);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		return panel;
 	}
@@ -142,6 +150,14 @@ public class ControlGUI extends JPanel {
 		this.currentDie.setText(String.valueOf(board.currentDieRollValue()));
 		//this.currentPlayerAndDieRoll.repaint();
 	}
+	
+	public void refreshGuessResultPanels()
+	{
+		this.currentGuess.setText(board.whatIsTheCurrentGuess());
+		//this.currentGuess.setEditable(false);
+		this.currentResult.setText(board.whatIsTheCurrentResult());
+		//this.currentResult.setEditable(false);
+	}
 
 	// NOTE: class implements ActionListener which is required for the
 	// nextPlayer button
@@ -155,6 +171,7 @@ public class ControlGUI extends JPanel {
 				board.nextPlayerButtonMethod();
 				// TODO need to refresh the createDiePanel and createNamePanel
 				refreshDieAndNamePanel();
+				refreshGuessResultPanels();
 				board.GamePlay();
 			}
 		}

@@ -12,6 +12,9 @@ public class Solution {
 	
 	public Solution() {
 		super();
+		this.person = "";
+		this.room = "";
+		this.weapon = "";
 	}
 
 	public Solution(String person, String room, String weapon) {
