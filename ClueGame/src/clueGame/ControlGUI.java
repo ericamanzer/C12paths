@@ -167,12 +167,13 @@ public class ControlGUI extends JPanel {
 		{
 			if (board.doneWithHuman)
 			{
-				refreshGuessResultPanels();
+				
 				// TODO call appropriate methods in the Board Class for processing 
 				board.nextPlayerButtonMethod();
 				// TODO need to refresh the createDiePanel and createNamePanel
 				refreshDieAndNamePanel();
 				board.GamePlay();
+				refreshGuessResultPanels();
 			}
 		}
 	}

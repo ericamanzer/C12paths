@@ -73,11 +73,47 @@ public class Player extends JPanel {
 		this.seenCards = new HashSet<Card>();
 		
 	}
-	/*
-	public Card disproveSuggestion(Solution suggestion) {
+	public Card disproveSuggestion(Solution soln) {
+
+		String p1, p2, w1, w2, r1, r2;  
+
+		Set<Card> myCards = new HashSet<Card>(); 
+		myCards = getMyCards(); 
+		ArrayList<Card> cardsFound = new ArrayList<Card>();
+		//System.out.println(myCards.size());
+		for (Card found: myCards) {
+			if (soln.getPerson().equals(found.getCardname())) {
+				//System.out.println("1st");
+				cardsFound.add(found); 
+			}
+			if (soln.getWeapon().equals(found.getCardname())) {
+				//System.out.println("2nd");
+				cardsFound.add(found); 
+			}
+			if (soln.getRoom().equals(found.getCardname())) {
+				//System.out.println("3rd");
+				cardsFound.add(found); 
+			}
+			 
+		}
+
+		if (cardsFound.size() == 0) {
+			return null;
+		}
 		
+		else if (cardsFound.size() == 1) { 
+			return cardsFound.get(0); 
+		}
+		
+		else {
+			Random rand = new Random(); 
+			int possition = rand.nextInt(cardsFound.size());
+
+			return cardsFound.get(possition); 
+		}
+
 	}
-	*/
+
 	public int getMyCardSize()
 	{
 		return myCards.size();

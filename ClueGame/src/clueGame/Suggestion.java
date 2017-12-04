@@ -24,7 +24,7 @@ import java.util.*;
 public class Suggestion extends JPanel {
 
 	public Suggestion() { 
-		setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
+		//setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
 		setLayout(new GridLayout(4,1));
 		JPanel panel = peopleGuess();
 		JPanel panel1 = weaponsGuess();
@@ -72,13 +72,13 @@ public class Suggestion extends JPanel {
 	}
 
 	private JPanel buttonPanel() {
-		JButton accept = new JButton("Ok"); 
+		//JButton accept = new JButton("Ok"); 
 		//accept.addActionListener(new );    FIXME
 		JButton cancel = new JButton("Cancel"); 
 		//cancel.addActionListener();  FIXME 
 
 		JPanel panel = new JPanel(); 
-		panel.add(accept);
+		//panel.add(accept);
 		panel.add(cancel);
 		return panel; 
 	}

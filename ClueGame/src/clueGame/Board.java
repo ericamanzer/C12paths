@@ -688,6 +688,7 @@ public class Board extends JPanel implements MouseListener {
 				// if a card is found by another player, the card is added to the ArrayList of cards
 				Card temp = tempPlayer.disproveSuggestion(computerPlayer.createdSoln); 
 				foundCards.add(temp); 
+				
 			}
 		}
 
@@ -705,9 +706,19 @@ public class Board extends JPanel implements MouseListener {
 		else { 
 			computerPlayer.addSeen(foundCards.get(location));
 			this.compSuggestionDisproved = true;
-			System.out.println("Found other cards that disprove the suggestion");
-			this.currentResults = foundCards.get(location).getCardname();
-			return foundCards.get(location); 
+			System.out.println("Found other cards that disprove the suggestion. ArrayList size: " + foundCards.size() );
+			if (foundCards.get(location) != null)
+			{
+				this.currentResults = foundCards.get(location).getCardname();
+				return foundCards.get(location); 
+			}
+			else
+			{
+				// if null, need to choose another location to go to
+				this.compSuggestionDisproved = true;
+				this.currentResults = "no new clue";
+				return null; 
+			}
 		}
 
 	}
@@ -1112,7 +1123,10 @@ public class Board extends JPanel implements MouseListener {
 
 	public void GamePlay()
 	{
-
+			Suggestion suggest = new Suggestion();
+			JPanel suggestionWindow = new JPanel();
+			suggestionWindow = suggest;
+			
 		System.out.println("Current Player: " + currentPlayerInGame.getPlayerName());
 		if (this.currentPlayerInGame.getPlayerName().equals("CompSci"))
 		{
@@ -1125,7 +1139,8 @@ public class Board extends JPanel implements MouseListener {
 			repaint();
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
-
+			
+			
 			if (true /*FIXME: boardCell is room/doorway*/) { 
 
 				// Call suggestion in new window
@@ -1155,7 +1170,7 @@ public class Board extends JPanel implements MouseListener {
 					System.out.println("Weapon: " + w.getText());
 					System.out.println("Room should be filled in already");
 				}
-				 */
+				 
 }
 				Suggestion suggest = new Suggestion();
 				suggestAccuseFrame.add(suggest);
@@ -1168,9 +1183,11 @@ public class Board extends JPanel implements MouseListener {
 
 				//int result = JOptionPane.showMessageDialog(suggest, myPanel, "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
 
-
+				*/
+			}
 			
 		}
+		
 		if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
 				this.currentPlayerInGame.getPlayerName().equals("ChemE") 	|| 
 				this.currentPlayerInGame.getPlayerName().equals("Mining")	|| 
@@ -1199,7 +1216,7 @@ public class Board extends JPanel implements MouseListener {
 				//  - Board class' handleSuggestion will run all of the above functionalities 
 				for (ComputerPlayer computer : computerPlayers)
 				{
-					if (computer.getPlayerName() == this.currentPlayerInGame.getPlayerName()) /* find the computer that matches this.currentPlayerInGame */
+					if (computer.getPlayerName().equals(this.currentPlayerInGame.getPlayerName())) /* find the computer that matches this.currentPlayerInGame */
 					{
 						// public Card handleSuggestion(ComputerPlayer computerPlayer);
 						returnCardAnswer = handleSuggestion(computer);
@@ -1216,12 +1233,4 @@ public class Board extends JPanel implements MouseListener {
 			repaint();
 		}
 	}
-
-
 }
-
-
-
-
-
-
