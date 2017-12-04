@@ -20,11 +20,28 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.ItemSelectable;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class Suggestion extends JPanel {
 
+	private Board board;
+	JComboBox peopleList;  
+	JComboBox weaponsList; 
+	String roomName; 
+	
 	public Suggestion() { 
-		//setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
+
+		String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
+		String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
+		roomName = "Room name"; // Get current room from board 
+		
+		peopleList = new JComboBox(people);
+		weaponsList = new JComboBox(weapons);
+		
+		setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
 		setLayout(new GridLayout(4,1));
 		JPanel panel = peopleGuess();
 		JPanel panel1 = weaponsGuess();
@@ -40,8 +57,7 @@ public class Suggestion extends JPanel {
 
 
 	private JPanel peopleGuess() {
-		String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"}; 
-		JComboBox peopleList = new JComboBox(people); 
+
 		JPanel panel = new JPanel();
 		panel.add(peopleList);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "People Guess"));
@@ -49,8 +65,7 @@ public class Suggestion extends JPanel {
 	}
 
 	private JPanel weaponsGuess() { 
-		String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"}; 
-		JComboBox weaponsList = new JComboBox(weapons); 
+
 		JPanel panel = new JPanel();
 		panel.add(weaponsList);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Weapon Guess"));
@@ -60,10 +75,8 @@ public class Suggestion extends JPanel {
 	private JPanel roomsGuess() {
 
 		JPanel panel = new JPanel();
-
-
-		String name = "Room name"; // Get current room from board 
-		JTextField textName = new JTextField(name); 
+		
+		JTextField textName = new JTextField(roomName); 
 		textName.setEditable(false);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Room Guess"));
 		panel.add(textName);
@@ -72,8 +85,9 @@ public class Suggestion extends JPanel {
 	}
 
 	private JPanel buttonPanel() {
-		//JButton accept = new JButton("Ok"); 
-		//accept.addActionListener(new );    FIXME
+
+		JButton accept = new JButton("Submit"); 
+		// accept listener FIXME 
 		JButton cancel = new JButton("Cancel"); 
 		//cancel.addActionListener();  FIXME 
 
@@ -82,6 +96,31 @@ public class Suggestion extends JPanel {
 		panel.add(cancel);
 		return panel; 
 	}
+
+	
+	
+
+	/*
+		  
+	private class PersonMenuListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+
+			ItemListener itemListener = new ItemListener() {
+				public void itemStateChanged(ItemEvent itemEvent) {
+					int state = itemEvent.getStateChange();
+					System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
+					System.out.println("Item: " + itemEvent.getItem());
+					ItemSelectable is = itemEvent.getItemSelectable();
+					//System.out.println(", Selected: " + selectedString(is));
+				}
+			};	
+
+		}
+	}
+
+*/
 
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality

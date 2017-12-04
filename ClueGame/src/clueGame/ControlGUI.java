@@ -164,8 +164,8 @@ public class ControlGUI extends JPanel {
 	private class NextPlayerButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
-		{
-			if (board.doneWithHuman)
+		{ 
+			if (board.doneWithHuman && board.inWindow == false) 
 			{
 				
 				// TODO call appropriate methods in the Board Class for processing 

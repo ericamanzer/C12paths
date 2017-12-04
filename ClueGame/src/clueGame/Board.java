@@ -75,6 +75,7 @@ public class Board extends JPanel implements MouseListener {
 	private boolean compSuggestionDisproved = true;
 	private String currentGuess = "";
 	private String currentResults = "no new clue";
+	public boolean inWindow = false; 
 
 
 	// Functions:
@@ -89,7 +90,7 @@ public class Board extends JPanel implements MouseListener {
 		panel.add(name);
 		addMouseListener(this); // adds the listener (aka PointListener) to the panel
 		add(panel, BorderLayout.CENTER);
-		setPreferredSize(new Dimension(400, 400));
+		setPreferredSize(new Dimension(400, 400)); 
 
 	}
 	public static Board getInstance() 
@@ -1029,7 +1030,7 @@ public class Board extends JPanel implements MouseListener {
 	public void mousePressed (MouseEvent event) {}
 	public void mouseClicked (MouseEvent event) 
 	{
-		if ( this.targetSelected == false )
+		if ( this.targetSelected == false && inWindow == false )
 		{
 			BoardCell whichBox = null;
 			//selectedBox = null;
@@ -1123,10 +1124,7 @@ public class Board extends JPanel implements MouseListener {
 
 	public void GamePlay()
 	{
-			Suggestion suggest = new Suggestion();
-			JPanel suggestionWindow = new JPanel();
-			suggestionWindow = suggest;
-			
+
 		System.out.println("Current Player: " + currentPlayerInGame.getPlayerName());
 		if (this.currentPlayerInGame.getPlayerName().equals("CompSci"))
 		{
@@ -1139,52 +1137,45 @@ public class Board extends JPanel implements MouseListener {
 			repaint();
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
-			
-			
-			if (true /*FIXME: boardCell is room/doorway*/) { 
 
-				// Call suggestion in new window
+			BoardCell cell = new BoardCell(); 
+			cell = getCellAt(row, col);
 
-				/*	
+			if (cell.isRoom()) {
+
+				inWindow = true; 
 				
-				JTextField p = new JTextField(5);
-				JTextField w = new JTextField(5);
-				JTextField r = new JTextField(5);
+				JFrame myFrame = new JFrame("Suggestion");
+				myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				try 
+				{
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
 				JPanel myPanel = new JPanel();
-				//JTextBox person = new JTextBox(); 
-				myPanel.add(new JLabel("Person:"));
-				myPanel.add(p);
-				myPanel.add(Box.createHorizontalStrut(15)); 
-				myPanel.add(new JLabel("Weapon:"));
-				myPanel.add(w);
-				myPanel.add(Box.createHorizontalStrut(15)); 
-				myPanel.add(new JLabel("Room:"));
-				myPanel.add(r);
+				Suggestion suggest = new Suggestion(); 
+				myPanel = suggest; 
 
-				
+				myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
+				myPanel.setOpaque(true);
 
-				
-				if (result == JOptionPane.OK_OPTION) {
-					System.out.println("Person: " + p.getText());
-					System.out.println("Weapon: " + w.getText());
-					System.out.println("Room should be filled in already");
-				}
-				 
-}
-				Suggestion suggest = new Suggestion();
-				suggestAccuseFrame.add(suggest);
-				suggestAccuseFrame.setSize(500, 500);
-				suggestAccuseFrame.setVisible(true);
-				
-				JPanel suggestionWindow = new JPanel();
-				suggestionWindow = suggest;
-				JOptionPane.showMessageDialog(null, suggest, "Please Enter X and Y Values" , JOptionPane.OK_CANCEL_OPTION);
+				JTextArea text = new JTextArea(15, 50);
+				text.setEditable(false);
+				text.setFont(Font.getFont(Font.SANS_SERIF));
+				JPanel input = new JPanel(); 
+				input.setLayout(new FlowLayout()); 
+				myPanel.add(input);
 
-				//int result = JOptionPane.showMessageDialog(suggest, myPanel, "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
-
-				*/
+				myFrame.getContentPane().add(BorderLayout.CENTER, myPanel); 
+				myFrame.pack();
+				myFrame.setLocationByPlatform(true);
+				myFrame.setVisible(true);
+				myFrame.setResizable(false);
+				inWindow = false; 
 			}
+
 			
 		}
 		
