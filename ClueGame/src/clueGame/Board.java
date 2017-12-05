@@ -1062,7 +1062,8 @@ public class Board extends JPanel implements MouseListener {
 					// TODO: would test if whichBox isDoorway()
 					if (whichBox.isDoorway()) 
 					{
-
+						System.out.println("HELLO, WHY");
+						/*
 						inWindow = true; 
 						
 						myFrame = new JFrame("Suggestion");
@@ -1093,7 +1094,8 @@ public class Board extends JPanel implements MouseListener {
 						myFrame.setLocationByPlatform(true);
 						myFrame.setVisible(true);
 						myFrame.setResizable(false);
-						inWindow = false; 
+						inWindow = false;
+						*/
 					}
 					GamePlay();
 					this.targetSelected = true; 
