@@ -689,7 +689,8 @@ public class Board extends JPanel implements MouseListener {
 			else { 
 				// if a card is found by another player, the card is added to the ArrayList of cards
 				Card temp = tempPlayer.disproveSuggestion(computerPlayer.createdSoln); 
-				foundCards.add(temp); 
+				if ( temp == null) {}
+				else { foundCards.add(temp); }
 				
 			}
 		}
@@ -841,6 +842,7 @@ public class Board extends JPanel implements MouseListener {
 	}
 	// TODO: check to make sure if working as desired
 	public boolean updateComputerPosition(int col, int row, int pathlength, Player player) { 
+		
 		ArrayList<BoardCell> possibleTargets = new ArrayList<BoardCell>(); 
 		// NOTE: calcTargets with refresh and populate the targets HashSet
 		calcTargets(col, row, pathlength); 
@@ -868,7 +870,7 @@ public class Board extends JPanel implements MouseListener {
 			}
 		}
 		player.updatePosition(c, r);  // NOTE: probably unnecessary 
-
+		
 		return false; 
 	}	
 	// TODO: check to make sure if working as desired 
@@ -1193,10 +1195,38 @@ public class Board extends JPanel implements MouseListener {
 			int col = this.currentPlayerInGame.getCurrentColumn();
 			Card returnCardAnswer = new Card(); /* = generated Card created when handleSuggestion is called */
 
+			
+			repaint();
+			this.updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
 			// TODO
 			if (this.compReadyMakeAccusation && !this.compSuggestionDisproved)
 			{
 				// make an accusation, the accusation will be the previous suggestion 
+				for (ComputerPlayer computer : computerPlayers)
+				{
+					if (computer.getPlayerName().equals(this.currentPlayerInGame.getPlayerName())) /* find the computer that matches this.currentPlayerInGame */
+					{
+						// create one string that will be used in the JOptionPane
+						Solution computerAnswer = new Solution();
+						computerAnswer = computer.getAccusation();
+						String compAnswer = computerAnswer.getPerson() + ", " + computerAnswer.getRoom() + "room, " + computerAnswer.getWeapon();
+						// check computerAnser against the store answerKey
+						if ( computerAnswer.getPerson().equals(answerKey.getPerson()) && 
+							 computerAnswer.getRoom().equals(answerKey.getRoom()) && 
+							 computerAnswer.getWeapon().equals(answerKey.getWeapon()) )
+						{
+							JOptionPane.showMessageDialog(null, "Computer Player: " + computer.getPlayerName() + " won the game. Answer was: "
+							+ compAnswer, "Message", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Computer Player: " + computer.getPlayerName() + " was wrong. Solution given was: "
+									+ compAnswer, "Message", JOptionPane.INFORMATION_MESSAGE);
+						}
+					}
+				}
+				
+				
 			}
 			// suggestions can only be made when a player is in a room
 			if (getCellAt(col, row).isDoorway())
@@ -1222,8 +1252,6 @@ public class Board extends JPanel implements MouseListener {
 			}
 			else { this.currentResults = ""; this.currentGuess = ""; }
 
-			repaint();
-			this.updateComputerPosition(col, row, this.dieRollValue, this.currentPlayerInGame);
 			repaint();
 		}
 	}

@@ -188,6 +188,7 @@ public class ComputerPlayer extends Player {
 		this.accusation.setAnswerKeyWeapon(nextAccusation.getWeapon());
 	}
 
+	public Solution getAccusation() { return this.accusation; }
 	
 	public Solution getCreatedSoln() { 
 		return createdSoln; 
