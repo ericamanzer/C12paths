@@ -59,6 +59,7 @@ public class Board extends JPanel implements MouseListener {
 	ArrayList<Point> roomNames = new ArrayList<Point>();
 	private JPanel panel;
 	static JFrame suggestAccuseFrame; 
+	JFrame myFrame; 
 
 	boolean gameFinished = false; 
 
@@ -1062,7 +1063,7 @@ public class Board extends JPanel implements MouseListener {
 
 						inWindow = true; 
 						
-						JFrame myFrame = new JFrame("Suggestion");
+						myFrame = new JFrame("Suggestion");
 						myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						try 
 						{
@@ -1090,6 +1091,7 @@ public class Board extends JPanel implements MouseListener {
 						myFrame.setLocationByPlatform(true);
 						myFrame.setVisible(true);
 						myFrame.setResizable(false);
+						myFrame.dispose();
 						inWindow = false; 
 					}
 					GamePlay();
@@ -1227,4 +1229,10 @@ public class Board extends JPanel implements MouseListener {
 			repaint();
 		}
 	}
+	
+	public void cancelMyFrame() { 
+		myFrame.dispose();
+	}
+	
 }
+

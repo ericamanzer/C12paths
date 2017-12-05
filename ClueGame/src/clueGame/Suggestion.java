@@ -22,8 +22,6 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.BorderLayout;
 import java.awt.ItemSelectable;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class Suggestion extends JPanel {
 
@@ -31,6 +29,7 @@ public class Suggestion extends JPanel {
 	JComboBox peopleList;  
 	JComboBox weaponsList; 
 	String roomName; 
+	int state; 
 	
 	public Suggestion() { 
 
@@ -92,35 +91,63 @@ public class Suggestion extends JPanel {
 		//cancel.addActionListener();  FIXME 
 
 		JPanel panel = new JPanel(); 
-		//panel.add(accept);
+		panel.add(accept);
 		panel.add(cancel);
 		return panel; 
 	}
 
+	private class cancelButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{ 
+			if (board.doneWithHuman)  
+			{
+				
+				 
+				board.cancelMyFrame();
+				
+				
+			}
+		}
+	}
 	
+	private class submitButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{ 
+			if (board.doneWithHuman)  
+			{
+
+
+
+				ItemListener itemListener = new ItemListener() {
+					public void itemStateChanged(ItemEvent itemEvent) {
+						state = itemEvent.getStateChange();
+						System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
+						System.out.println("Item: " + itemEvent.getItem());
+						ItemSelectable is = itemEvent.getItemSelectable();
+						//System.out.println(", Selected: " + selectedString(is));
+					}
+				};
+
+			}
+		}
+	}
 	
 
-	/*
+	
 		  
 	private class PersonMenuListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 
-			ItemListener itemListener = new ItemListener() {
-				public void itemStateChanged(ItemEvent itemEvent) {
-					int state = itemEvent.getStateChange();
-					System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
-					System.out.println("Item: " + itemEvent.getItem());
-					ItemSelectable is = itemEvent.getItemSelectable();
-					//System.out.println(", Selected: " + selectedString(is));
-				}
-			};	
+				
 
 		}
 	}
 
-*/
+
 
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
@@ -133,6 +160,9 @@ public class Suggestion extends JPanel {
 		frame.add(gui, BorderLayout.CENTER);
 		// Now let's view it
 		frame.setVisible(true);
+		
+		
+		
 	}
 
 
