@@ -34,6 +34,8 @@ public class Accusation extends JPanel {
 	private JComboBox roomsList;
 	private String[] rooms = {"Marquez", "Hill Hall", "Guggenheim", "Brown", "Randall", "Alderson", "Coolbaugh", "Elm", "Weaver"}; 
 	
+	public JFrame accusationFrame = new JFrame();
+	
 	public Accusation() { 
 		board = Board.getInstance();
 		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
@@ -62,7 +64,6 @@ public class Accusation extends JPanel {
 		JPanel buttons = buttonPanel();
 		add(buttons);
 	}	
-
 
 	private JPanel peopleGuess() {
 		JPanel panel = new JPanel();
@@ -104,8 +105,14 @@ public class Accusation extends JPanel {
 		public void actionPerformed(ActionEvent e)
 		{ 
 			System.out.println("Canceling suggestion class "); 
-			// FIXME
+			accusationFrame.setVisible(false);
+			accusationFrame.dispose();
 		}
+	}
+	
+	public void passFrame(JFrame accusationFrame)
+	{ 
+		this.accusationFrame = accusationFrame;
 	}
 	
 	private class submitButtonListener implements ActionListener
@@ -121,6 +128,12 @@ public class Accusation extends JPanel {
 			roomAnswer = rooms[foundR]; 
 			System.out.println("Answer Found: " + peopleAnswer + ", " + roomAnswer + " room, " + weaponAnswer);
 			
+			Solution soln = new Solution(peopleAnswer, weaponAnswer, roomAnswer);
+			
+			if (board.checkAccusation(soln) == false ) { 
+				board.incorrectAccuation(soln);  
+			}
+		
 		}
 	}
 	

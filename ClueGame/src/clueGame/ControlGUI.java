@@ -33,6 +33,7 @@ public class ControlGUI extends JPanel {
 	private JTextField currentGuess;
 	private JTextField currentResult;
 	JFrame accusationWindow = new JFrame("Accusation");
+	Accusation accusationClass = new Accusation();
 
 	public ControlGUI()
 	{
@@ -199,7 +200,7 @@ public class ControlGUI extends JPanel {
 			}
 			
 			JPanel accusationPanel = new JPanel();
-			Accusation accusationClass = new Accusation();
+			
 			accusationPanel = accusationClass;
 			accusationPanel.setLayout(new BoxLayout(accusationPanel, BoxLayout.Y_AXIS));
 			accusationPanel.setOpaque(true);
@@ -209,6 +210,7 @@ public class ControlGUI extends JPanel {
 			accusationWindow.setLocationByPlatform(true);
 			accusationWindow.setVisible(true);
 			accusationWindow.setResizable(true);
+			accusationClass.passFrame(accusationWindow);
 		}
 	}
 
