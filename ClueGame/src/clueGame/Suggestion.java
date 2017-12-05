@@ -110,7 +110,7 @@ public class Suggestion extends JPanel {
 
 
 			System.out.println("Canceling suggestion class "); 
-			board.cancelMyFrame();
+			board.closeMyFrame();
 
 
 		}
@@ -122,6 +122,7 @@ public class Suggestion extends JPanel {
 		{ 
 
 
+			
 
 
 			ItemListener itemListener = new ItemListener() {
@@ -135,6 +136,9 @@ public class Suggestion extends JPanel {
 			};
 
 
+			System.out.println("Submitting suggestion class "); 
+			board.closeMyFrame();
+			
 		}
 	}
 	
@@ -146,8 +150,16 @@ public class Suggestion extends JPanel {
 		public void actionPerformed(ActionEvent e)
 		{
 
+			String p = "", r = "", w = ""; 
+			
+				Solution soln = new Solution(p, w, r);
 				
-
+				if (board.checkAccusation(soln) == false ) { 
+					board.incorrectAccuation(soln);  
+				}
+				
+				
+				
 		}
 	}
 
