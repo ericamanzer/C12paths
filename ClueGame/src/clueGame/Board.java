@@ -76,6 +76,7 @@ public class Board extends JPanel implements MouseListener {
 	private String currentGuess = "";
 	private String currentResults = "no new clue";
 	public boolean inWindow = false; 
+	public boolean isFirstTurn = true; 
 
 
 	// Functions:
@@ -1135,15 +1136,14 @@ public class Board extends JPanel implements MouseListener {
 			int col = this.currentPlayerInGame.getCurrentColumn();
 			calcTargets(col, row, this.dieRollValue);
 			repaint();
+			
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
+			
+			inWindow = true;
+			if (!getCellAt(row, col).isWalkway()) {
 
-			BoardCell cell = new BoardCell(); 
-			cell = getCellAt(row, col);
-
-			if (cell.isRoom()) {
-
-				inWindow = true; 
+				 
 				
 				JFrame myFrame = new JFrame("Suggestion");
 				myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -1173,9 +1173,13 @@ public class Board extends JPanel implements MouseListener {
 				myFrame.setLocationByPlatform(true);
 				myFrame.setVisible(true);
 				myFrame.setResizable(false);
-				inWindow = false; 
+				 
+				
+				
 			}
+			inWindow = false;
 
+			
 			
 		}
 		
