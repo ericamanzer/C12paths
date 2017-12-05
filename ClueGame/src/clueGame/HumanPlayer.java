@@ -11,6 +11,8 @@ import java.util.*;
 
 public class HumanPlayer extends Player {
 	
+	private Solution accusation = new Solution();
+	
 	// Default constructor
 	//@param no parameters
 	//@return nothing return; default constructor
@@ -27,6 +29,13 @@ public class HumanPlayer extends Player {
 	public HumanPlayer(String name, String color, int r, int c)
 	{
 		super(name, color, r, c);
-	}	
+	}
+	
+	public void setAccusation( String room, String person, String weapon)
+	{
+		accusation.setAnswerKeyPerson(person);
+		accusation.setAnswerKeyRoom(room);
+		accusation.setAnswerKeyWeapon(weapon);
+	}
 	
 }

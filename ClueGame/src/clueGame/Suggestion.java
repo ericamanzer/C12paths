@@ -107,10 +107,8 @@ public class Suggestion extends JPanel {
 	{
 		public void actionPerformed(ActionEvent e)
 		{ 
-
 			System.out.println("Canceling suggestion class "); 
 			board.cancelMyFrame();
-
 		}
 	}
 	

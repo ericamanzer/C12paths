@@ -23,7 +23,32 @@ import java.util.*;
 
 public class Accusation extends JPanel {
 
+	private Board board; 
+	private String peopleAnswer;
+	private String roomAnswer;
+	private String weaponAnswer;
+	private JComboBox peopleList;
+	private String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"}; 
+	private JComboBox weaponsList;
+	private String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"}; 
+	private JComboBox roomsList;
+	private String[] rooms = {"Marquez", "Hill Hall", "Guggenheim", "Brown", "Randall", "Alderson", "Coolbaugh", "Elm", "Weaver"}; 
+	
 	public Accusation() { 
+		board = Board.getInstance();
+		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
+		board.setWeaponsConfigFile("WeaponsConfig.txt");
+		board.setPeopleConfigFile("PeopleConfig.txt");
+		board.initialize();
+		board.buildGamePlayers();
+		peopleAnswer = "";
+		roomAnswer = "";
+		weaponAnswer = "";
+		
+		peopleList = new JComboBox(people);
+		weaponsList = new JComboBox(weapons); 
+		roomsList = new JComboBox(rooms); 
+		
 		setBorder(new TitledBorder (new EtchedBorder(), "Accusation"));
 		setLayout(new GridLayout(4,1));
 		JPanel panel = peopleGuess();
@@ -40,8 +65,6 @@ public class Accusation extends JPanel {
 
 
 	private JPanel peopleGuess() {
-		String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"}; 
-		JComboBox peopleList = new JComboBox(people); 
 		JPanel panel = new JPanel();
 		panel.add(peopleList);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "People Guess"));
@@ -49,8 +72,7 @@ public class Accusation extends JPanel {
 	}
 	
 	private JPanel weaponsGuess() { 
-		String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"}; 
-		JComboBox weaponsList = new JComboBox(weapons); 
+
 		JPanel panel = new JPanel();
 		panel.add(weaponsList);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Weapon Guess"));
@@ -58,8 +80,7 @@ public class Accusation extends JPanel {
 	}
 	
 	private JPanel roomsGuess() { 
-		String[] rooms = {"Marquez", "Hill Hall", "Guggenheim", "Brown", "Randall", "Alderson", "Coolbaugh", "Elm", "Weaver"}; 
-		JComboBox roomsList = new JComboBox(rooms); 
+		
 		JPanel panel = new JPanel();
 		panel.add(roomsList);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Room Guess"));
@@ -68,14 +89,39 @@ public class Accusation extends JPanel {
 
 	private JPanel buttonPanel() {
 		JButton accept = new JButton("Submit"); 
-		//accept.addActionListener(new );    FIXME
+		accept.addActionListener(new submitButtonListener() );    //FIXME
 		JButton cancel = new JButton("Cancel"); 
-		//cancel.addActionListener();  FIXME 
+		cancel.addActionListener(new cancelButtonListener());  //FIXME 
 		
 		JPanel panel = new JPanel(); 
 		panel.add(accept);
 		panel.add(cancel);
 		return panel; 
+	}
+	
+	private class cancelButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{ 
+			System.out.println("Canceling suggestion class "); 
+			// FIXME
+		}
+	}
+	
+	private class submitButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+
+			int foundP = peopleList.getSelectedIndex();
+			peopleAnswer = people[foundP]; 
+			int foundW = weaponsList.getSelectedIndex();
+			weaponAnswer = weapons[foundW];
+			int foundR = roomsList.getSelectedIndex();
+			roomAnswer = rooms[foundR]; 
+			System.out.println("Answer Found: " + peopleAnswer + ", " + roomAnswer + " room, " + weaponAnswer);
+			
+		}
 	}
 	
 	public static void main(String[] args) {

@@ -9,11 +9,14 @@ package clueGame;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.util.*;
@@ -29,6 +32,7 @@ public class ControlGUI extends JPanel {
 	private JTextField currentDie; 
 	private JTextField currentGuess;
 	private JTextField currentResult;
+	JFrame accusationWindow = new JFrame("Accusation");
 
 	public ControlGUI()
 	{
@@ -135,6 +139,7 @@ public class ControlGUI extends JPanel {
 		nextPlayer.addActionListener(new NextPlayerButtonListener());
 		// TODO accusation need to addActionListener
 		JButton accusation = new JButton("Make an accusation");
+		accusation.addActionListener(new MakeAccusationButtonListener());
 		JPanel panel = new JPanel();
 		panel.add(nextPlayer);
 		panel.add(accusation); 
@@ -178,6 +183,34 @@ public class ControlGUI extends JPanel {
 		}
 	}
 
+	private class MakeAccusationButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			
+			accusationWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			try
+			{
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+			JPanel accusationPanel = new JPanel();
+			Accusation accusationClass = new Accusation();
+			accusationPanel = accusationClass;
+			accusationPanel.setLayout(new BoxLayout(accusationPanel, BoxLayout.Y_AXIS));
+			accusationPanel.setOpaque(true);
+			
+			accusationWindow.getContentPane().add(BorderLayout.CENTER, accusationPanel);
+			accusationWindow.pack();
+			accusationWindow.setLocationByPlatform(true);
+			accusationWindow.setVisible(true);
+			accusationWindow.setResizable(true);
+		}
+	}
 
 	// TODO function made for TESTING purposes
 	public static void main(String[] args) {
