@@ -35,46 +35,15 @@ public class Suggestion extends JPanel {
 	private String weaponAnswer;
 	String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
 	String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
-	 
-
-
-	public Suggestion(String room) { 
-
-		board = Board.getInstance();
-		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
-		board.setWeaponsConfigFile("WeaponsConfig.txt");
-		board.setPeopleConfigFile("PeopleConfig.txt");
-		board.initialize();
-		board.buildGamePlayers();
-		
-
-		roomName = room; // Get current room from board 
-
-		peopleList = new JComboBox(people);
-		weaponsList = new JComboBox(weapons);
-
-		setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
-		setLayout(new GridLayout(4,1));
-		JPanel panel = peopleGuess();
-		JPanel panel1 = weaponsGuess();
-		JPanel panel2 = roomsGuess(); 
-
-		add(panel);
-		add(panel1);		
-		add(panel2);
-
-		JPanel buttons = buttonPanel();
-		add(buttons);
-	}	
-
+	
 	public Suggestion() { 
 
 		board = Board.getInstance();
-		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
-		board.setWeaponsConfigFile("WeaponsConfig.txt");
-		board.setPeopleConfigFile("PeopleConfig.txt");
-		board.initialize();
-		board.buildGamePlayers();
+		//board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
+		//board.setWeaponsConfigFile("WeaponsConfig.txt");
+		//board.setPeopleConfigFile("PeopleConfig.txt");
+		//board.initialize();
+		//board.buildGamePlayers();
 		
 
 		roomName = "Room"; // Get current room from board 

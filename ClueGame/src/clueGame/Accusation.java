@@ -39,11 +39,11 @@ public class Accusation extends JPanel {
 	
 	public Accusation() { 
 		board = Board.getInstance();
-		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
-		board.setWeaponsConfigFile("WeaponsConfig.txt");
-		board.setPeopleConfigFile("PeopleConfig.txt");
-		board.initialize();
-		board.buildGamePlayers();
+		//board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
+		//board.setWeaponsConfigFile("WeaponsConfig.txt");
+		//board.setPeopleConfigFile("PeopleConfig.txt");
+		//board.initialize();
+		//board.buildGamePlayers();
 		peopleAnswer = "";
 		roomAnswer = "";
 		weaponAnswer = "";

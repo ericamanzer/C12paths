@@ -1089,7 +1089,7 @@ public class Board extends JPanel implements MouseListener {
 						
 						
 						JPanel myPanel = new JPanel();
-						Suggestion suggest = new Suggestion(currentRoom); 
+						Suggestion suggest = new Suggestion(); 
 						myPanel = suggest; 
 
 						myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
@@ -1292,20 +1292,7 @@ public class Board extends JPanel implements MouseListener {
 	}
 
 	
-	public void incorrectAccuation(Solution soln) { 
-		
-		String message = "Incorrect guess. " + soln.getPerson() + " " + soln.getWeapon() + " " 
-				+ soln.getRoom() + " was not the answer. "; 
-		
-		JOptionPane.showMessageDialog(null, message);
-	}
-	
-	public void correctAccuation(Solution soln) { 
-		String message = "You win! " + soln.getPerson() + " " + soln.getWeapon() + " " + 
-				soln.getRoom() + " was the correct answer!"; 
-		
-		JOptionPane.showMessageDialog(null, message);
-	}
+
 	
 }
 
