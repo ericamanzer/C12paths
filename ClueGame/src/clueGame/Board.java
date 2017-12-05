@@ -1139,57 +1139,57 @@ public class Board extends JPanel implements MouseListener {
 
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
-			
+
 			inWindow = true;
 			if (!getCellAt(row, col).isWalkway()) {
 
 
-			
-			if (getCellAt(col, row).isRoom()) {
 
-				inWindow = true; 
+				if (getCellAt(col, row).isRoom()) {
 
-				
-				JFrame myFrame = new JFrame("Suggestion");
-				myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				try 
-				{
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					e.printStackTrace();
+					inWindow = true; 
+
+
+					JFrame myFrame = new JFrame("Suggestion");
+					myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					try 
+					{
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+					JPanel myPanel = new JPanel();
+					Suggestion suggest = new Suggestion(); 
+					myPanel = suggest; 
+
+					myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
+					myPanel.setOpaque(true);
+
+					JTextArea text = new JTextArea(15, 50);
+					text.setEditable(false);
+					text.setFont(Font.getFont(Font.SANS_SERIF));
+					JPanel input = new JPanel(); 
+					input.setLayout(new FlowLayout()); 
+					myPanel.add(input);
+
+					myFrame.getContentPane().add(BorderLayout.CENTER, myPanel); 
+					myFrame.pack();
+					myFrame.setLocationByPlatform(true);
+					myFrame.setVisible(true);
+					myFrame.setResizable(false);
+
+
+
 				}
 
-				JPanel myPanel = new JPanel();
-				Suggestion suggest = new Suggestion(); 
-				myPanel = suggest; 
+				inWindow = false;
 
-				myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
-				myPanel.setOpaque(true);
 
-				JTextArea text = new JTextArea(15, 50);
-				text.setEditable(false);
-				text.setFont(Font.getFont(Font.SANS_SERIF));
-				JPanel input = new JPanel(); 
-				input.setLayout(new FlowLayout()); 
-				myPanel.add(input);
 
-				myFrame.getContentPane().add(BorderLayout.CENTER, myPanel); 
-				myFrame.pack();
-				myFrame.setLocationByPlatform(true);
-				myFrame.setVisible(true);
-				myFrame.setResizable(false);
-				 
-				
-				
 			}
-
-			inWindow = false;
-
-
-			
-			
 		}
-		
+
 		if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
 				this.currentPlayerInGame.getPlayerName().equals("ChemE") 	|| 
 				this.currentPlayerInGame.getPlayerName().equals("Mining")	|| 
