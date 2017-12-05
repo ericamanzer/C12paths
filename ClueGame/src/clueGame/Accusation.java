@@ -25,7 +25,7 @@ public class Accusation extends JPanel {
 
 	public Accusation() { 
 		setBorder(new TitledBorder (new EtchedBorder(), "Accusation"));
-		setLayout(new GridLayout(3,1));
+		setLayout(new GridLayout(4,1));
 		JPanel panel = peopleGuess();
 		JPanel panel1 = weaponsGuess();
 		JPanel panel2 = roomsGuess(); 
@@ -67,7 +67,7 @@ public class Accusation extends JPanel {
 	}
 
 	private JPanel buttonPanel() {
-		JButton accept = new JButton("Ok"); 
+		JButton accept = new JButton("Submit"); 
 		//accept.addActionListener(new );    FIXME
 		JButton cancel = new JButton("Cancel"); 
 		//cancel.addActionListener();  FIXME 
@@ -82,7 +82,7 @@ public class Accusation extends JPanel {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Make a suggestion");
+		frame.setTitle("Make an accusation");
 		frame.setSize(250, 150);	
 		// Create the JPanel and add it to the JFrame
 		Accusation gui = new Accusation();
