@@ -35,8 +35,8 @@ public class Suggestion extends JPanel {
 	private String weaponAnswer;
 	String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
 	String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
-	
-	public Suggestion() { 
+
+	public Suggestion(String r) { 
 
 		board = Board.getInstance();
 		//board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
@@ -44,9 +44,9 @@ public class Suggestion extends JPanel {
 		//board.setPeopleConfigFile("PeopleConfig.txt");
 		//board.initialize();
 		//board.buildGamePlayers();
-		
 
-		roomName = "Room"; // Get current room from board 
+
+		roomName = r; // Get current room from board 
 
 		peopleList = new JComboBox(people);
 		weaponsList = new JComboBox(weapons);
@@ -65,6 +65,10 @@ public class Suggestion extends JPanel {
 		add(buttons);
 	}
 
+	public void setCurrentRoom(String r) { 
+		this.roomName = r; 
+	}
+	
 	private JPanel peopleGuess() {
 
 		JPanel panel = new JPanel();
@@ -122,44 +126,19 @@ public class Suggestion extends JPanel {
 		{ 
 
 
+			int foundP = peopleList.getSelectedIndex();
+			peopleAnswer = people[foundP]; 
+			int foundW = weaponsList.getSelectedIndex();
+			weaponAnswer = weapons[foundW];
+			roomAnswer = roomName; 
+			System.out.println("Answer Found: " + peopleAnswer + ", " + roomAnswer + " room, " + weaponAnswer);
 
-
-
-			ItemListener itemListener = new ItemListener() {
-				public void itemStateChanged(ItemEvent itemEvent) {
-					int foundP = peopleList.getSelectedIndex();
-					peopleAnswer = people[foundP]; 
-					int foundW = weaponsList.getSelectedIndex();
-					weaponAnswer = weapons[foundW];
-					//int foundR = roomsList.getSelectedIndex();
-					//roomAnswer = rooms[foundR]; 
-					System.out.println("Answer Found: " + peopleAnswer + ", " + roomAnswer + " room, " + weaponAnswer);
-				}
-			};
-
-
-			System.out.println("Submitting suggestion class "); 
+ 
 			board.closeMyFrame();
 
 		}
 	}
 
-
-	public static void main(String[] args) {
-		// Create a JFrame with all the normal functionality
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Make a suggestion");
-		frame.setSize(250, 150);	
-		// Create the JPanel and add it to the JFrame
-		Suggestion gui = new Suggestion();
-		frame.add(gui, BorderLayout.CENTER);
-		// Now let's view it
-		frame.setVisible(true);
-
-
-
-	}
 
 
 }

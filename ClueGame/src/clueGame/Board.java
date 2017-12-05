@@ -1089,9 +1089,10 @@ public class Board extends JPanel implements MouseListener {
 						
 						
 						JPanel myPanel = new JPanel();
-						Suggestion suggest = new Suggestion(); 
+						Suggestion suggest = new Suggestion(currentRoom); 
 						myPanel = suggest; 
 
+						
 						myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
 						myPanel.setOpaque(true);
 

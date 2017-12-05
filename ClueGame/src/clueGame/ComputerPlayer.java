@@ -142,7 +142,7 @@ public class ComputerPlayer extends Player {
 	@Override
 	public Card disproveSuggestion(Solution soln) {
 
-		String p1, p2, w1, w2, r1, r2;  
+		//String p1, p2, w1, w2, r1, r2;  
 
 		Set<Card> myCards = new HashSet<Card>(); 
 		myCards = getMyCards(); 
