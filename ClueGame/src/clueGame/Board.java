@@ -1073,6 +1073,7 @@ public class Board extends JPanel implements MouseListener {
 							e.printStackTrace();
 						}
 
+						/*
 						char i = whichBox.getInitial(); 
 						String currentRoom; 
 						for (String temp : rooms) { 
@@ -1082,7 +1083,7 @@ public class Board extends JPanel implements MouseListener {
 							}
 						}
 						
-						
+						*/
 						
 						JPanel myPanel = new JPanel();
 						Suggestion suggest = new Suggestion(); 

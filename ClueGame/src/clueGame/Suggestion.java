@@ -99,7 +99,7 @@ public class Suggestion extends JPanel {
 	private JPanel buttonPanel() {
 
 		JButton accept = new JButton("Submit"); 
-		// accept listener FIXME 
+		accept.addActionListener(new submitButtonListener() );
 		JButton cancel = new JButton("Cancel"); 
 		cancel.addActionListener(new cancelButtonListener());  //FIXME 
 
