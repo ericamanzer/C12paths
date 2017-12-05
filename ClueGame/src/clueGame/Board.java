@@ -1261,6 +1261,22 @@ public class Board extends JPanel implements MouseListener {
 		myFrame.setVisible(false);
 		myFrame.dispose();
 	}
+
+	public void incorrectAccuation(Solution soln) { 
+
+		String message = "Incorrect guess. " + soln.getPerson() + " " + soln.getWeapon() + " " 
+				+ soln.getRoom() + " was not the answer. "; 
+
+		JOptionPane.showMessageDialog(null, message);
+	}
+
+	public void correctAccuation(Solution soln) { 
+		String message = "You win! " + soln.getPerson() + " " + soln.getWeapon() + " " + 
+				soln.getRoom() + " was the correct answer!"; 
+
+		JOptionPane.showMessageDialog(null, message);
+	}
+
 	
 }
 
