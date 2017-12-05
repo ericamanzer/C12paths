@@ -838,7 +838,10 @@ public class Board extends JPanel implements MouseListener {
 		// NOTE: random dice roll used to the pathLength in calcTargets
 		Random rand = new Random(); 
 		int dieRoll = rand.nextInt(6) + 1; 
-		return dieRoll; 
+		
+		dieRoll = 6; // FIX AFTER TESTING 
+		
+		return dieRoll;  
 	}
 	// TODO: check to make sure if working as desired
 	public boolean updateComputerPosition(int col, int row, int pathlength, Player player) { 
@@ -1058,7 +1061,7 @@ public class Board extends JPanel implements MouseListener {
 				{
 					selectedBox = whichBox;
 					repaint();
-					// TODO: would test if whichBox isDoorway()
+					
 					if (whichBox.isDoorway()) 
 					{
 
@@ -1073,9 +1076,9 @@ public class Board extends JPanel implements MouseListener {
 							e.printStackTrace();
 						}
 
-						/*
+						
 						char i = whichBox.getInitial(); 
-						String currentRoom; 
+						String currentRoom = ""; 
 						for (String temp : rooms) { 
 							if(i == temp.charAt(0)) { 
 								currentRoom = temp;
@@ -1083,10 +1086,10 @@ public class Board extends JPanel implements MouseListener {
 							}
 						}
 						
-						*/
+						
 						
 						JPanel myPanel = new JPanel();
-						Suggestion suggest = new Suggestion(); 
+						Suggestion suggest = new Suggestion(currentRoom); 
 						myPanel = suggest; 
 
 						myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
@@ -1287,5 +1290,6 @@ public class Board extends JPanel implements MouseListener {
 		
 		JOptionPane.showMessageDialog(null, message);
 	}
+	
 }
 

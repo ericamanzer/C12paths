@@ -35,10 +35,10 @@ public class Suggestion extends JPanel {
 	private String weaponAnswer;
 	String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
 	String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
+	 
 
 
-
-	public Suggestion() { 
+	public Suggestion(String room) { 
 
 		board = Board.getInstance();
 		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
@@ -46,9 +46,9 @@ public class Suggestion extends JPanel {
 		board.setPeopleConfigFile("PeopleConfig.txt");
 		board.initialize();
 		board.buildGamePlayers();
+		
 
-
-		roomName = "Room name"; // Get current room from board 
+		roomName = room; // Get current room from board 
 
 		peopleList = new JComboBox(people);
 		weaponsList = new JComboBox(weapons);
@@ -67,6 +67,34 @@ public class Suggestion extends JPanel {
 		add(buttons);
 	}	
 
+	public Suggestion() { 
+
+		board = Board.getInstance();
+		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
+		board.setWeaponsConfigFile("WeaponsConfig.txt");
+		board.setPeopleConfigFile("PeopleConfig.txt");
+		board.initialize();
+		board.buildGamePlayers();
+		
+
+		roomName = "Room"; // Get current room from board 
+
+		peopleList = new JComboBox(people);
+		weaponsList = new JComboBox(weapons);
+
+		setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
+		setLayout(new GridLayout(4,1));
+		JPanel panel = peopleGuess();
+		JPanel panel1 = weaponsGuess();
+		JPanel panel2 = roomsGuess(); 
+
+		add(panel);
+		add(panel1);		
+		add(panel2);
+
+		JPanel buttons = buttonPanel();
+		add(buttons);
+	}
 
 	private JPanel peopleGuess() {
 
@@ -101,7 +129,7 @@ public class Suggestion extends JPanel {
 		JButton accept = new JButton("Submit"); 
 		accept.addActionListener(new submitButtonListener() );
 		JButton cancel = new JButton("Cancel"); 
-		cancel.addActionListener(new cancelButtonListener());  //FIXME 
+		cancel.addActionListener(new cancelButtonListener());   
 
 		JPanel panel = new JPanel(); 
 		panel.add(accept);
@@ -146,28 +174,6 @@ public class Suggestion extends JPanel {
 
 		}
 	}
-
-
-
-
-	private class PersonMenuListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-
-			String p = "", r = "", w = ""; 
-
-			Solution soln = new Solution(p, w, r);
-
-			if (board.checkAccusation(soln) == false ) { 
-				board.incorrectAccuation(soln);  
-			}
-
-
-
-		}
-	}
-
 
 
 	public static void main(String[] args) {
