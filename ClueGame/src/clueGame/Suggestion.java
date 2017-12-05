@@ -103,7 +103,7 @@ public class Suggestion extends JPanel {
 			if (board.doneWithHuman)  
 			{
 				
-				 
+				
 				board.cancelMyFrame();
 				
 				
