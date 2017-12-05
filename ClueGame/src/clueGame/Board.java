@@ -76,6 +76,7 @@ public class Board extends JPanel implements MouseListener {
 	private String currentGuess = "";
 	private String currentResults = "no new clue";
 	public boolean inWindow = false; 
+	public boolean isFirstTurn = true; 
 
 
 	// Functions:
@@ -1168,7 +1169,6 @@ public class Board extends JPanel implements MouseListener {
 		System.out.println("Current Player: " + currentPlayerInGame.getPlayerName());
 		if (this.currentPlayerInGame.getPlayerName().equals("CompSci"))
 		{
-
 			this.doneWithHuman = false;
 			this.targetSelected = false; 
 			int row = this.currentPlayerInGame.getCurrentRow();
@@ -1178,9 +1178,10 @@ public class Board extends JPanel implements MouseListener {
 
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
-
 		}
-		
+
+
+
 		if (this.currentPlayerInGame.getPlayerName().equals("MechE")  		|| 
 				this.currentPlayerInGame.getPlayerName().equals("ChemE") 	|| 
 				this.currentPlayerInGame.getPlayerName().equals("Mining")	|| 

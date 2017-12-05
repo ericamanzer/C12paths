@@ -165,7 +165,7 @@ public class ControlGUI extends JPanel {
 	{
 		public void actionPerformed(ActionEvent e)
 		{ 
-			if (board.doneWithHuman && board.inWindow == false) 
+			if (board.doneWithHuman) // && board.inWindow == false) 
 			{
 				
 				// TODO call appropriate methods in the Board Class for processing 
