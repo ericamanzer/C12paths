@@ -1093,7 +1093,6 @@ public class Board extends JPanel implements MouseListener {
 						myFrame.setLocationByPlatform(true);
 						myFrame.setVisible(true);
 						myFrame.setResizable(false);
-						myFrame.dispose();
 						inWindow = false; 
 					}
 					GamePlay();
