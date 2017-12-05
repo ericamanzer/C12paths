@@ -12,8 +12,7 @@ import clueGame.BoardCell;
 import java.awt.Point;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder; 
 import javax.swing.*;
@@ -1074,6 +1073,17 @@ public class Board extends JPanel implements MouseListener {
 							e.printStackTrace();
 						}
 
+						char i = whichBox.getInitial(); 
+						String currentRoom; 
+						for (String temp : rooms) { 
+							if(i == temp.charAt(0)) { 
+								currentRoom = temp;
+								break;
+							}
+						}
+						
+						
+						
 						JPanel myPanel = new JPanel();
 						Suggestion suggest = new Suggestion(); 
 						myPanel = suggest; 
@@ -1264,13 +1274,17 @@ public class Board extends JPanel implements MouseListener {
 	
 	public void incorrectAccuation(Solution soln) { 
 		
-		String message = soln.getPerson() + soln.getWeapon() + soln.getRoom(); 
+		String message = "Incorrect guess. " + soln.getPerson() + " " + soln.getWeapon() + " " 
+				+ soln.getRoom() + " was not the answer. "; 
 		
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
 	public void correctAccuation(Solution soln) { 
+		String message = "You win! " + soln.getPerson() + " " + soln.getWeapon() + " " + 
+				soln.getRoom() + " was the correct answer!"; 
 		
+		JOptionPane.showMessageDialog(null, message);
 	}
 }
 

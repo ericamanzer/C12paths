@@ -30,9 +30,16 @@ public class Suggestion extends JPanel {
 	JComboBox weaponsList; 
 	String roomName; 
 	int state; 
-	
+	private String peopleAnswer;
+	private String roomAnswer;
+	private String weaponAnswer;
+	String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
+	String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
+
+
+
 	public Suggestion() { 
-		
+
 		board = Board.getInstance();
 		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
 		board.setWeaponsConfigFile("WeaponsConfig.txt");
@@ -40,13 +47,12 @@ public class Suggestion extends JPanel {
 		board.initialize();
 		board.buildGamePlayers();
 
-		String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
-		String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
+
 		roomName = "Room name"; // Get current room from board 
-		
+
 		peopleList = new JComboBox(people);
 		weaponsList = new JComboBox(weapons);
-		
+
 		setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
 		setLayout(new GridLayout(4,1));
 		JPanel panel = peopleGuess();
@@ -81,7 +87,7 @@ public class Suggestion extends JPanel {
 	private JPanel roomsGuess() {
 
 		JPanel panel = new JPanel();
-		
+
 		JTextField textName = new JTextField(roomName); 
 		textName.setEditable(false);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Room Guess"));
@@ -112,51 +118,53 @@ public class Suggestion extends JPanel {
 
 		}
 	}
-	
+
 	private class submitButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{ 
 
 
-			
+
 
 
 			ItemListener itemListener = new ItemListener() {
 				public void itemStateChanged(ItemEvent itemEvent) {
-					state = itemEvent.getStateChange();
-					System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
-					System.out.println("Item: " + itemEvent.getItem());
-					ItemSelectable is = itemEvent.getItemSelectable();
-					//System.out.println(", Selected: " + selectedString(is));
+					int foundP = peopleList.getSelectedIndex();
+					peopleAnswer = people[foundP]; 
+					int foundW = weaponsList.getSelectedIndex();
+					weaponAnswer = weapons[foundW];
+					//int foundR = roomsList.getSelectedIndex();
+					//roomAnswer = rooms[foundR]; 
+					System.out.println("Answer Found: " + peopleAnswer + ", " + roomAnswer + " room, " + weaponAnswer);
 				}
 			};
 
 
 			System.out.println("Submitting suggestion class "); 
 			board.closeMyFrame();
-			
+
 		}
 	}
-	
 
-	
-		  
+
+
+
 	private class PersonMenuListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 
 			String p = "", r = "", w = ""; 
-			
-				Solution soln = new Solution(p, w, r);
-				
-				if (board.checkAccusation(soln) == false ) { 
-					board.incorrectAccuation(soln);  
-				}
-				
-				
-				
+
+			Solution soln = new Solution(p, w, r);
+
+			if (board.checkAccusation(soln) == false ) { 
+				board.incorrectAccuation(soln);  
+			}
+
+
+
 		}
 	}
 
@@ -173,9 +181,9 @@ public class Suggestion extends JPanel {
 		frame.add(gui, BorderLayout.CENTER);
 		// Now let's view it
 		frame.setVisible(true);
-		
-		
-		
+
+
+
 	}
 
 
