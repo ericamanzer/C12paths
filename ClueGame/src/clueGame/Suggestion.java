@@ -32,6 +32,13 @@ public class Suggestion extends JPanel {
 	int state; 
 	
 	public Suggestion() { 
+		
+		board = Board.getInstance();
+		board.setConfigFiles("C14 Layout.csv", "C12 Layout.txt");
+		board.setWeaponsConfigFile("WeaponsConfig.txt");
+		board.setPeopleConfigFile("PeopleConfig.txt");
+		board.initialize();
+		board.buildGamePlayers();
 
 		String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
 		String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
@@ -88,7 +95,7 @@ public class Suggestion extends JPanel {
 		JButton accept = new JButton("Submit"); 
 		// accept listener FIXME 
 		JButton cancel = new JButton("Cancel"); 
-		//cancel.addActionListener();  FIXME 
+		cancel.addActionListener(new cancelButtonListener());  //FIXME 
 
 		JPanel panel = new JPanel(); 
 		panel.add(accept);
@@ -100,14 +107,10 @@ public class Suggestion extends JPanel {
 	{
 		public void actionPerformed(ActionEvent e)
 		{ 
-			if (board.doneWithHuman)  
-			{
-				
-				 
-				board.cancelMyFrame();
-				
-				
-			}
+
+			System.out.println("Canceling suggestion class "); 
+			board.cancelMyFrame();
+
 		}
 	}
 	
@@ -115,22 +118,21 @@ public class Suggestion extends JPanel {
 	{
 		public void actionPerformed(ActionEvent e)
 		{ 
-			if (board.doneWithHuman)  
-			{
 
 
 
-				ItemListener itemListener = new ItemListener() {
-					public void itemStateChanged(ItemEvent itemEvent) {
-						state = itemEvent.getStateChange();
-						System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
-						System.out.println("Item: " + itemEvent.getItem());
-						ItemSelectable is = itemEvent.getItemSelectable();
-						//System.out.println(", Selected: " + selectedString(is));
-					}
-				};
 
-			}
+			ItemListener itemListener = new ItemListener() {
+				public void itemStateChanged(ItemEvent itemEvent) {
+					state = itemEvent.getStateChange();
+					System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
+					System.out.println("Item: " + itemEvent.getItem());
+					ItemSelectable is = itemEvent.getItemSelectable();
+					//System.out.println(", Selected: " + selectedString(is));
+				}
+			};
+
+
 		}
 	}
 	

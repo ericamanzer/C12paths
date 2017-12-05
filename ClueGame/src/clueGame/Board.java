@@ -1169,7 +1169,7 @@ public class Board extends JPanel implements MouseListener {
 	public void GamePlay()
 	{
 
-		System.out.println("Current Player: " + currentPlayerInGame.getPlayerName());
+		//System.out.println("Current Player: " + currentPlayerInGame.getPlayerName());
 		if (this.currentPlayerInGame.getPlayerName().equals("CompSci"))
 		{
 			this.doneWithHuman = false;
@@ -1258,6 +1258,7 @@ public class Board extends JPanel implements MouseListener {
 	}
 	
 	public void cancelMyFrame() { 
+		myFrame.setVisible(false);
 		myFrame.dispose();
 	}
 	
