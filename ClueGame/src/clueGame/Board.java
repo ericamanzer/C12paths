@@ -707,7 +707,7 @@ public class Board extends JPanel implements MouseListener {
 		else { 
 			computerPlayer.addSeen(foundCards.get(location));
 			this.compSuggestionDisproved = true;
-			System.out.println("Found other cards that disprove the suggestion. ArrayList size: " + foundCards.size() );
+			//System.out.println("Found other cards that disprove the suggestion. ArrayList size: " + foundCards.size() );
 			if (foundCards.get(location) != null)
 			{
 				this.currentResults = foundCards.get(location).getCardname();
@@ -843,7 +843,7 @@ public class Board extends JPanel implements MouseListener {
 		ArrayList<BoardCell> possibleTargets = new ArrayList<BoardCell>(); 
 		// NOTE: calcTargets with refresh and populate the targets HashSet
 		calcTargets(col, row, pathlength); 
-		System.out.println("Targets found for the computer: " + targets.size()); // TESTING
+		//System.out.println("Targets found for the computer: " + targets.size()); // TESTING
 		for (BoardCell temp: targets) {
 			// NOTE: populating the temp arrayList for "dumb" AI
 			possibleTargets.add(temp); 
@@ -874,10 +874,10 @@ public class Board extends JPanel implements MouseListener {
 	public boolean updateHumanPosition(int col, int row, int pathlength, Player player) 
 	{ 	
 
-		System.out.println("Col: " + col);
-		System.out.println("Row: " + row);
-		System.out.println("pathlength: " + pathlength);
-		System.out.println("Player information: " + player.getPlayerName());
+		//System.out.println("Col: " + col);
+		///System.out.println("Row: " + row);
+		//System.out.println("pathlength: " + pathlength);
+		//System.out.println("Player information: " + player.getPlayerName());
 		// NOTE: need to update the original set that holds the human player
 		for (HumanPlayer human: humanPlayer)
 		{
@@ -1070,7 +1070,7 @@ public class Board extends JPanel implements MouseListener {
 			else
 			{
 				JOptionPane.showMessageDialog(null, "That is not a target", "Message", JOptionPane.INFORMATION_MESSAGE);
-				System.out.println("Box selected was not a box");
+				//System.out.println("Box selected was not a box");
 				repaint();
 			}
 			revalidate();
@@ -1106,8 +1106,8 @@ public class Board extends JPanel implements MouseListener {
 		{ this.gamePlayers.add(human); }
 		for (ComputerPlayer computer: computerPlayers)
 		{ this.gamePlayers.add(computer); }
-		for (Player computer: this.gamePlayers)
-		{ System.out.println(computer.getPlayerName()); }
+		//for (Player computer: this.gamePlayers)
+		//{ System.out.println(computer.getPlayerName()); }
 	}
 
 	public Player whoIsTheCurrentPLayer()
@@ -1135,13 +1135,12 @@ public class Board extends JPanel implements MouseListener {
 			int col = this.currentPlayerInGame.getCurrentColumn();
 			calcTargets(col, row, this.dieRollValue);
 			repaint();
+
 			this.updateHumanPosition(selectedBox.getCol(), selectedBox.getRow(), dieRollValue, this.currentPlayerInGame);  //ERROR
 			repaint();
 
-			BoardCell cell = new BoardCell(); 
-			cell = getCellAt(row, col);
-
-			if (cell.isRoom()) {
+			
+			if (getCellAt(col, row).isRoom()) {
 
 				inWindow = true; 
 				
@@ -1175,6 +1174,7 @@ public class Board extends JPanel implements MouseListener {
 				myFrame.setResizable(false);
 				inWindow = false; 
 			}
+			
 
 			
 		}
