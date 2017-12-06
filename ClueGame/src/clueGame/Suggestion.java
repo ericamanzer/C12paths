@@ -36,6 +36,7 @@ public class Suggestion extends JPanel {
 	private String currentResults;
 	String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
 	String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
+	Solution humanSuggestedSolution = new Solution();
 
 	public Suggestion(String r) { 
 
@@ -113,7 +114,9 @@ public class Suggestion extends JPanel {
 	
 	public void setSuggestionInternal( String people, String room, String weapon)
 	{
+		System.out.println(" PLEASE: " + people);
 		this.peopleAnswer = people;
+		System.out.println(" WHY: " + this.peopleAnswer);
 		this.roomAnswer = room;
 		this.weaponAnswer = weapon;
 	}
@@ -128,7 +131,7 @@ public class Suggestion extends JPanel {
 		}
 	}
 
-	private class submitButtonListener implements ActionListener
+	public class submitButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{ 
@@ -142,7 +145,7 @@ public class Suggestion extends JPanel {
 			setSuggestionInternal(peopleAnswer, roomAnswer, weaponAnswer);
 			System.out.println("Answer Found: " + peopleAnswer + ", " + roomAnswer + " room, " + weaponAnswer);
 			
-			Solution humanSuggestedSolution = new Solution (peopleAnswer, roomAnswer, weaponAnswer);
+			humanSuggestedSolution = new Solution (peopleAnswer, roomAnswer, weaponAnswer);
 
 			// 1. Show the current suggestion on the ControlGUI , X
 			// 2. Disprove the Human suggestion
@@ -191,12 +194,15 @@ public class Suggestion extends JPanel {
 			board.closeMyFrame();
 
 		}
+		
+		
 	}
 
 	public String getCurrentHumanGuess()
 	{
-		System.out.println("Answer Found: " + this.peopleAnswer + ", " + this.roomName + " room, " + this.weaponAnswer);
-		return  this.peopleAnswer + ", " + this.roomName + " room, " + this.weaponAnswer;
+		//System.out.println(this.humanSuggestedSolution.getPerson() + ", " + this.humanSuggestedSolution + ", " + this.humanSuggestedSolution);
+		System.out.println("Answer Found: " + peopleAnswer + ", " + roomName + " room, " + weaponAnswer);
+		return  peopleAnswer + ", " + roomName + " room, " + weaponAnswer;
 	}
 
 

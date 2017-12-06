@@ -51,6 +51,7 @@ public class ControlGUI extends JPanel {
 		currentDie = new JTextField(String.valueOf(board.currentDieRollValue()));
 		currentGuess = new JTextField(board.whatIsTheCurrentGuess());
 		currentResult = new JTextField(board.whatIsTheCurrentResult());
+		suggestionHuman = board.passCurrentSuggestionState();
 
 		//JTextField field = new JTextField(); 
 		setLayout(new GridLayout(2,0));
@@ -160,8 +161,11 @@ public class ControlGUI extends JPanel {
 	
 	public void refreshGuessResultPanels()
 	{
+		
 		if (board.whoIsTheCurrentPLayer().getPlayerName().equals("CompSci"))
 		{
+			suggestionHuman = board.passCurrentSuggestionState();
+			System.out.println(suggestionHuman.getCurrentHumanGuess());
 			this.currentGuess.setText(suggestionHuman.getCurrentHumanGuess());
 			this.currentResult.setText(suggestionHuman.getCurrentHumanResult());
 		}

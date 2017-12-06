@@ -77,8 +77,7 @@ public class Board extends JPanel implements MouseListener {
 	private String currentResults = "no new clue";
 	public boolean inWindow = false; 
 	public boolean isFirstTurn = true; 
-
-
+	public Suggestion suggest; 
 	// Functions:
 	//NOTE: Singleton pattern 
 	private static Board theInstance = new Board();
@@ -1089,7 +1088,8 @@ public class Board extends JPanel implements MouseListener {
 						
 						
 						JPanel myPanel = new JPanel();
-						Suggestion suggest = new Suggestion(currentRoom); 
+						suggest = new Suggestion(currentRoom); 
+
 						myPanel = suggest; 
 
 						
@@ -1138,6 +1138,8 @@ public class Board extends JPanel implements MouseListener {
 
 
 	// NOTE: Game Play Logic Methods
+	public Suggestion passCurrentSuggestionState() { return this.suggest; }
+	
 	public void nextPlayerButtonMethod()
 	{
 		if (this.targetSelected)
