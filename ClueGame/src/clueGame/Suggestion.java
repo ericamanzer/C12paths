@@ -30,9 +30,10 @@ public class Suggestion extends JPanel {
 	JComboBox weaponsList; 
 	String roomName; 
 	int state; 
-	private String peopleAnswer;
-	private String roomAnswer;
-	private String weaponAnswer;
+	private String peopleAnswer = "";
+	private String roomAnswer = "";
+	private String weaponAnswer = "";
+	private String currentResults;
 	String[] people = {"CompSci", "MechE", "ChemE", "Mining", "Geology", "Physics"};
 	String[] weapons = {"Keyboard", "MatLab", "Chemical", "Pickaxe", "Rock", "Exams"};
 
@@ -109,6 +110,13 @@ public class Suggestion extends JPanel {
 		panel.add(cancel);
 		return panel; 
 	}
+	
+	public void setSuggestionInternal( String people, String room, String weapon)
+	{
+		this.peopleAnswer = people;
+		this.roomAnswer = room;
+		this.weaponAnswer = weapon;
+	}
 
 	private class cancelButtonListener implements ActionListener
 	{
@@ -131,14 +139,69 @@ public class Suggestion extends JPanel {
 			int foundW = weaponsList.getSelectedIndex();
 			weaponAnswer = weapons[foundW];
 			roomAnswer = roomName; 
+			setSuggestionInternal(peopleAnswer, roomAnswer, weaponAnswer);
 			System.out.println("Answer Found: " + peopleAnswer + ", " + roomAnswer + " room, " + weaponAnswer);
+			
+			Solution humanSuggestedSolution = new Solution (peopleAnswer, roomAnswer, weaponAnswer);
 
- 
+			// 1. Show the current suggestion on the ControlGUI , X
+			// 2. Disprove the Human suggestion
+			// need the current computer players that are active in Board
+			Set<ComputerPlayer> computer = new HashSet();
+			ArrayList<Card> foundCards = new ArrayList<Card>(); 
+			computer = board.getComputerPlayers();
+			for(ComputerPlayer tempPlayer: computer) {
+				if (tempPlayer == computer) {
+					continue;  
+				}
+				else { 
+					// if a card is found by another player, the card is added to the ArrayList of cards
+					Card temp = tempPlayer.disproveSuggestion(humanSuggestedSolution); 
+					if ( temp == null) {}
+					else { foundCards.add(temp); }
+					
+				}
+			}
+			
+			// selecting a random number for selecting a found Card
+
+			if (foundCards.size() == 0) { /* if the size of FoundCards = 0, that means not cards were found to disprove the suggestion */
+				// store the suggestion that was found to be the next accusation. 
+				currentResults = "no new clue";
+			}
+			else { 
+				Random rand = new Random(); 
+				int location = rand.nextInt(foundCards.size()); 
+				//System.out.println("Found other cards that disprove the suggestion. ArrayList size: " + foundCards.size() );
+				if (foundCards.get(location) != null)
+				{
+					currentResults = foundCards.get(location).getCardname();
+					//foundCards.get(location); 
+				}
+				else
+				{
+					// if null, need to choose another location to go to
+					currentResults = "no new clue"; 
+				}
+			}
+			// 3. If the suggestion is disproved, show the card that disproved it
+			// 		otherwise, display "no new clue"
+			// 4. Display results to the ControlGUI
+			
 			board.closeMyFrame();
 
 		}
 	}
 
+	public String getCurrentHumanGuess()
+	{
+		System.out.println("Answer Found: " + this.peopleAnswer + ", " + this.roomName + " room, " + this.weaponAnswer);
+		return  this.peopleAnswer + ", " + this.roomName + " room, " + this.weaponAnswer;
+	}
 
 
+	public String getCurrentHumanResult()
+	{
+		return this.currentResults;
+	}
 }

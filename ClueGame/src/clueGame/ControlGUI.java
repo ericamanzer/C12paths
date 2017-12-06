@@ -34,6 +34,7 @@ public class ControlGUI extends JPanel {
 	private JTextField currentResult;
 	JFrame accusationWindow = new JFrame("Accusation");
 	Accusation accusationClass = new Accusation();
+	Suggestion suggestionHuman = new Suggestion("");
 
 	public ControlGUI()
 	{
@@ -159,10 +160,18 @@ public class ControlGUI extends JPanel {
 	
 	public void refreshGuessResultPanels()
 	{
-		this.currentGuess.setText(board.whatIsTheCurrentGuess());
-		//this.currentGuess.setEditable(false);
-		this.currentResult.setText(board.whatIsTheCurrentResult());
-		//this.currentResult.setEditable(false);
+		if (board.whoIsTheCurrentPLayer().getPlayerName().equals("CompSci"))
+		{
+			this.currentGuess.setText(suggestionHuman.getCurrentHumanGuess());
+			this.currentResult.setText(suggestionHuman.getCurrentHumanResult());
+		}
+		else
+		{
+			this.currentGuess.setText(board.whatIsTheCurrentGuess());
+			//this.currentGuess.setEditable(false);
+			this.currentResult.setText(board.whatIsTheCurrentResult());
+			//this.currentResult.setEditable(false);
+		}
 	}
 
 	// NOTE: class implements ActionListener which is required for the
